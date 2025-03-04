@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jonny\\Desktop\\Chestnuts and Chives\\Chestnuts and Chives\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C25B34D6-C7CD-475B-A865-2A7EB0E66269}|Chestnuts and Chives\\Chestnuts and Chives.vcxproj|C:\\Users\\jonny\\Desktop\\Chestnuts and Chives\\Chestnuts and Chives\\Chestnuts and Chives\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C25B34D6-C7CD-475B-A865-2A7EB0E66269}|Chestnuts and Chives\\Chestnuts and Chives.vcxproj|solutionrelative:Chestnuts and Chives\\Main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Main.cpp",
+              "DocumentMoniker": "C:\\Users\\jonny\\Desktop\\Chestnuts and Chives\\Chestnuts and Chives\\Chestnuts and Chives\\Main.cpp",
+              "RelativeDocumentMoniker": "Chestnuts and Chives\\Main.cpp",
+              "ToolTip": "C:\\Users\\jonny\\Desktop\\Chestnuts and Chives\\Chestnuts and Chives\\Chestnuts and Chives\\Main.cpp",
+              "RelativeToolTip": "Chestnuts and Chives\\Main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-03-04T14:49:48.487Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
