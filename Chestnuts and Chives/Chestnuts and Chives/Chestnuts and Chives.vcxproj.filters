@@ -13,10 +13,36 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="GameFiles">
+      <UniqueIdentifier>{de8e8166-1faa-4bd7-9f3c-c3bb92c40d30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFiles\Server">
+      <UniqueIdentifier>{1ac02ebc-4a21-470e-b721-d51aecb4eea1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFiles\Cooking">
+      <UniqueIdentifier>{7a6f283b-d5c3-4e2a-8bf3-5192f8bae37b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFiles\Client">
+      <UniqueIdentifier>{c5d41b11-716a-479a-bd81-0c4bcf34b6f4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Server.cpp">
+      <Filter>GameFiles\Server</Filter>
+    </ClCompile>
+    <ClCompile Include="Client.cpp">
+      <Filter>GameFiles\Client</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Server.h">
+      <Filter>GameFiles\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="Client.h">
+      <Filter>GameFiles\Client</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
