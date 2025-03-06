@@ -12,6 +12,7 @@
 static SDL_Window* window = NULL;
 static SDL_Renderer* renderer = NULL;
 static Client* playerClient;
+static Client* testingClient;
 static Server* gameServer;
 
 /* This function runs once at startup. */
@@ -35,7 +36,9 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
         return SDL_APP_FAILURE;
     }
     gameServer = new Server();
-    playerClient = new Client(gameServer);
+    playerClient = new Client("player", 66662);
+    testingClient = new Client("tester", 88888);
+    playerClient->ConnectToServer("127.0.0.1");
     return SDL_APP_CONTINUE;  /* carry on with the program! */
 }
 
@@ -46,6 +49,12 @@ SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
     if (event->type == SDL_EVENT_QUIT) {
         return SDL_APP_SUCCESS;  /* end the program, reporting success to the OS. */
     }
+    if (event->type == SDL_EVENT_KEY_DOWN) {
+        if (testingClient->IsConnected()) {
+            return SDL_APP_CONTINUE;  /* carry on with the program! */
+        }
+        testingClient->ConnectToServer("127.0.0.1");
+    }
     return SDL_APP_CONTINUE;  /* carry on with the program! */
 }
 
@@ -54,13 +63,7 @@ SDL_AppResult SDL_AppIterate(void* appstate)
 {
     gameServer->Update();
     playerClient->Update();
-
-
-
-
-
-
-
+    testingClient->Update();
     return SDL_APP_CONTINUE;  /* carry on with the program! */
 }
 

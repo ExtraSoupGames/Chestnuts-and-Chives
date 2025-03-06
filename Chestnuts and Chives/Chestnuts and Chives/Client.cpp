@@ -1,20 +1,51 @@
 #include "Client.h"
-void Client::SendMessage()
+void Client::SendMessage(string message)
 {
-    const char* message = "Hello, from the client!";
-    SDLNet_SendDatagram(socket, connectedServer->GetAddress(), 66661, message, strlen(message));
+    SDLNet_SendDatagram(socket, connectedServer, 66661, message.c_str(), strlen(message.c_str()));
 }
-Client::Client(Server* s) {
-	connectedServer = s;
-	socket = SDLNet_CreateDatagramSocket(connectedServer->GetAddress(), 66662);
+Client::Client(string clientName, int portToUse) {
+    clientID = 0;
+    port = portToUse;
+    socket = nullptr;
+    connectedServer = nullptr;
+    this->clientName = clientName;
 }
-void Client::Update() {
-    SendMessage();
+void Client::ConnectToServer(string serverAddress)
+{
+    connectedServer = SDLNet_ResolveHostname(serverAddress.c_str());
+    SDLNet_WaitUntilResolved(connectedServer, 1000);
+    socket = SDLNet_CreateDatagramSocket(connectedServer, port);
+}
+void Client::ProcessIncoming() {
     SDLNet_Datagram* incoming;
     if (SDLNet_ReceiveDatagram(socket, &incoming)) {
         if (incoming) {
-            printf("Received from %s:%d - %s\n", SDLNet_GetAddressString(incoming->addr), incoming->port, (char*)incoming->buf);
+            string inData = string((char*)incoming->buf);
+            if (inData.substr(0, 4) == "0000") {
+                clientID = stoi(inData.substr(4,1));
+                string message = "0001" + clientName;
+                SendMessage(message);
+            }
             SDLNet_DestroyDatagram(incoming);
         }
     }
+}
+void Client::Update() {
+    if (connectedServer == nullptr) {
+        return;
+    }
+    ProcessIncoming();
+    if (clientID == 0) {
+        //if the client ID is 0 then this client has not yet connected to the server
+        string message = "0000" + clientName;
+        SendMessage(message);
+        return;
+    }
+    string message = "0002" + to_string(clientID);
+    SendMessage(message);
+}
+
+bool Client::IsConnected()
+{
+    return connectedServer != nullptr;
 }

@@ -25,6 +25,9 @@
     <Filter Include="GameFiles\Client">
       <UniqueIdentifier>{c5d41b11-716a-479a-bd81-0c4bcf34b6f4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{3b65b539-cc25-49db-aaf6-733f6c1b28d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -36,6 +39,18 @@
     <ClCompile Include="Client.cpp">
       <Filter>GameFiles\Client</Filter>
     </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="NonHostState.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="HostState.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Server.h">
@@ -43,6 +58,18 @@
     </ClInclude>
     <ClInclude Include="Client.h">
       <Filter>GameFiles\Client</Filter>
+    </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="NonHostState.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="HostState.h">
+      <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
