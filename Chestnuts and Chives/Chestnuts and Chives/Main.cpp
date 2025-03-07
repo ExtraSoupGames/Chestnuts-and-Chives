@@ -36,8 +36,8 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
         return SDL_APP_FAILURE;
     }
     gameServer = new Server();
-    playerClient = new Client("player", 66662);
-    testingClient = new Client("tester", 88888);
+    playerClient = new Client(66662);
+    testingClient = new Client(88888);
     playerClient->ConnectToServer("127.0.0.1");
     return SDL_APP_CONTINUE;  /* carry on with the program! */
 }

@@ -4,12 +4,12 @@
 #include <SDL3/SDL.h>
 #include <SDL3_net/SDL_net.h>
 #include <vector>
+#include "NetworkUtilities.h"
 using namespace std;
 struct ConnectedClient {
-	string clientName;
 	SDLNet_Address* address;
 	int clientPort;
-	ConnectedClient(SDLNet_Address* pAddress, string pClientName, int pClientPort);
+	ConnectedClient(SDLNet_Address* pAddress, int pClientPort);
 };
 class Server
 {
@@ -20,11 +20,11 @@ private:
 	int nextClientID;
 	bool connectingAClient;
 	SDLNet_Address* connectingClientsAddress;
-	string connectingClientsName;
 	int connectingClientPort;
-	void SendMessageTo(SDLNet_Address* address, int clientPort, string message);
 	void ProcessIncoming();
-	bool IsAlreadyConnected(SDLNet_Address* address, int port, string clientName);
+	void ConfirmClientConnection(SDLNet_Address* clientAddress);
+	void TryConnectClient(string inData, SDLNet_Address* clientAddress, int clientPort);
+	bool IsAlreadyConnected(SDLNet_Address* address, int port);
 public:
 	Server();
 	void Update();

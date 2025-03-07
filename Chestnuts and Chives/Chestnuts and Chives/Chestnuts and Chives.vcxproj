@@ -139,6 +139,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="HostState.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="NetworkUtilities.cpp" />
     <ClCompile Include="NonHostState.cpp" />
     <ClCompile Include="Server.cpp" />
   </ItemGroup>
@@ -147,6 +148,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="HostState.h" />
+    <ClInclude Include="NetworkUtilities.h" />
     <ClInclude Include="NonHostState.h" />
     <ClInclude Include="Server.h" />
   </ItemGroup>

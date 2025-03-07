@@ -13,11 +13,9 @@ private:
 	int port;
 	SDLNet_DatagramSocket* socket;
 	SDLNet_Address* connectedServer;
-	void SendMessage(string message);
 	void ProcessIncoming();
-	string clientName;
 public:
-	Client(string clientName, int portToUse);
+	Client(int portToUse);
 	void ConnectToServer(string serverAddress);
 	void Update();
 	bool IsConnected();

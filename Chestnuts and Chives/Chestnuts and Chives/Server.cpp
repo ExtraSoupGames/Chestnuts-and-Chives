@@ -1,8 +1,4 @@
 #include "Server.h"
-void Server::SendMessageTo(SDLNet_Address* recipientAddress, int clientPort, string message)
-{
-    SDLNet_SendDatagram(socket, recipientAddress, clientPort, message.c_str(), strlen(message.c_str()));
-}
 Server::Server() {
     address = SDLNet_ResolveHostname("127.0.0.1");
     if (address == nullptr) {
@@ -20,14 +16,12 @@ Server::Server() {
     connectedClients = new vector<ConnectedClient*>();
     connectingClientPort = 0;
 }
-bool Server::IsAlreadyConnected(SDLNet_Address* address, int port, string clientName) {
+bool Server::IsAlreadyConnected(SDLNet_Address* address, int port) {
     for (int i = 0; i < connectedClients->size(); i++) {
         if (SDLNet_GetAddressString(address) == SDLNet_GetAddressString(connectedClients->at(i)->address)) {
-            if (clientName == connectedClients->at(i)->clientName) {
-                if (port == connectedClients->at(i)->clientPort) {
-                    cout << "A client tried to connect but they were already connected!" << endl;
-                    return true;
-                }
+            if (port == connectedClients->at(i)->clientPort) {
+                cout << "A client tried to connect but they were already connected!" << endl;
+                return true;
             }
         }
     }
@@ -41,40 +35,17 @@ void Server::ProcessIncoming() {
             string inData = string((char*)incoming->buf);
             SDLNet_Address* clientAddress = SDLNet_RefAddress(incoming->addr);
             int clientPort = incoming->port;
-            if (inData.substr(0, 4) == "0000") {
-                string clientName = inData.substr(4);
-                if (!IsAlreadyConnected(clientAddress, clientPort, clientName)) {
-                    if (!connectingAClient) {
-                        connectingAClient = true;
-                        connectingClientsAddress = clientAddress;
-                        connectingClientsName = clientName;
-                        connectingClientPort = clientPort;
-                        string message = "0000" + to_string(nextClientID);
-                        SendMessageTo(clientAddress, clientPort, message);
-                    }
-                    else if (SDLNet_GetAddressString(clientAddress) == SDLNet_GetAddressString(connectingClientsAddress)) {
-                        string message = "0000" + to_string(nextClientID);
-                        SendMessageTo(clientAddress, clientPort, message);
-                    }
-                }
-            }
-            if (inData.substr(0,4) == "0001") {
-                if (!connectingAClient) {
-                    return;
-                }
-                if (SDLNet_GetAddressString(clientAddress) == SDLNet_GetAddressString(connectingClientsAddress)) {
-                    string clientName = inData.substr(4);
-                    if (clientName == connectingClientsName) {
-                        connectingAClient = false;
-                        nextClientID++;
-                        connectedClients->push_back(new ConnectedClient(connectingClientsAddress, clientName, connectingClientPort));
-                        connectingClientsAddress = nullptr;
-                        cout << "Successfully connected client with ID: " << (nextClientID - 1) << endl;
-                    }
-                }
-            }
-            if (inData.substr(0, 4) == "0002") {
-                //other stuff
+            NetworkMessage* msg = new NetworkMessage(incoming);
+
+            switch(msg->GetMessageType()){
+            case Connect:
+                TryConnectClient(inData, clientAddress, clientPort);
+                break;
+            case ConnectConfirm:
+                ConfirmClientConnection(clientAddress);
+                break;
+            case Heartbeat:
+                break;
             }
             SDLNet_DestroyDatagram(incoming);
         }
@@ -83,13 +54,43 @@ void Server::ProcessIncoming() {
         }
     }
 }
+void Server::ConfirmClientConnection(SDLNet_Address* clientAddress)
+{
+    if (!connectingAClient) {
+        return;
+    }
+    if (SDLNet_GetAddressString(clientAddress) == SDLNet_GetAddressString(connectingClientsAddress)) {
+        connectingAClient = false;
+        nextClientID++;
+        connectedClients->push_back(new ConnectedClient(connectingClientsAddress, connectingClientPort));
+        connectingClientsAddress = nullptr;
+        cout << "Successfully connected client with ID: " << (nextClientID - 1) << endl;
+    }
+}
+void Server::TryConnectClient(string inData, SDLNet_Address* clientAddress, int clientPort)
+{
+    if (!IsAlreadyConnected(clientAddress, clientPort)) {
+        if (!connectingAClient) {
+            connectingAClient = true;
+            connectingClientsAddress = clientAddress;
+            connectingClientPort = clientPort;
+            string message = "0001" + NetworkUtilities::AsBinaryString(1, nextClientID);
+            NetworkUtilities::SendMessageTo(message, socket, clientAddress, clientPort);
+        }
+        else if (SDLNet_GetAddressString(clientAddress) == SDLNet_GetAddressString(connectingClientsAddress)) {
+            if (clientPort == connectingClientPort) {
+                string message = "0001" + NetworkUtilities::AsBinaryString(1, nextClientID);
+                NetworkUtilities::SendMessageTo(message, socket, clientAddress, clientPort);
+            }
+        }
+    }
+}
 void Server::Update() {
     ProcessIncoming();
 }
 
-ConnectedClient::ConnectedClient(SDLNet_Address* pAddress, string pClientName, int pClientPort)
+ConnectedClient::ConnectedClient(SDLNet_Address* pAddress, int pClientPort)
 {
     address = pAddress;
-    clientName = pClientName;
     clientPort = pClientPort;
 }
