@@ -29,29 +29,19 @@ bool Server::IsAlreadyConnected(SDLNet_Address* address, int port) {
 }
 
 void Server::ProcessIncoming() {
-    SDLNet_Datagram* incoming;
-    while (SDLNet_ReceiveDatagram(socket, &incoming)) {
-        if (incoming) {
-            string inData = string((char*)incoming->buf);
-            SDLNet_Address* clientAddress = SDLNet_RefAddress(incoming->addr);
-            int clientPort = incoming->port;
-            NetworkMessage* msg = new NetworkMessage(incoming);
-
-            switch(msg->GetMessageType()){
-            case Connect:
-                TryConnectClient(inData, clientAddress, clientPort);
-                break;
-            case ConnectConfirm:
-                ConfirmClientConnection(clientAddress);
-                break;
-            case Heartbeat:
-                break;
-            }
-            SDLNet_DestroyDatagram(incoming);
-        }
-        else {
+    NetworkMessage* message = nullptr;
+    while(NetworkUtilities::GetNextIncoming(socket, message)){
+        switch(message->GetMessageType()){
+        case Connect:
+            TryConnectClient(message->GetExtraData(), message->GetAddress(), message->GetPort());
+            break;
+        case ConnectConfirm:
+            ConfirmClientConnection(message->GetAddress());
+            break;
+        case Heartbeat:
             break;
         }
+        delete message;
     }
 }
 void Server::ConfirmClientConnection(SDLNet_Address* clientAddress)
@@ -74,13 +64,13 @@ void Server::TryConnectClient(string inData, SDLNet_Address* clientAddress, int 
             connectingAClient = true;
             connectingClientsAddress = clientAddress;
             connectingClientPort = clientPort;
-            string message = "0001" + NetworkUtilities::AsBinaryString(1, nextClientID);
-            NetworkUtilities::SendMessageTo(message, socket, clientAddress, clientPort);
+            string message = NetworkUtilities::AsBinaryString(1, nextClientID);
+            NetworkUtilities::SendMessageTo(Connect, message, socket, clientAddress, clientPort);
         }
         else if (SDLNet_GetAddressString(clientAddress) == SDLNet_GetAddressString(connectingClientsAddress)) {
             if (clientPort == connectingClientPort) {
-                string message = "0001" + NetworkUtilities::AsBinaryString(1, nextClientID);
-                NetworkUtilities::SendMessageTo(message, socket, clientAddress, clientPort);
+                string message = NetworkUtilities::AsBinaryString(1, nextClientID);
+                NetworkUtilities::SendMessageTo(Connect, message, socket, clientAddress, clientPort);
             }
         }
     }

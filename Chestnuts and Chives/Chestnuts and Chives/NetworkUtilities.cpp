@@ -22,16 +22,31 @@ string NetworkUtilities::PackMessage(string inData)
 	}
 	return compressedMessage;
 }
-
-void NetworkUtilities::SendMessageTo(string message, SDLNet_DatagramSocket* socket, SDLNet_Address* address, int port)
+bool NetworkUtilities::GetNextIncoming(SDLNet_DatagramSocket* socket, NetworkMessage* &message)
 {
+	SDLNet_Datagram* incoming;
+	if (SDLNet_ReceiveDatagram(socket, &incoming)) {
+		if (!incoming) {
+			return false;
+		}
+		message = (new NetworkMessage(incoming));
+		SDLNet_DestroyDatagram(incoming);
+		return message != nullptr;
+	}
+	return false;
+}
+
+void NetworkUtilities::SendMessageTo(NetworkMessageTypes messageType, string message, SDLNet_DatagramSocket* socket, SDLNet_Address* address, int port)
+{
+	//the header of the message as 4 bits in a string
+	string messageHeader = AsBinaryString(1, messageType + 1);
 	//compresses string of binary into just a string
-	string compressedMessage = PackMessage(message);
+	string compressedMessage = PackMessage(messageHeader + message);
 	//sends the compressed message to the specified port and address
 	SDLNet_SendDatagram(socket, address, port, compressedMessage.c_str(), strlen(compressedMessage.c_str()));
 }
 
-NetworkMessageTypes NetworkUtilities::ProcessHeader(string inData)
+NetworkMessageTypes NetworkUtilities::UnpackHeader(string inData)
 {
 	int length = inData.size();
 	if (length < 4) {
@@ -47,6 +62,15 @@ NetworkMessageTypes NetworkUtilities::ProcessHeader(string inData)
 	default: return Error;
 	}
 	return Test;
+}
+string NetworkUtilities::PackHeader(NetworkMessageTypes type) {
+	switch (type) {
+	case Connect: return AsBinaryString(1, 1);
+	case ConnectConfirm: return AsBinaryString(1, 2);
+	case Heartbeat: return AsBinaryString(1, 3);
+	case Sync: return AsBinaryString(1, 4);
+	case Test: return AsBinaryString(1, 5);
+	}
 }
 
 string NetworkUtilities::UnpackMessage(char* inData)
@@ -68,7 +92,7 @@ string NetworkUtilities::UnpackMessage(char* inData)
 
 }
 //returns the int in BCD(Binary coded decimal) form
-string NetworkUtilities::AsBinaryString(int outBytes, int value)
+string NetworkUtilities::AsBinaryString(int outNibbles, int value)
 {
 	string digits = to_string(value);
 	string outString = "";
@@ -81,7 +105,7 @@ string NetworkUtilities::AsBinaryString(int outBytes, int value)
 		}
 		outString += (newNibble);
 	}
-	outString = outString.substr(0, outBytes * 8);
+	outString = outString.substr(0, outNibbles * 4);
 	return outString;
 }
 int NetworkUtilities::IntFromBinaryString(string binaryString, int digits)
@@ -100,12 +124,17 @@ string NetworkUtilities::AsBinaryString(int outBits, string value) {
 	}
 	return outString;
 }
+NetworkMessage::NetworkMessage()
+{
+}
 NetworkMessage::NetworkMessage(SDLNet_Datagram* datagramToProcess)
 {
 	char* buffer = (char*)datagramToProcess->buf;
 	string outData = NetworkUtilities::UnpackMessage(buffer);
-	messageType = NetworkUtilities::ProcessHeader(outData);
+	messageType = NetworkUtilities::UnpackHeader(outData);
 	extraData = outData.substr(4);
+	fromAddress = SDLNet_RefAddress(datagramToProcess->addr);
+	fromPort = datagramToProcess->port;
 }
 
 string NetworkMessage::Debug()
@@ -118,6 +147,14 @@ NetworkMessageTypes NetworkMessage::GetMessageType() {
 string NetworkMessage::GetExtraData()
 {
 	return extraData;
+}
+SDLNet_Address* NetworkMessage::GetAddress()
+{
+	return fromAddress;
+}
+int NetworkMessage::GetPort()
+{
+	return fromPort;
 }
 bool NetworkUtilities::IsBinaryOnly(string message) {
 	for (int i = 0; i < message.size(); i++) {

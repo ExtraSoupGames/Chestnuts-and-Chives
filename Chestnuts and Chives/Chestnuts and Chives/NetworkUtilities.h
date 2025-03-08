@@ -12,30 +12,48 @@ enum NetworkMessageTypes {
 	Test,
 	Error
 };
-static class NetworkUtilities {
-private:
-	static string PackMessage(string inData);
-public:
-	static void SendMessageTo(string message,SDLNet_DatagramSocket* socket, SDLNet_Address* address, int port);
-	static bool IsBinaryOnly(string message);
-	static NetworkMessageTypes ProcessHeader(string message);
-	static string UnpackMessage(char* inData);
-
-	static string AsBinaryString(int outBytes, int value);
-	static int IntFromBinaryString(string binaryString, int digits);
-
-	static string AsBinaryString(int outBytes, string value);
-	static string StringFromBinaryString(string binaryString, int length);
-
-
-};
 class NetworkMessage {
 private:
 	NetworkMessageTypes messageType;
+	SDLNet_Address* fromAddress;
+	int fromPort;
 	string extraData;
 public:
+	NetworkMessage();
 	NetworkMessage(SDLNet_Datagram* datagramToProcess);
 	string Debug();
 	NetworkMessageTypes GetMessageType();
 	string GetExtraData();
+	SDLNet_Address* GetAddress();
+	int GetPort();
+};
+
+static class NetworkUtilities {
+private:
+	static string PackMessage(string inData);
+
+public:
+	/*Gets the next incoming message on the socket...
+Implementation should look something like this:
+NetworkMessage* message = nullptr;
+while(GetNextIncoming(socket, message){
+	//process data and message here
+	delete message;
+}*/
+	static bool GetNextIncoming(SDLNet_DatagramSocket* socket, NetworkMessage* &message);
+
+	static void SendMessageTo(NetworkMessageTypes messageType, string message,SDLNet_DatagramSocket* socket, SDLNet_Address* address, int port);
+	static bool IsBinaryOnly(string message);
+	static string UnpackMessage(char* inData);
+
+	static NetworkMessageTypes UnpackHeader(string message);
+	static string PackHeader(NetworkMessageTypes type);
+
+
+	//converts a decimal integer into a binary coded decimal string
+	static string AsBinaryString(int outNibbles, int value);
+	static int IntFromBinaryString(string binaryString, int digits);
+
+	static string AsBinaryString(int outBytes, string value);
+	static string StringFromBinaryString(string binaryString, int length);
 };

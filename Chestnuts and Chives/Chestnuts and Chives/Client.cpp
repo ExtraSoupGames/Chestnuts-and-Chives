@@ -12,20 +12,13 @@ void Client::ConnectToServer(string serverAddress)
     socket = SDLNet_CreateDatagramSocket(connectedServer, port);
 }
 void Client::ProcessIncoming() {
-    SDLNet_Datagram* incoming;
-    while (SDLNet_ReceiveDatagram(socket, &incoming)) {
-        if (incoming) {
-            NetworkMessage* msg = new NetworkMessage(incoming);
-            if (msg->GetMessageType() == Connect) {
-                clientID = NetworkUtilities::IntFromBinaryString(msg->GetExtraData(), 1);
-                string message = "0010";
-                NetworkUtilities::SendMessageTo(message, socket, connectedServer, 66661);
-            }
-            SDLNet_DestroyDatagram(incoming);
+    NetworkMessage* message = nullptr;
+    while (NetworkUtilities::GetNextIncoming(socket, message)) {
+        if (message->GetMessageType() == Connect) {
+            clientID = NetworkUtilities::IntFromBinaryString(message->GetExtraData(), 1);
+            NetworkUtilities::SendMessageTo(ConnectConfirm, "", socket, connectedServer, 66661);
         }
-        else {
-            break;
-        }
+        delete message;
     }
 }
 void Client::Update() {
@@ -35,12 +28,11 @@ void Client::Update() {
     ProcessIncoming();
     if (clientID == 0) {
         //if the client ID is 0 then this client has not yet connected to the server
-        string message = "0001";
-        NetworkUtilities::SendMessageTo(message, socket, connectedServer, 66661);
+        NetworkUtilities::SendMessageTo(Connect, "", socket, connectedServer, 66661);
         return;
     }
-    string message = "0011" + NetworkUtilities::AsBinaryString(1, clientID);
-    NetworkUtilities::SendMessageTo(message, socket, connectedServer, 66661);
+    string message = NetworkUtilities::AsBinaryString(1, clientID);
+    NetworkUtilities::SendMessageTo(Heartbeat, message, socket, connectedServer, 66661);
 }
 
 bool Client::IsConnected()
