@@ -4,6 +4,7 @@
 #include <SDL3/SDL.h>
 #include <SDL3_net/SDL_net.h>
 #include "Server.h"
+#include "ExtraSoupState.h"
 using namespace std;
 class Client
 {
@@ -14,10 +15,12 @@ private:
 	SDLNet_DatagramSocket* socket;
 	SDLNet_Address* connectedServer;
 	void ProcessIncoming();
+	GameManager* gameManager;
 public:
-	Client(int portToUse);
+	Client(int portToUse, GameManager* gameManager);
 	void ConnectToServer(string serverAddress);
 	void Update();
 	bool IsConnected();
+	void Render(SDL_Renderer* renderer);
 };
 

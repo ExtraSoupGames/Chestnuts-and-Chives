@@ -1,9 +1,10 @@
 #include "Client.h"
-Client::Client(int portToUse) {
+Client::Client(int portToUse, GameManager* manager) {
     clientID = 0;
     port = portToUse;
     socket = nullptr;
     connectedServer = nullptr;
+    gameManager = manager;
 }
 void Client::ConnectToServer(string serverAddress)
 {
@@ -17,6 +18,8 @@ void Client::ProcessIncoming() {
         if (message->GetMessageType() == Connect) {
             clientID = NetworkUtilities::IntFromBinaryString(message->GetExtraData(), 1);
             NetworkUtilities::SendMessageTo(ConnectConfirm, "", socket, connectedServer, 66661);
+
+            gameManager->Initialize();
         }
         delete message;
     }
@@ -33,9 +36,18 @@ void Client::Update() {
     }
     string message = NetworkUtilities::AsBinaryString(1, clientID);
     NetworkUtilities::SendMessageTo(Heartbeat, message, socket, connectedServer, 66661);
+    gameManager->Update();
 }
 
 bool Client::IsConnected()
 {
     return connectedServer != nullptr;
+}
+
+void Client::Render(SDL_Renderer* renderer)
+{
+    if (!IsConnected()) {
+        return;
+    }
+    gameManager->Render();
 }

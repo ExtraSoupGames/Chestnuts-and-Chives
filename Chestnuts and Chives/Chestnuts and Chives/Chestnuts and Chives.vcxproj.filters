@@ -28,6 +28,18 @@
     <Filter Include="Core">
       <UniqueIdentifier>{3b65b539-cc25-49db-aaf6-733f6c1b28d6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Networking">
+      <UniqueIdentifier>{128cd1f1-94e8-4ecf-8ee6-269d80a3ee39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\UI">
+      <UniqueIdentifier>{db45a4a3-cb08-4c2d-ace0-c5b39dfcdd26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Rendering">
+      <UniqueIdentifier>{9f728491-cbbd-440e-9326-e4f3966def07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\TestUI">
+      <UniqueIdentifier>{8ca9e70b-4a3d-4ed1-a857-ace0decd6c96}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -45,13 +57,28 @@
     <ClCompile Include="GameState.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="NonHostState.cpp">
-      <Filter>Core</Filter>
+    <ClCompile Include="NetworkUtilities.cpp">
+      <Filter>Core\Networking</Filter>
     </ClCompile>
     <ClCompile Include="HostState.cpp">
-      <Filter>Core</Filter>
+      <Filter>Core\Networking</Filter>
     </ClCompile>
-    <ClCompile Include="NetworkUtilities.cpp">
+    <ClCompile Include="NonHostState.cpp">
+      <Filter>Core\Networking</Filter>
+    </ClCompile>
+    <ClCompile Include="UIState.cpp">
+      <Filter>Core\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="UIElement.cpp">
+      <Filter>Core\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderable.cpp">
+      <Filter>Core\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="TestUI.cpp">
+      <Filter>Core\TestUI</Filter>
+    </ClCompile>
+    <ClCompile Include="ExtraSoupState.cpp">
       <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,13 +95,31 @@
     <ClInclude Include="GameState.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="NonHostState.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="HostState.h">
-      <Filter>Core</Filter>
+      <Filter>Core\Networking</Filter>
     </ClInclude>
     <ClInclude Include="NetworkUtilities.h">
+      <Filter>Core\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="NonHostState.h">
+      <Filter>Core\Networking</Filter>
+    </ClInclude>
+    <ClInclude Include="UIState.h">
+      <Filter>Core\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="UIElement.h">
+      <Filter>Core\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderable.h">
+      <Filter>Core\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenHelper.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="TestUI.h">
+      <Filter>Core\TestUI</Filter>
+    </ClInclude>
+    <ClInclude Include="ExtraSoupState.h">
       <Filter>Core</Filter>
     </ClInclude>
   </ItemGroup>
