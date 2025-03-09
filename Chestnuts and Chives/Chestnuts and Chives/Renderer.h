@@ -27,6 +27,6 @@ public:
 	SDL_Texture* LoadTextureFromSurface(SDL_Surface* surface);
 	void UpdateScreen();
 	void FillBackground(SDL_Color* color);
-	void DrawTexture(SDL_Texture* texture, int x, int y, float opacity = 1);
+	void DrawTexture(SDL_Texture* texture, int x, int y, int width, int height, float opacity = 1);
 };
 

@@ -24,11 +24,11 @@ void Renderer::FillBackground(SDL_Color* color)
     SDL_SetRenderDrawColor(renderer, color->r, color->g, color->b, color->a);
     SDL_RenderClear(renderer);
 }
-void Renderer::DrawTexture(SDL_Texture* texture, int x, int y, float opacity)
+void Renderer::DrawTexture(SDL_Texture* texture, int x, int y, int width, int height, float opacity)
 {
     SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
     SDL_SetTextureAlphaModFloat(texture, opacity);
-    SDL_RenderTexture(renderer, texture, NULL, new SDL_FRect{(float)x, (float)y, 32, 32});
+    SDL_RenderTexture(renderer, texture, NULL, new SDL_FRect{(float)x, (float)y, (float)width, (float)height});
 }
 
 SDL_Texture* Renderer::LoadTextureFromSurface(SDL_Surface* surface)

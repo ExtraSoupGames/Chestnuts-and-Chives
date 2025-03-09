@@ -66,12 +66,11 @@ void ExtraSoupState::Render(Renderer* renderer)
 		opacity = (float)fadeInTimer / (float)fadeInDuration;
 		//clamp the opacity between 1 and 0
 		opacity = opacity < 0 ? 0 : opacity > 1 ? 1 : opacity;
-		cout << "opcaity should be: " << opacity << endl;
-		renderer->DrawTexture(logoTexture, 148, 78, opacity);
+		renderer->DrawTexture(logoTexture, 148, 78, 32, 32, opacity);
 		break;
 	case Sustaining:
 		opacity = 1;
-		renderer->DrawTexture(logoTexture, 148, 78, opacity);
+		renderer->DrawTexture(logoTexture, 148, 78, 32, 32, opacity);
 		break;
 	case FadingOut:
 		opacity = (float)fadeOutTimer / (float)fadeOutDuration;
@@ -79,7 +78,7 @@ void ExtraSoupState::Render(Renderer* renderer)
 		opacity = opacity < 0 ? 0 : opacity > 1 ? 1 : opacity;
 		//flip the opacity (fade out not in)
 		opacity = 1 - opacity;
-		renderer->DrawTexture(logoTexture, 148, 78, opacity);
+		renderer->DrawTexture(logoTexture, 148, 78, 32, 32, opacity);
 		break;
 	case FinalDelay:
 		renderer->FillBackground(backgroundColor);
