@@ -11,6 +11,9 @@ ExtraSoupState::ExtraSoupState()
 	fadeOutTimer = 0;
 	fadeOutDuration = 300;
 
+	finalDelayTimer = 0;
+	finalDelayDuration = 500;
+
 	fadingState = None;
 
 	backgroundColor = new SDL_Color{ 0, 149, 233, 255 };
@@ -26,7 +29,7 @@ ExtraSoupState::~ExtraSoupState()
 	delete logoTexture;
 }
 
-void ExtraSoupState::Update(float frameTime)
+void ExtraSoupState::Update(int frameTime)
 {
 	switch (fadingState) {
 	case FadingIn:
@@ -44,41 +47,46 @@ void ExtraSoupState::Update(float frameTime)
 	case FadingOut:
 		fadeOutTimer += frameTime;
 		if (fadeOutTimer > fadeOutDuration) {
-			gameManager->SwitchState(new TestUI());
+			fadingState = FinalDelay;
 		}
 		break;
+	case FinalDelay:
+		finalDelayTimer += frameTime;
+		if (finalDelayTimer > finalDelayDuration) {
+			gameManager->SwitchState(new TestUI());
+		}
 	}
 }
-void ExtraSoupState::Render(SDL_Renderer* renderer)
+void ExtraSoupState::Render(Renderer* renderer)
 {
-	SDL_SetRenderDrawColor(renderer, backgroundColor->r, backgroundColor->g, backgroundColor->b, 255);
-	SDL_RenderClear(renderer);
+	renderer->FillBackground(backgroundColor);
 	float opacity;
 	switch (fadingState) {
 	case FadingIn:
-		opacity = fadeInTimer / fadeInDuration;
+		opacity = (float)fadeInTimer / (float)fadeInDuration;
 		//clamp the opacity between 1 and 0
 		opacity = opacity < 0 ? 0 : opacity > 1 ? 1 : opacity;
-		cout << "Rending at opacity: " << opacity << endl;
-		SDL_SetTextureAlphaModFloat(logoTexture, opacity);
-		SDL_RenderTexture(renderer, logoTexture, NULL, new SDL_FRect{148, 78, 32, 32});
+		cout << "opcaity should be: " << opacity << endl;
+		renderer->DrawTexture(logoTexture, 148, 78, opacity);
 		break;
 	case Sustaining:
 		opacity = 1;
-		SDL_SetTextureAlphaModFloat(logoTexture, opacity);
-		SDL_RenderTexture(renderer, logoTexture, NULL, new SDL_FRect{ 148, 78, 32, 32 });
+		renderer->DrawTexture(logoTexture, 148, 78, opacity);
 		break;
 	case FadingOut:
-		opacity = fadeOutTimer / fadeOutDuration;
+		opacity = (float)fadeOutTimer / (float)fadeOutDuration;
 		//clamp the opacity between 1 and 0
 		opacity = opacity < 0 ? 0 : opacity > 1 ? 1 : opacity;
 		//flip the opacity (fade out not in)
 		opacity = 1 - opacity;
-		SDL_SetTextureAlphaModFloat(logoTexture, opacity);
-		SDL_RenderTexture(renderer, logoTexture, NULL, new SDL_FRect{ 148, 78, 32, 32 });
+		renderer->DrawTexture(logoTexture, 148, 78, opacity);
+		break;
+	case FinalDelay:
+		renderer->FillBackground(backgroundColor);
+		renderer->UpdateScreen();
 		break;
 	}
-	SDL_RenderPresent(renderer);
+	renderer->UpdateScreen();
 }
 
 void ExtraSoupState::Initialize(GameManager* manager)

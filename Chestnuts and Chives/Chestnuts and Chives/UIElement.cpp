@@ -1,7 +1,7 @@
 #include "UIElement.h"
-void UIElement::Render(SDL_Renderer* renderer)
+void UIElement::Render(Renderer* renderer)
 {
-	SDL_RenderTexture(renderer, texture, NULL, NULL);
+	renderer->DrawTexture(texture, topLeftX, topLeftY);
 }
 
 UIElement::UIElement(SDL_Texture* texture, int x, int y) : Renderable(texture)

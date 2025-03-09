@@ -21,6 +21,6 @@ public:
 	void ConnectToServer(string serverAddress);
 	void Update();
 	bool IsConnected();
-	void Render(SDL_Renderer* renderer);
+	void Render();
 };
 

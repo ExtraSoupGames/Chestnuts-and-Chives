@@ -81,6 +81,9 @@
     <ClCompile Include="ExtraSoupState.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Core\Rendering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Server.h">
@@ -121,6 +124,9 @@
     </ClInclude>
     <ClInclude Include="ExtraSoupState.h">
       <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Core\Rendering</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

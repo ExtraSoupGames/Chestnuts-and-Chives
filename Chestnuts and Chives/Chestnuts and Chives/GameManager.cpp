@@ -1,9 +1,10 @@
 #include "GameManager.h"
 
-GameManager::GameManager(SDL_Renderer* sdlRenderer)
+GameManager::GameManager(Renderer* renderer)
 {
-	renderer = sdlRenderer;
+	this->renderer = renderer;
 	initialized = false;
+	ticks = 0;
 }
 
 void GameManager::SwitchState(GameState* state)
@@ -20,11 +21,10 @@ SDL_Texture* GameManager::LoadTexture(string filePath)
 	}
 	SDL_Surface* surface = IMG_LoadPNG_IO(fileStream);
 	if (surface == NULL) {
-		cout << "Error opening file" << SDL_GetError();
+		cout << "Error creating surface" << SDL_GetError();
 	}
 
-	SDL_Texture* texture =  SDL_CreateTextureFromSurface(renderer, surface);
-
+	SDL_Texture* texture =  renderer->LoadTextureFromSurface(surface);
 
 	SDL_DestroySurface(surface);
 	SDL_CloseIO(fileStream);
@@ -45,8 +45,8 @@ void GameManager::Update()
 		return;
 	}
 	int frameTimeMillis = SDL_GetTicks() - ticks;
-	float frameTime = ((float)frameTimeMillis / 1000);
-	gameStates.top()->Update(frameTime);
+	ticks = SDL_GetTicks();
+	gameStates.top()->Update(frameTimeMillis);
 }
 
 void GameManager::Initialize()
@@ -54,4 +54,5 @@ void GameManager::Initialize()
 	initialized = true;
 	SwitchState(new ExtraSoupState());
 	gameStates.top()->Initialize(this);
+	ticks = SDL_GetTicks();
 }

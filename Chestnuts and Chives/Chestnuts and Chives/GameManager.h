@@ -5,16 +5,17 @@
 #include "SDL3_image/SDL_image.h"
 #include "ExtraSoupState.h"
 #include <string>
+#include "Renderer.h"
 using namespace std;
 class GameManager
 {
 private:
 	stack<GameState*> gameStates;
-	SDL_Renderer* renderer;
+	Renderer* renderer;
 	int ticks;
 	bool initialized;
 public:
-	GameManager(SDL_Renderer* renderer);
+	GameManager(Renderer* renderer);
 	void SwitchState(GameState* state);
 	SDL_Texture* LoadTexture(string filePath);
 	void Render();

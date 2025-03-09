@@ -10,6 +10,6 @@ private:
 public:
 	bool DoElementsOverlap();
 	bool IsAllSpaceFilled();
-	void Render(SDL_Renderer* renderer) override;
+	void Render(Renderer* renderer) override;
 };
 

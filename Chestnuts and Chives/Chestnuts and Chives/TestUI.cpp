@@ -8,11 +8,11 @@ TestUI::~TestUI()
 {
 }
 
-void TestUI::Update(float frameTime)
+void TestUI::Update(int frameTime)
 {
 }
 
-void TestUI::Render(SDL_Renderer* renderer)
+void TestUI::Render(Renderer* renderer)
 {
 }
 

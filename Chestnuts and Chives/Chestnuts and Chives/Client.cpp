@@ -44,7 +44,7 @@ bool Client::IsConnected()
     return connectedServer != nullptr;
 }
 
-void Client::Render(SDL_Renderer* renderer)
+void Client::Render()
 {
     if (!IsConnected()) {
         return;

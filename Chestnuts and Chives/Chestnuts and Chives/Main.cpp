@@ -10,8 +10,9 @@
 #include "Client.h"
 #include "Server.h"
 #include "GameManager.h"
+#include "Renderer.h"
 static SDL_Window* window = NULL;
-static SDL_Renderer* renderer = NULL;
+static Renderer* renderer;
 static Client* playerClient;
 static Client* testingClient;
 static Server* gameServer;
@@ -33,10 +34,9 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
         SDL_Log("Couldn't initialize SDLNet: %s", SDL_GetError());
     }
     std::string windowName = gameName + " " + versionName;
-    if (!SDL_CreateWindowAndRenderer(windowName.c_str(), 1920, 1080, 0, &window, &renderer)) {
-        SDL_Log("Couldn't create window/renderer: %s", SDL_GetError());
-        return SDL_APP_FAILURE;
-    }
+    renderer = new Renderer(windowName);
+
+
     gameManager = new GameManager(renderer);
     gameServer = new Server();
     playerClient = new Client(66662, gameManager);
@@ -67,8 +67,8 @@ SDL_AppResult SDL_AppIterate(void* appstate)
     gameServer->Update();
     playerClient->Update();
     testingClient->Update();
-    testingClient->Render(renderer);
-    playerClient->Render(renderer);
+    testingClient->Render();
+    playerClient->Render();
     return SDL_APP_CONTINUE;  /* carry on with the program! */
 }
 

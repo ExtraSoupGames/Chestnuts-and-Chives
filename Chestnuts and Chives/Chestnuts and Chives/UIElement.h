@@ -1,12 +1,13 @@
 #pragma once
 #include "Renderable.h"
+#include "Renderer.h"
 class UIElement : Renderable
 {
 private:
 	int topLeftX;
 	int topLeftY;
 public:
-	void Render(SDL_Renderer* renderer);
+	void Render(Renderer* renderer);
 	UIElement(SDL_Texture* texture, int x, int y);
 };
 

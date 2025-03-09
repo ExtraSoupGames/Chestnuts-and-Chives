@@ -8,20 +8,24 @@ using namespace std;
 class ExtraSoupState : public GameState
 {
 private:
-	float fadeInTimer;
-	float fadeInDuration;
+	int fadeInTimer;
+	int fadeInDuration;
 
-	float sustainTimer;
-	float sustainDuration;
+	int sustainTimer;
+	int sustainDuration;
 
-	float fadeOutTimer;
-	float fadeOutDuration;
+	int fadeOutTimer;
+	int fadeOutDuration;
+
+	int finalDelayTimer;
+	int finalDelayDuration;
 
 	enum FadingState {
 		None,
 		FadingIn,
 		Sustaining,
-		FadingOut
+		FadingOut,
+		FinalDelay
 	};
 
 	FadingState fadingState;
@@ -32,8 +36,8 @@ public:
 	ExtraSoupState();
 	~ExtraSoupState();
 
-	virtual void Update(float frameTime) override;
-	virtual void Render(SDL_Renderer* renderer) override;
+	virtual void Update(int frameTime) override;
+	virtual void Render(Renderer* renderer) override;
 	virtual void Initialize(GameManager* manager) override;
 	virtual void Pause() override;
 	virtual void Resume() override;
