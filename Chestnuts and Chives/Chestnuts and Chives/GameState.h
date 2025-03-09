@@ -10,9 +10,7 @@ public:
 	virtual void Update(int frameTime) = 0;
 	virtual void Render(Renderer* renderer) = 0;
 	virtual void Initialize(GameManager* manager) = 0;
-	virtual void Pause() = 0;
-	virtual void Resume() = 0;
-	virtual void Exit() = 0;
+	virtual void ManageInput(SDL_Event* e) = 0;
 };
 class BaseGameState : GameState
 {

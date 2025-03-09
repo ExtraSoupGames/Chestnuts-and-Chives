@@ -39,7 +39,5 @@ public:
 	virtual void Update(int frameTime) override;
 	virtual void Render(Renderer* renderer) override;
 	virtual void Initialize(GameManager* manager) override;
-	virtual void Pause() override;
-	virtual void Resume() override;
-	virtual void Exit() override;
+	virtual void ManageInput(SDL_Event* e) override;
 };

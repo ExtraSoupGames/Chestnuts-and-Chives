@@ -20,14 +20,6 @@ void TestUI::Initialize(GameManager* manager)
 {
 }
 
-void TestUI::Pause()
-{
-}
+void TestUI::ManageInput(SDL_Event* e) {
 
-void TestUI::Resume()
-{
-}
-
-void TestUI::Exit()
-{
 }

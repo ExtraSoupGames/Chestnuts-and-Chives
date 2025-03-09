@@ -51,3 +51,8 @@ void Client::Render()
     }
     gameManager->Render();
 }
+
+void Client::ManageInput(SDL_Event* e)
+{
+    gameManager->ManageInput(e);
+}

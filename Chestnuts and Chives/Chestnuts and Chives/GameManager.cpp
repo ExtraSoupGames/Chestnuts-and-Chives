@@ -5,30 +5,23 @@ GameManager::GameManager(Renderer* renderer)
 	this->renderer = renderer;
 	initialized = false;
 	ticks = 0;
+	gameState = nullptr;
 }
 
 void GameManager::SwitchState(GameState* state)
 {
-	gameStates.push(state);
+	delete gameState;
+	gameState = state;
+	state->Initialize(this);
 }
 
-SDL_Texture* GameManager::LoadTexture(string filePath)
+SDL_Texture* GameManager::GetTexture(string textureName)
 {
-	filePath = string(SDL_GetBasePath()) + filePath;
-	SDL_IOStream* fileStream = SDL_IOFromFile(filePath.c_str(), "r");
-	if (fileStream == NULL) {
-		cout << "Error opening file" << SDL_GetError();
+	SDL_Texture* texture = textures.GetItem(textureName);
+	if (texture == nullptr) {
+		cout << "Returned null texture, texture with name: " << textureName << " wasnt loaded correctly" << endl;
 	}
-	SDL_Surface* surface = IMG_LoadPNG_IO(fileStream);
-	if (surface == NULL) {
-		cout << "Error creating surface" << SDL_GetError();
-	}
-
-	SDL_Texture* texture =  renderer->LoadTextureFromSurface(surface);
-
-	SDL_DestroySurface(surface);
-	SDL_CloseIO(fileStream);
-	return texture;
+	return textures.GetItem(textureName);
 }
 
 void GameManager::Render()
@@ -36,7 +29,7 @@ void GameManager::Render()
 	if (!initialized) {
 		return;
 	}
-	gameStates.top()->Render(renderer);
+	gameState->Render(renderer);
 }
 
 void GameManager::Update()
@@ -46,13 +39,29 @@ void GameManager::Update()
 	}
 	int frameTimeMillis = SDL_GetTicks() - ticks;
 	ticks = SDL_GetTicks();
-	gameStates.top()->Update(frameTimeMillis);
+	gameState->Update(frameTimeMillis);
 }
 
 void GameManager::Initialize()
 {
+	if (initialized) {
+		cout << "Game Manager initialize requested, but manager is already initialized" << endl;
+		return;
+	}
 	initialized = true;
-	SwitchState(new ExtraSoupState());
-	gameStates.top()->Initialize(this);
+	SwitchState(new AssetLoadingState());
 	ticks = SDL_GetTicks();
+}
+
+void GameManager::ManageInput(SDL_Event* e)
+{
+	if (!initialized) {
+		return;
+	}
+	gameState->ManageInput(e);
+}
+
+void GameManager::TexturesLoaded(AssetDictionary<SDL_Texture*>* textureDict)
+{
+	textures = *textureDict;
 }

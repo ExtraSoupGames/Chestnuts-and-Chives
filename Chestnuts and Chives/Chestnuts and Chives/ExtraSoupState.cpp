@@ -91,18 +91,9 @@ void ExtraSoupState::Render(Renderer* renderer)
 void ExtraSoupState::Initialize(GameManager* manager)
 {
 	gameManager = manager;
-	logoTexture = manager->LoadTexture("Soup.png");
+	logoTexture = manager->GetTexture("Soup");
 	fadingState = FadingIn;
 }
+void ExtraSoupState::ManageInput(SDL_Event* e) {
 
-void ExtraSoupState::Pause()
-{
-}
-
-void ExtraSoupState::Resume()
-{
-}
-
-void ExtraSoupState::Exit()
-{
 }

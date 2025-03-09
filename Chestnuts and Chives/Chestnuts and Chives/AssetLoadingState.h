@@ -1,12 +1,17 @@
 #pragma once
-#include "UIState.h"
-#include "Renderer.h"
-class TestUI : public UIState
+#include "ExtraSoupState.h"
+#include "GameState.h"
+#include "AssetLoader.h"
+class AssetLoadingState : public GameState
 {
 private:
+	AssetLoader* loader;
+	void Exit();
+	GameManager* gameManager;
 public:
-	TestUI();
-	~TestUI();
+	AssetLoadingState();
+	~AssetLoadingState();
+
 
 	virtual void Update(int frameTime) override;
 	virtual void Render(Renderer* renderer) override;

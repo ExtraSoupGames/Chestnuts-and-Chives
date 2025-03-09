@@ -22,5 +22,6 @@ public:
 	void Update();
 	bool IsConnected();
 	void Render();
+	void ManageInput(SDL_Event* e);
 };
 

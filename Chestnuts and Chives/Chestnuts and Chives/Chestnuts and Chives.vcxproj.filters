@@ -40,6 +40,9 @@
     <Filter Include="Core\TestUI">
       <UniqueIdentifier>{8ca9e70b-4a3d-4ed1-a857-ace0decd6c96}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\AssetManagement">
+      <UniqueIdentifier>{f54ad885-d13a-41dc-846a-052ec0a497c0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -52,9 +55,6 @@
       <Filter>GameFiles\Client</Filter>
     </ClCompile>
     <ClCompile Include="GameManager.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="GameState.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="NetworkUtilities.cpp">
@@ -72,9 +72,6 @@
     <ClCompile Include="UIElement.cpp">
       <Filter>Core\UI</Filter>
     </ClCompile>
-    <ClCompile Include="Renderable.cpp">
-      <Filter>Core\Rendering</Filter>
-    </ClCompile>
     <ClCompile Include="TestUI.cpp">
       <Filter>Core\TestUI</Filter>
     </ClCompile>
@@ -83,6 +80,12 @@
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>Core\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetLoader.cpp">
+      <Filter>Core\AssetManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="AssetLoadingState.cpp">
+      <Filter>Core\AssetManagement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,12 +116,6 @@
     <ClInclude Include="UIElement.h">
       <Filter>Core\UI</Filter>
     </ClInclude>
-    <ClInclude Include="Renderable.h">
-      <Filter>Core\Rendering</Filter>
-    </ClInclude>
-    <ClInclude Include="ScreenHelper.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="TestUI.h">
       <Filter>Core\TestUI</Filter>
     </ClInclude>
@@ -127,6 +124,15 @@
     </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>Core\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetLoader.h">
+      <Filter>Core\AssetManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetLoadingState.h">
+      <Filter>Core\AssetManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="AssetDictionary.h">
+      <Filter>Core\AssetManagement</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
