@@ -12,7 +12,6 @@
 #include "GameManager.h"
 #include "Renderer.h"
 static SDL_Window* window = NULL;
-static Renderer* renderer;
 static Client* playerClient;
 
 /* This function runs once at startup. */
@@ -31,9 +30,8 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
         SDL_Log("Couldn't initialize SDLNet: %s", SDL_GetError());
     }
     std::string windowName = gameName + " " + versionName;
-    renderer = new Renderer(windowName);
 
-    playerClient = new Client(66662, renderer);
+    playerClient = new Client(66662, windowName);
     playerClient->CreateAndConnectToServer("127.0.0.1");
     return SDL_APP_CONTINUE;  /* carry on with the program! */
 }

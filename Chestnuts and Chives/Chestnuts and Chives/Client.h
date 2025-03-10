@@ -17,8 +17,9 @@ private:
 	void ProcessIncoming();
 	GameManager* gameManager;
 	Server* gameServer;
+	Renderer* renderer;
 public:
-	Client(int portToUse, Renderer* renderer);
+	Client(int portToUse, string windowName);
 	void ConnectToServer(string serverAddress);
 	void CreateAndConnectToServer(string serverAddress);
 	void Update();

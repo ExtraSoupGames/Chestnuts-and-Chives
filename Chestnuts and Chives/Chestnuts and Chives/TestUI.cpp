@@ -21,5 +21,5 @@ void TestUI::Initialize(GameManager* manager)
 }
 
 void TestUI::ManageInput(SDL_Event* e) {
-
+	cout << "INPUT RECIEVED" << endl;
 }

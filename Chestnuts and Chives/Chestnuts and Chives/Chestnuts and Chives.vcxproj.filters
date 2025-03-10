@@ -60,12 +60,6 @@
     <ClCompile Include="NetworkUtilities.cpp">
       <Filter>Core\Networking</Filter>
     </ClCompile>
-    <ClCompile Include="HostState.cpp">
-      <Filter>Core\Networking</Filter>
-    </ClCompile>
-    <ClCompile Include="NonHostState.cpp">
-      <Filter>Core\Networking</Filter>
-    </ClCompile>
     <ClCompile Include="UIState.cpp">
       <Filter>Core\UI</Filter>
     </ClCompile>
@@ -101,13 +95,7 @@
     <ClInclude Include="GameState.h">
       <Filter>Core</Filter>
     </ClInclude>
-    <ClInclude Include="HostState.h">
-      <Filter>Core\Networking</Filter>
-    </ClInclude>
     <ClInclude Include="NetworkUtilities.h">
-      <Filter>Core\Networking</Filter>
-    </ClInclude>
-    <ClInclude Include="NonHostState.h">
       <Filter>Core\Networking</Filter>
     </ClInclude>
     <ClInclude Include="UIState.h">

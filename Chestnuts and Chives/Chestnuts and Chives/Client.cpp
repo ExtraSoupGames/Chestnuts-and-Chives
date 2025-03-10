@@ -1,9 +1,10 @@
 #include "Client.h"
-Client::Client(int portToUse, Renderer* renderer) {
+Client::Client(int portToUse, string windowName) {
     clientID = 0;
     port = portToUse;
     socket = nullptr;
     connectedServer = nullptr;
+    renderer = new Renderer(windowName);
     gameManager = new GameManager(renderer);
     gameServer = nullptr;
 }
