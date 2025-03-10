@@ -1,16 +1,22 @@
 #include "Client.h"
-Client::Client(int portToUse, GameManager* manager) {
+Client::Client(int portToUse, Renderer* renderer) {
     clientID = 0;
     port = portToUse;
     socket = nullptr;
     connectedServer = nullptr;
-    gameManager = manager;
+    gameManager = new GameManager(renderer);
+    gameServer = nullptr;
 }
 void Client::ConnectToServer(string serverAddress)
 {
     connectedServer = SDLNet_ResolveHostname(serverAddress.c_str());
     SDLNet_WaitUntilResolved(connectedServer, 1000);
     socket = SDLNet_CreateDatagramSocket(connectedServer, port);
+}
+void Client::CreateAndConnectToServer(string serverAddress)
+{
+    gameServer = new Server(serverAddress);
+    ConnectToServer(serverAddress);
 }
 void Client::ProcessIncoming() {
     NetworkMessage* message = nullptr;
@@ -25,6 +31,9 @@ void Client::ProcessIncoming() {
     }
 }
 void Client::Update() {
+    if (gameServer != nullptr) {
+        gameServer->Update();
+    }
     if (connectedServer == nullptr) {
         return;
     }

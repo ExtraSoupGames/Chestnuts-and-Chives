@@ -14,8 +14,6 @@
 static SDL_Window* window = NULL;
 static Renderer* renderer;
 static Client* playerClient;
-static Server* gameServer;
-static GameManager* gameManager;
 
 /* This function runs once at startup. */
 SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
@@ -35,11 +33,8 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
     std::string windowName = gameName + " " + versionName;
     renderer = new Renderer(windowName);
 
-
-    gameManager = new GameManager(renderer);
-    gameServer = new Server();
-    playerClient = new Client(66662, gameManager);
-    playerClient->ConnectToServer("127.0.0.1");
+    playerClient = new Client(66662, renderer);
+    playerClient->CreateAndConnectToServer("127.0.0.1");
     return SDL_APP_CONTINUE;  /* carry on with the program! */
 }
 
@@ -57,7 +52,6 @@ SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
 /* This function runs once per frame, and is the heart of the program. */
 SDL_AppResult SDL_AppIterate(void* appstate)
 {
-    gameServer->Update();
     playerClient->Update();
     playerClient->Render();
     return SDL_APP_CONTINUE;  /* carry on with the program! */

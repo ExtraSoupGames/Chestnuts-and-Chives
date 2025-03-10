@@ -16,9 +16,11 @@ private:
 	SDLNet_Address* connectedServer;
 	void ProcessIncoming();
 	GameManager* gameManager;
+	Server* gameServer;
 public:
-	Client(int portToUse, GameManager* gameManager);
+	Client(int portToUse, Renderer* renderer);
 	void ConnectToServer(string serverAddress);
+	void CreateAndConnectToServer(string serverAddress);
 	void Update();
 	bool IsConnected();
 	void Render();

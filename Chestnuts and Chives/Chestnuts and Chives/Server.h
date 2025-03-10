@@ -26,6 +26,6 @@ private:
 	void TryConnectClient(string inData, SDLNet_Address* clientAddress, int clientPort);
 	bool IsAlreadyConnected(SDLNet_Address* address, int port);
 public:
-	Server();
+	Server(string addressIP);
 	void Update();
 };

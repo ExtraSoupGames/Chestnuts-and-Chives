@@ -1,6 +1,6 @@
 #include "Server.h"
-Server::Server() {
-    address = SDLNet_ResolveHostname("127.0.0.1");
+Server::Server(string addressIP) {
+    address = SDLNet_ResolveHostname(addressIP.c_str());
     if (address == nullptr) {
         std::cout << ("Address is invalid!") << std::endl;
     }
