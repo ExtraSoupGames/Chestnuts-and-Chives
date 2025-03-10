@@ -4,13 +4,13 @@
 class UIElement
 {
 private:
+protected:
 	int topLeftX;
 	int topLeftY;
 	int width;
 	int height;
-	SDL_Texture* texture;
 public:
-	void Render(Renderer* renderer);
-	UIElement(SDL_Texture* texture, int x, int y, int width, int height);
+	UIElement(int x, int y, int width, int height);
+	virtual void Render(Renderer* renderer) = 0;
 };
 

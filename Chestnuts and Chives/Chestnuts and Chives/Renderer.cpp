@@ -30,6 +30,14 @@ void Renderer::DrawTexture(SDL_Texture* texture, int x, int y, int width, int he
     SDL_SetTextureAlphaModFloat(texture, opacity);
     SDL_RenderTexture(renderer, texture, NULL, new SDL_FRect{(float)x, (float)y, (float)width, (float)height});
 }
+void Renderer::DrawTextureClipped(SDL_Texture* texture, int drawAreaX, int drawAreaY, int drawAreaWidth, int drawAreaHeight, int textureOffsetX, int textureOffsetY, float opacity) {
+    SDL_SetTextureScaleMode(texture, SDL_SCALEMODE_NEAREST);
+    SDL_SetTextureAlphaModFloat(texture, opacity);
+    int textureScaling = (int)resolution;
+    SDL_RenderTexture(renderer, texture,
+        new SDL_FRect{(float)(textureOffsetX * textureScaling), (float)(textureOffsetY * textureScaling), (float)(drawAreaWidth * textureScaling), (float)(drawAreaHeight * textureScaling) },
+        new SDL_FRect{ (float)drawAreaX, (float)drawAreaY, (float)drawAreaWidth, (float)drawAreaHeight });
+}
 
 SDL_Texture* Renderer::LoadTextureFromSurface(SDL_Surface* surface)
 {

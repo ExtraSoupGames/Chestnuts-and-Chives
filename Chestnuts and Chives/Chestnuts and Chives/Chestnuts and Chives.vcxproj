@@ -139,8 +139,11 @@
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="ExtraSoupState.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Location.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="NetworkUtilities.cpp" />
+    <ClCompile Include="Path.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="TestUI.cpp" />
@@ -155,7 +158,10 @@
     <ClInclude Include="ExtraSoupState.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="Location.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="NetworkUtilities.h" />
+    <ClInclude Include="Path.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Server.h" />
     <ClInclude Include="TestUI.h" />

@@ -43,6 +43,9 @@
     <Filter Include="Core\AssetManagement">
       <UniqueIdentifier>{f54ad885-d13a-41dc-846a-052ec0a497c0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameFiles\Map">
+      <UniqueIdentifier>{d92548e2-2801-4ada-9a76-899b220aa0ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -80,6 +83,15 @@
     </ClCompile>
     <ClCompile Include="AssetLoadingState.cpp">
       <Filter>Core\AssetManagement</Filter>
+    </ClCompile>
+    <ClCompile Include="Location.cpp">
+      <Filter>GameFiles\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>GameFiles\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Path.cpp">
+      <Filter>GameFiles\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +133,15 @@
     </ClInclude>
     <ClInclude Include="AssetDictionary.h">
       <Filter>Core\AssetManagement</Filter>
+    </ClInclude>
+    <ClInclude Include="Location.h">
+      <Filter>GameFiles\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>GameFiles\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>GameFiles\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
