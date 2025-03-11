@@ -13,6 +13,8 @@ class Map : public UIElement
 	SDL_Texture* backgroundTexture;
 	int offsetX;
 	int offsetY;
+	int mapTextureWidth;
+	int mapTextureHeight;
 public:
 	Map(int x , int y, GameManager* gameManager);
 	virtual void Render(Renderer* renderer) override;

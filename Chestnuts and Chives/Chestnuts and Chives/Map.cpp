@@ -9,6 +9,11 @@ Map::Map(int x, int y, GameManager* gameManager) : UIElement(x, y, 200, 160)
 	offsetY = 0;
 	paths.push_back(new Path(gameManager));
 	locations.push_back(new Location(gameManager));
+	float textureWidth;
+	float textureHeight;
+	SDL_GetTextureSize(backgroundTexture, &textureWidth, &textureHeight);
+	mapTextureWidth = textureWidth;
+	mapTextureHeight = textureHeight;
 }
 
 void Map::Render(Renderer* renderer)
@@ -25,5 +30,8 @@ void Map::Render(Renderer* renderer)
 void Map::UpdateOffset(int dX, int dY) {
 	offsetX += dX;
 	offsetY += dY;
-	//TODO implement bounds
+	//clamp offsetX between 0 and the textureWidth minus the display width
+	offsetX = offsetX < 0 ? 0 : offsetX >(mapTextureWidth - width) ? (mapTextureWidth - width) : offsetX;
+	//clamp offsetY between 0 and the textureHeight minus the display height
+	offsetY = offsetY < 0 ? 0 : offsetY >(mapTextureHeight - height) ? (mapTextureHeight - height) : offsetY;
 }
