@@ -12,8 +12,11 @@ using namespace std;
 
 class AssetLoader
 {
-	array<string, 1> textureNames = {
-		"Soup"
+	array<string, 4> textureNames = {
+		"Soup",
+		"Map",
+		"Paths",
+		"Location"
 	};
 	int textureNum;
 	AssetDictionary<SDL_Texture*> textures;

@@ -4,7 +4,7 @@ Renderer::Renderer(string windowName)
 {
     renderer = NULL;
     window = NULL;
-    resolution = RES_640x360;
+    resolution = RES_1280X720;
     const int screenWidth = (int)resolution * 320;
     const int screenHeight = (int)resolution * 180;
     if (!SDL_CreateWindowAndRenderer(windowName.c_str(), screenWidth, screenHeight, 0, &window, &renderer)) {
@@ -35,7 +35,7 @@ void Renderer::DrawTextureClipped(SDL_Texture* texture, int drawAreaX, int drawA
     SDL_SetTextureAlphaModFloat(texture, opacity);
     int textureScaling = (int)resolution;
     SDL_RenderTexture(renderer, texture,
-        new SDL_FRect{(float)(textureOffsetX * textureScaling), (float)(textureOffsetY * textureScaling), (float)(drawAreaWidth * textureScaling), (float)(drawAreaHeight * textureScaling) },
+        new SDL_FRect{(float)(textureOffsetX), (float)(textureOffsetY), (float)(drawAreaWidth), (float)(drawAreaHeight) },
         new SDL_FRect{ (float)drawAreaX, (float)drawAreaY, (float)drawAreaWidth, (float)drawAreaHeight });
 }
 

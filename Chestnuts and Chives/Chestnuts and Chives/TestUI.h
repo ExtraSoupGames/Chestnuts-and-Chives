@@ -1,9 +1,11 @@
 #pragma once
 #include "UIState.h"
+#include "Map.h"
 #include "Renderer.h"
 class TestUI : public UIState
 {
 private:
+	Map* map;
 public:
 	TestUI();
 	~TestUI();

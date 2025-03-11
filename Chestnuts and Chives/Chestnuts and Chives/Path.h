@@ -1,5 +1,6 @@
 #pragma once
 #include "Location.h";
+#include "GameManager.h"
 #include "SDL3/SDL.h"
 class Path
 {
@@ -8,6 +9,7 @@ class Path
 	int travelCost;
 	SDL_Texture* pathTexture;
 public:
-	void Render(Renderer* renderer);
+	Path(GameManager* gameManager);
+	void Render(Renderer* renderer, int mapX, int mapY, int mapWidth, int mapHeight, int offsetX, int offsetY);
 };
 

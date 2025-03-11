@@ -26,7 +26,7 @@ public:
 	Renderer(string windowName);
 	SDL_Texture* LoadTextureFromSurface(SDL_Surface* surface);
 	void UpdateScreen();
-	void FillBackground(SDL_Color* color);
+	void FillBackground(SDL_Color* color = new SDL_Color{ 0, 149, 233, 255 });
 	void DrawTexture(SDL_Texture* texture, int x, int y, int width, int height, float opacity = 1);
 	//draws a texture at a specific offset within a specifed draw area (used for example to draw the map within the map area at an offset without going out of the map ui area
 	void DrawTextureClipped(SDL_Texture* texture, int drawAreaX, int drawAreaY, int drawAreaWidth, int drawAreaHeight, int textureOffsetX, int textureOffsetY, float opacity = 1);

@@ -1,10 +1,11 @@
 #pragma once
 #include <map>
 #include <vector>
-#include "Path.h"
+#include "Location.h"
 #include "UIElement.h"
-#include "GameManager.h"
 using namespace std;
+class GameManager;
+class Path;
 class Map : public UIElement
 {
 	vector<Path*> paths;
@@ -16,6 +17,6 @@ public:
 	Map(int x , int y, GameManager* gameManager);
 	virtual void Render(Renderer* renderer) override;
 	//used for testing to move the map around
-	void UpdateOffset();
+	void UpdateOffset(int dX, int dY);
 };
 
