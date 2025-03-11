@@ -9,7 +9,7 @@ float AssetLoader::LoadNextTexture(Renderer* renderer)
 	SDL_Texture* newTexture = LoadTexture(textureName, renderer);
 	textures.AddItem(textureName, newTexture);
 	textureNum++;
-	return (float)textureNum / (float)textures.GetCount();
+	return (float)textureNum / (float)textureNames.size();
 }
 
 AssetLoader::AssetLoader()
