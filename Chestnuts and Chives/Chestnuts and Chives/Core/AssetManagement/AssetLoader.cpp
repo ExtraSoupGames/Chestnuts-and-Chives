@@ -22,7 +22,7 @@ AssetDictionary<SDL_Texture*>* AssetLoader::GetTextures()
 }
 SDL_Texture* AssetLoader::LoadTexture(string filePath, Renderer* renderer)
 {
-	filePath = string(SDL_GetBasePath()) + filePath + ".png";
+	filePath = string(SDL_GetBasePath()) + "Assets/Textures/" + filePath + ".png";
 	SDL_IOStream* fileStream = SDL_IOFromFile(filePath.c_str(), "r");
 	if (fileStream == NULL) {
 		cout << "Error opening file" << SDL_GetError();

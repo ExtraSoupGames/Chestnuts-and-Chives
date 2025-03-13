@@ -49,123 +49,147 @@ cmake_ninja_workdir = C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ 
 
 build cmake_object_order_depends_target_ChestnutsAndChives: phony || .
 
-build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\AssetLoader.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\AssetLoader.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\AssetManagement\AssetLoader.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Core\AssetManagement\AssetLoader.cpp || cmake_object_order_depends_target_ChestnutsAndChives
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
   OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
-  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\AssetManagement
   TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
   TARGET_PDB = ChestnutsAndChives.pdb
 
-build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\AssetLoadingState.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\AssetLoadingState.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\AssetManagement\AssetLoadingState.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Core\AssetManagement\AssetLoadingState.cpp || cmake_object_order_depends_target_ChestnutsAndChives
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
   OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
-  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\AssetManagement
   TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
   TARGET_PDB = ChestnutsAndChives.pdb
 
-build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Client.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Client.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\GameStates\ExtraSoupState.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Core\GameStates\ExtraSoupState.cpp || cmake_object_order_depends_target_ChestnutsAndChives
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
   OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
-  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\GameStates
   TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
   TARGET_PDB = ChestnutsAndChives.pdb
 
-build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\ExtraSoupState.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\ExtraSoupState.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\GameStates\GameManager.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Core\GameStates\GameManager.cpp || cmake_object_order_depends_target_ChestnutsAndChives
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
   OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
-  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\GameStates
   TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
   TARGET_PDB = ChestnutsAndChives.pdb
 
-build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\GameManager.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\GameManager.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\GameStates\UIState.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Core\GameStates\UIState.cpp || cmake_object_order_depends_target_ChestnutsAndChives
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
   OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
-  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\GameStates
   TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
   TARGET_PDB = ChestnutsAndChives.pdb
 
-build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Location.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Location.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\Networking\NetworkUtilities.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Core\Networking\NetworkUtilities.cpp || cmake_object_order_depends_target_ChestnutsAndChives
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
   OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
-  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\Networking
   TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
   TARGET_PDB = ChestnutsAndChives.pdb
 
-build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Main.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Main.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\Rendering\Renderer.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Core\Rendering\Renderer.cpp || cmake_object_order_depends_target_ChestnutsAndChives
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
   OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
-  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\Rendering
   TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
   TARGET_PDB = ChestnutsAndChives.pdb
 
-build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Map.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Map.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\UI\TestUI.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Core\UI\TestUI.cpp || cmake_object_order_depends_target_ChestnutsAndChives
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
   OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
-  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\UI
   TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
   TARGET_PDB = ChestnutsAndChives.pdb
 
-build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\NetworkUtilities.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\NetworkUtilities.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\UI\UIElement.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Core\UI\UIElement.cpp || cmake_object_order_depends_target_ChestnutsAndChives
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
   OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
-  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\UI
   TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
   TARGET_PDB = ChestnutsAndChives.pdb
 
-build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Path.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Path.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Cooking\Dish.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Game\Cooking\Dish.cpp || cmake_object_order_depends_target_ChestnutsAndChives
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
   OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
-  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Cooking
   TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
   TARGET_PDB = ChestnutsAndChives.pdb
 
-build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Renderer.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Renderer.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Cooking\Ingredient.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Game\Cooking\Ingredient.cpp || cmake_object_order_depends_target_ChestnutsAndChives
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
   OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
-  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Cooking
   TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
   TARGET_PDB = ChestnutsAndChives.pdb
 
-build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Server.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Server.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Cooking\Pan.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Game\Cooking\Pan.cpp || cmake_object_order_depends_target_ChestnutsAndChives
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
   OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
-  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Cooking
   TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
   TARGET_PDB = ChestnutsAndChives.pdb
 
-build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\TestUI.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\TestUI.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Main.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Game\Main.cpp || cmake_object_order_depends_target_ChestnutsAndChives
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
   OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
-  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game
   TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
   TARGET_PDB = ChestnutsAndChives.pdb
 
-build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\UIElement.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\UIElement.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Map\Location.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Game\Map\Location.cpp || cmake_object_order_depends_target_ChestnutsAndChives
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
   OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
-  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Map
   TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
   TARGET_PDB = ChestnutsAndChives.pdb
 
-build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\UIState.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\UIState.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Map\Map.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Game\Map\Map.cpp || cmake_object_order_depends_target_ChestnutsAndChives
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
-  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
   OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
-  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Map
+  TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
+  TARGET_PDB = ChestnutsAndChives.pdb
+
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Map\Path.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Game\Map\Path.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
+  OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Map
+  TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
+  TARGET_PDB = ChestnutsAndChives.pdb
+
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Networking\Client.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Game\Networking\Client.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
+  OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Networking
+  TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
+  TARGET_PDB = ChestnutsAndChives.pdb
+
+build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Networking\Server.cpp.obj: CXX_COMPILER__ChestnutsAndChives_unscanned_Debug C$:\Users\jonny\Desktop\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Chestnuts$ and$ Chives\Game\Networking\Server.cpp || cmake_object_order_depends_target_ChestnutsAndChives
+  FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -std:c++17 -MDd
+  INCLUDES = -IC:\Libraries\SDL3-3.2.6\include -IC:\Libraries\SDL3_image-3.2.4\include -IC:\Libraries\SDL3_net\include -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\AssetManagement" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\GameStates" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\Rendering" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Core\UI" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Map" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Networking" -I"C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\Chestnuts and Chives\Game\Cooking"
+  OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
+  OBJECT_FILE_DIR = CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Networking
   TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
   TARGET_PDB = ChestnutsAndChives.pdb
 
@@ -177,12 +201,12 @@ build CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\UIState.cpp.obj: CX
 #############################################
 # Link the executable ChestnutsAndChives.exe
 
-build ChestnutsAndChives.exe: CXX_EXECUTABLE_LINKER__ChestnutsAndChives_Debug CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\AssetLoader.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\AssetLoadingState.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Client.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\ExtraSoupState.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\GameManager.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Location.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Main.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Map.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\NetworkUtilities.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Path.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Renderer.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Server.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\TestUI.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\UIElement.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\UIState.cpp.obj
+build ChestnutsAndChives.exe: CXX_EXECUTABLE_LINKER__ChestnutsAndChives_Debug CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\AssetManagement\AssetLoader.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\AssetManagement\AssetLoadingState.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\GameStates\ExtraSoupState.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\GameStates\GameManager.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\GameStates\UIState.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\Networking\NetworkUtilities.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\Rendering\Renderer.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\UI\TestUI.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Core\UI\UIElement.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Cooking\Dish.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Cooking\Ingredient.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Cooking\Pan.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Main.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Map\Location.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Map\Map.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Map\Path.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Networking\Client.cpp.obj CMakeFiles\ChestnutsAndChives.dir\Chestnuts_and_Chives\Game\Networking\Server.cpp.obj | C$:\Libraries\SDL3-3.2.6\lib\x64\SDL3.lib C$:\Libraries\SDL3_image-3.2.4\lib\x64\SDL3_image.lib C$:\Libraries\SDL3_net\lib\x64\SDL3_net.lib
   FLAGS = /DWIN32 /D_WINDOWS /EHsc /Zi /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
-  LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_LIBRARIES = C:\Libraries\SDL3-3.2.6\lib\x64\SDL3.lib  C:\Libraries\SDL3_image-3.2.4\lib\x64\SDL3_image.lib  C:\Libraries\SDL3_net\lib\x64\SDL3_net.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
   OBJECT_DIR = CMakeFiles\ChestnutsAndChives.dir
-  POST_BUILD = cd .
+  POST_BUILD = C:\WINDOWS\system32\cmd.exe /C "cd /D "C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\out\build\x64-Debug" && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E copy_if_different "C:/Users/jonny/Desktop/Chestnuts and Chives/Chestnuts and Chives/Chestnuts and Chives/Assets/Libraries/SDL3.dll" "C:/Users/jonny/Desktop/Chestnuts and Chives/Chestnuts and Chives/out/build/x64-Debug" && cd /D "C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\out\build\x64-Debug" && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E copy_if_different "C:/Users/jonny/Desktop/Chestnuts and Chives/Chestnuts and Chives/Chestnuts and Chives/Assets/Libraries/SDL3_image.dll" "C:/Users/jonny/Desktop/Chestnuts and Chives/Chestnuts and Chives/out/build/x64-Debug" && cd /D "C:\Users\jonny\Desktop\Chestnuts and Chives\Chestnuts and Chives\out\build\x64-Debug" && "C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" -E copy_if_different "C:/Users/jonny/Desktop/Chestnuts and Chives/Chestnuts and Chives/Chestnuts and Chives/Assets/Libraries/SDL3_net.dll" "C:/Users/jonny/Desktop/Chestnuts and Chives/Chestnuts and Chives/out/build/x64-Debug""
   PRE_LINK = cd .
   TARGET_COMPILE_PDB = CMakeFiles\ChestnutsAndChives.dir\
   TARGET_FILE = ChestnutsAndChives.exe

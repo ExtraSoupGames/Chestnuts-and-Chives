@@ -2,8 +2,8 @@
 //Jonathan Collins
 
 #define SDL_MAIN_USE_CALLBACKS 1
-#include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
+#include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
 #include <SDL3_net/SDL_net.h>
 #include <string>
@@ -11,8 +11,10 @@
 #include "Server.h"
 #include "GameManager.h"
 #include "Renderer.h"
+
 static SDL_Window* window = NULL;
 static Client* playerClient;
+
 
 /* This function runs once at startup. */
 SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
@@ -58,6 +60,7 @@ SDL_AppResult SDL_AppIterate(void* appstate)
 /* This function runs once at shutdown. */
 void SDL_AppQuit(void* appstate, SDL_AppResult result)
 {
+    delete playerClient;
     /* SDL will clean up the window/renderer for us. */
 }
 
