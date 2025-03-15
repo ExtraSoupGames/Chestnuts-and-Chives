@@ -1,0 +1,26 @@
+{
+  "Potato": {
+    "pairings": [ "Meat", "Carrot" ],
+    "preparation_methods": {
+      "score": 0,
+      "next_methods": {
+        "Chop": {
+          "score": 1,
+          "next_methods": {
+            "Boil": {
+              "score": 3,
+              "next_methods": {
+                "Mash": {
+                  "score": 5
+                }
+              }
+            },
+            "Roast": {
+              "score": 6
+            }
+          }
+        }
+      }
+    }
+  }
+}

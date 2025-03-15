@@ -1,15 +1,19 @@
 #pragma once
 #include <vector>
-#include "Preperation.h"
 #include <string>
+#include "json.hpp"
+using json = nlohmann::json;
 using namespace std;
 class Ingredient {
 private:
-	Preperation* prep1;
-	Preperation* prep2;
 protected:
 	virtual string BaseIngredientName() = 0;
 public:
-	string GetName();
-	void ApplyPreperation(Preperation* prep);
+	virtual string GetName() = 0;
+	virtual int GetScoreModifier() = 0;
+};
+class IngredientHelper {
+	static vector<Ingredient*> GetIngredients(string jsonData);
+public:
+	static vector<Ingredient*> GetAllIngredients();
 };

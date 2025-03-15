@@ -1,26 +1,18 @@
 #include "Ingredient.h"
-
-string Ingredient::GetName()
+#include <fstream>
+#include <iostream>
+#include "SDL3/SDL.h"
+vector<Ingredient*> IngredientHelper::GetIngredients(string jsonData)
 {
-    string out;
-    if (prep2) {
-        out += prep2->GetIngredientPrefix();
-    }
-    if (prep1) {
-        out += prep1->GetIngredientPrefix();
-    }
-    out += BaseIngredientName();
-    return out;
+    json data = json::parse(jsonData);
+    std::cout << data.begin().value() << std::endl;
+    return vector<Ingredient*>();
 }
 
-void Ingredient::ApplyPreperation(Preperation* prep)
+vector<Ingredient*> IngredientHelper::GetAllIngredients()
 {
-    if (prep1 == nullptr) {
-        prep1 = prep;
-        return;
-    }
-    if (prep2 == nullptr) {
-        prep2 = prep;
-        return;
-    }
+    string ingredientsFile;
+    char* fileIn = (char*)SDL_LoadFile("Assets/GameData/Ingredients.json", NULL);
+    ingredientsFile = fileIn;
+    return GetIngredients(ingredientsFile);
 }
