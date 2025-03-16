@@ -17,6 +17,8 @@ void Client::ConnectToServer(string serverAddress)
 void Client::CreateAndConnectToServer(string serverAddress)
 {
     gameServer = new Server(serverAddress);
+    //testing TODO remove
+    gameServer->SavingTests();
     ConnectToServer(serverAddress);
 }
 void Client::ProcessIncoming() {

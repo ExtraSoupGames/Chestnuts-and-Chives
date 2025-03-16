@@ -29,6 +29,7 @@ file(GLOB_RECURSE SOURCES "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/**/*.cpp")
 add_executable(ChestnutsAndChives ${SOURCES})
 
 # Include SDL3, SDL3_image, and SDL3_net
+# Also includes all code directories to make linking easier
 target_include_directories(ChestnutsAndChives PRIVATE 
     ${SDL3_INCLUDE_DIR} 
     ${SDL3_IMAGE_INCLUDE_DIR}
@@ -41,6 +42,7 @@ target_include_directories(ChestnutsAndChives PRIVATE
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Game/Map"
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Game/Networking"
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Game/Cooking"
+    "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Game/Persistence"
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Assets/Libraries"
 )
 

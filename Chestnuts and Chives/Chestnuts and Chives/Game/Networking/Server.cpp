@@ -15,6 +15,7 @@ Server::Server(string addressIP) {
     connectingClientsAddress = nullptr;
     connectedClients = new vector<ConnectedClient*>();
     connectingClientPort = 0;
+    save = nullptr;
 }
 bool Server::IsAlreadyConnected(SDLNet_Address* address, int port) {
     for (int i = 0; i < connectedClients->size(); i++) {
@@ -93,6 +94,17 @@ void Server::Update() {
     if (SDL_GetTicks() > 1000) {
         UpdateState();
     }
+}
+//Testing TODO remove
+void Server::SavingTests()
+{
+    save = new GameSave();
+    string path = SDL_GetPrefPath("ExtraSoupGames", "ChestnutsAndChives");
+    string fullPath = path + "saveGame.txt";
+    ofstream fileWriter(fullPath);
+    string data = save->GetSaveData();
+    fileWriter << (data.c_str());
+    fileWriter.close();
 }
 
 ConnectedClient::ConnectedClient(SDLNet_Address* pAddress, int pClientPort)

@@ -5,6 +5,8 @@
 #include <SDL3_net/SDL_net.h>
 #include <vector>
 #include "NetworkUtilities.h"
+#include "GameSave.h"
+#include <fstream>
 using namespace std;
 struct ConnectedClient {
 	SDLNet_Address* address;
@@ -24,6 +26,7 @@ private:
 	void ProcessIncoming();
 	void Broadcast(string message);
 
+
 	void UpdateState();
 	void ConfirmClientConnection(SDLNet_Address* clientAddress);
 	void TryConnectClient(string inData, SDLNet_Address* clientAddress, int clientPort);
@@ -31,4 +34,9 @@ private:
 public:
 	Server(string addressIP);
 	void Update();
+
+
+	//Testing
+	GameSave* save;
+	void SavingTests();
 };

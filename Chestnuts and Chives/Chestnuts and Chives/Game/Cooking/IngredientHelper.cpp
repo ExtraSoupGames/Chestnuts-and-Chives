@@ -2,7 +2,7 @@
 vector<Ingredient*> IngredientHelper::GetIngredients(string jsonData)
 {
     json data = json::parse(jsonData);
-    std::cout << data.begin.value() << std::endl;
+    std::cout << data.begin().value() << std::endl;
     return vector<Ingredient*>();
 }
 
