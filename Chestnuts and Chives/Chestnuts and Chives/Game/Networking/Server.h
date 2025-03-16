@@ -6,6 +6,7 @@
 #include <vector>
 #include "NetworkUtilities.h"
 #include "GameSave.h"
+#include "ServerState.h"
 #include <fstream>
 using namespace std;
 struct ConnectedClient {
@@ -26,17 +27,13 @@ private:
 	void ProcessIncoming();
 	void Broadcast(string message);
 
+	GameSave* save;
+	ServerState* state;
 
-	void UpdateState();
 	void ConfirmClientConnection(SDLNet_Address* clientAddress);
 	void TryConnectClient(string inData, SDLNet_Address* clientAddress, int clientPort);
 	bool IsAlreadyConnected(SDLNet_Address* address, int port);
 public:
 	Server(string addressIP);
 	void Update();
-
-
-	//Testing
-	GameSave* save;
-	void SavingTests();
 };

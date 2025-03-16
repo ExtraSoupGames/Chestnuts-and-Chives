@@ -15,7 +15,9 @@ Server::Server(string addressIP) {
     connectingClientsAddress = nullptr;
     connectedClients = new vector<ConnectedClient*>();
     connectingClientPort = 0;
+
     save = nullptr;
+    state = nullptr;
 }
 bool Server::IsAlreadyConnected(SDLNet_Address* address, int port) {
     for (int i = 0; i < connectedClients->size(); i++) {
@@ -39,8 +41,13 @@ void Server::ProcessIncoming() {
         case ConnectConfirm:
             ConfirmClientConnection(message->GetAddress());
             break;
-        case Heartbeat:
+        case GameStateChange:
+            state->ProcessVoteMessage(message->GetExtraData()[0]);
             break;
+        default:
+            if (state != nullptr) {
+                state->ProcessIncoming(message);
+            }
         }
         delete message;
     }
@@ -51,12 +58,6 @@ void Server::Broadcast(string message)
         ConnectedClient* c = connectedClients->at(i);
         NetworkUtilities::SendMessageTo(GameStateChange, message, socket, c->address, c->clientPort);
     }
-}
-void Server::UpdateState()
-{
-    //testing
-    int newState = 5;
-    Broadcast(NetworkUtilities::AsBinaryString(1, newState));
 }
 void Server::ConfirmClientConnection(SDLNet_Address* clientAddress)
 {
@@ -91,20 +92,9 @@ void Server::TryConnectClient(string inData, SDLNet_Address* clientAddress, int 
 }
 void Server::Update() {
     ProcessIncoming();
-    if (SDL_GetTicks() > 1000) {
-        UpdateState();
+    if (state != nullptr) {
+        state->Update(this);
     }
-}
-//Testing TODO remove
-void Server::SavingTests()
-{
-    save = new GameSave();
-    string path = SDL_GetPrefPath("ExtraSoupGames", "ChestnutsAndChives");
-    string fullPath = path + "saveGame.txt";
-    ofstream fileWriter(fullPath);
-    string data = save->GetSaveData();
-    fileWriter << (data.c_str());
-    fileWriter.close();
 }
 
 ConnectedClient::ConnectedClient(SDLNet_Address* pAddress, int pClientPort)
