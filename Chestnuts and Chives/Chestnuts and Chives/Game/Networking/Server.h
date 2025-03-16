@@ -22,6 +22,9 @@ private:
 	SDLNet_Address* connectingClientsAddress;
 	int connectingClientPort;
 	void ProcessIncoming();
+	void Broadcast(string message);
+
+	void UpdateState();
 	void ConfirmClientConnection(SDLNet_Address* clientAddress);
 	void TryConnectClient(string inData, SDLNet_Address* clientAddress, int clientPort);
 	bool IsAlreadyConnected(SDLNet_Address* address, int port);

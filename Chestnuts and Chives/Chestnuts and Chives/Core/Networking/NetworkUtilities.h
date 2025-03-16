@@ -8,7 +8,7 @@ enum NetworkMessageTypes {
 	Connect,
 	ConnectConfirm,
 	Heartbeat,
-	Sync,
+	GameStateChange,
 	Test,
 	Error
 };

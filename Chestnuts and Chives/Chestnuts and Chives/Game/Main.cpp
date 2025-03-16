@@ -13,7 +13,6 @@
 #include "Renderer.h"
 static SDL_Window* window = NULL;
 static Client* playerClient;
-#include "Ingredient.h"
 
 /* This function runs once at startup. */
 SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
@@ -35,7 +34,6 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
     playerClient = new Client(66662, windowName);
     playerClient->CreateAndConnectToServer("127.0.0.1");
 
-    IngredientHelper::GetAllIngredients();
     return SDL_APP_CONTINUE;  /* carry on with the program! */
 }
 

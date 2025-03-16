@@ -28,6 +28,10 @@ void Client::ProcessIncoming() {
 
             gameManager->Initialize();
         }
+        if (message->GetMessageType() == GameStateChange){
+            int gameState = NetworkUtilities::IntFromBinaryString(message->GetExtraData(), 1);
+            //gameManager->SwitchState();
+        }
         delete message;
     }
 }

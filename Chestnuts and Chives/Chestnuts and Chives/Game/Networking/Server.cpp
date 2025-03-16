@@ -44,6 +44,19 @@ void Server::ProcessIncoming() {
         delete message;
     }
 }
+void Server::Broadcast(string message)
+{
+    for (int i = 0; i < connectedClients->size(); i++) {
+        ConnectedClient* c = connectedClients->at(i);
+        NetworkUtilities::SendMessageTo(GameStateChange, message, socket, c->address, c->clientPort);
+    }
+}
+void Server::UpdateState()
+{
+    //testing
+    int newState = 5;
+    Broadcast(NetworkUtilities::AsBinaryString(1, newState));
+}
 void Server::ConfirmClientConnection(SDLNet_Address* clientAddress)
 {
     if (!connectingAClient) {
@@ -54,7 +67,7 @@ void Server::ConfirmClientConnection(SDLNet_Address* clientAddress)
         nextClientID++;
         connectedClients->push_back(new ConnectedClient(connectingClientsAddress, connectingClientPort));
         connectingClientsAddress = nullptr;
-        cout << "Successfully connected client with ID: " << (nextClientID - 1) << endl;
+        cout << "Successfully connected client with ID: " << (nextClientID) << endl;
     }
 }
 void Server::TryConnectClient(string inData, SDLNet_Address* clientAddress, int clientPort)
@@ -77,6 +90,9 @@ void Server::TryConnectClient(string inData, SDLNet_Address* clientAddress, int 
 }
 void Server::Update() {
     ProcessIncoming();
+    if (SDL_GetTicks() > 1000) {
+        UpdateState();
+    }
 }
 
 ConnectedClient::ConnectedClient(SDLNet_Address* pAddress, int pClientPort)

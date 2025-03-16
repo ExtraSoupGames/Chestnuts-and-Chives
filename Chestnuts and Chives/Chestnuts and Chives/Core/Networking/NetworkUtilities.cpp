@@ -57,7 +57,7 @@ NetworkMessageTypes NetworkUtilities::UnpackHeader(string inData)
 	case 1: return Connect;
 	case 2: return ConnectConfirm;
 	case 3: return Heartbeat;
-	case 4: return Sync;
+	case 4: return GameStateChange;
 	case 5: return Test;
 	default: return Error;
 	}
@@ -68,7 +68,7 @@ string NetworkUtilities::PackHeader(NetworkMessageTypes type) {
 	case Connect: return AsBinaryString(1, 1);
 	case ConnectConfirm: return AsBinaryString(1, 2);
 	case Heartbeat: return AsBinaryString(1, 3);
-	case Sync: return AsBinaryString(1, 4);
+	case GameStateChange: return AsBinaryString(1, 4);
 	case Test: return AsBinaryString(1, 5);
 	}
 }
@@ -113,7 +113,7 @@ int NetworkUtilities::IntFromBinaryString(string binaryString, int digits)
 	int out = 0;
 	for (int i = 0; i < digits; i++) {
 		int num = stoi(binaryString.substr(i * 4, 4),nullptr, 2);
-		out += num * (i ^ 10);
+		out = (out * 10) + num;
 	}
 	return out;
 }
