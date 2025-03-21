@@ -15,5 +15,7 @@ public:
 	//TODO pass in event callback to call when clicked
 	Button(int x, int y, int width, int height, function<bool()> callOnClick, GameManager* manager);
 	virtual void Render(Renderer* renderer) override;
-	void OnClick(SDL_Event* e);
+	virtual void HoverStarted() override;
+	virtual void HoverEnded() override;
+	virtual void Clicked() override;
 };

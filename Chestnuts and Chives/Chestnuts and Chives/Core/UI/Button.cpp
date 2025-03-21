@@ -13,10 +13,26 @@ Button::Button(int x, int y, int width, int height, function<bool()> callOnClick
 
 void Button::Render(Renderer* renderer)
 {
-	renderer->DrawTexture(left, topLeftX, topLeftY, 16, 16, 1);
-	renderer->DrawTexture(middle, topLeftX + 16, topLeftY, 16, 16, 1);
-	renderer->DrawTexture(right, topLeftX + 32, topLeftY, 16, 16, 1);
+	//TODO button hover animations
+	if (hovered) {
+		renderer->DrawTexture(left, topLeftX, topLeftY, 16, 16, 1);
+		renderer->DrawTexture(middle, topLeftX + 16, topLeftY, width - 32, 16, 1);
+		renderer->DrawTexture(right, topLeftX + width - 16, topLeftY, 16, 16, 1);
+	}
+	else {
+		renderer->DrawTexture(right, topLeftX, topLeftY, 16, 16, 1);
+		renderer->DrawTexture(middle, topLeftX + 16, topLeftY, width - 32, 16, 1);
+		renderer->DrawTexture(left, topLeftX + width - 16, topLeftY, 16, 16, 1);
+	}
+
 }
-void Button::OnClick(SDL_Event* e)
+void Button::HoverStarted()
 {
+}
+void Button::HoverEnded()
+{
+}
+void Button::Clicked()
+{
+	onClick();
 }

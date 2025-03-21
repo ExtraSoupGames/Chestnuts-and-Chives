@@ -20,5 +20,9 @@ public:
 	virtual void Render(Renderer* renderer) override;
 	//used for testing to move the map around
 	void UpdateOffset(int dX, int dY);
+
+	virtual void HoverStarted() override;
+	virtual void HoverEnded() override;
+	virtual void Clicked() override;
 };
 

@@ -39,6 +39,11 @@ void Renderer::DrawTextureClipped(SDL_Texture* texture, int drawAreaX, int drawA
         new SDL_FRect{ (float)drawAreaX, (float)drawAreaY, (float)drawAreaWidth, (float)drawAreaHeight });
 }
 
+int Renderer::GetScreenScalingFactor()
+{
+    return (int)resolution;
+}
+
 SDL_Texture* Renderer::LoadTextureFromSurface(SDL_Surface* surface)
 {
     return SDL_CreateTextureFromSurface(renderer, surface);

@@ -20,5 +20,10 @@ protected:
 public:
 	UIElement(int x, int y, int width, int height);
 	virtual void Render(Renderer* renderer) = 0;
+	virtual void HoverStarted() = 0;
+	virtual void HoverEnded() = 0;
+	virtual void Clicked() = 0;
+	bool ContainsMouse(int mouseX, int mouseY);
+	bool hovered;
 };
 

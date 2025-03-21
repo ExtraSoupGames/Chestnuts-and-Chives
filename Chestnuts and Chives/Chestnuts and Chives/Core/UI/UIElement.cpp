@@ -6,3 +6,17 @@ UIElement::UIElement(int x, int y, int pWidth, int pHeight)
 	width = pWidth;
 	height = pHeight;
 }
+
+bool UIElement::ContainsMouse(int mouseX, int mouseY)
+{
+	if (!isClickable) {
+		return false;
+	}
+	if (mouseX < topLeftX || mouseX > topLeftX + width) {
+		return false;
+	}
+	if (mouseY < topLeftY || mouseY > topLeftY + height) {
+		return false;
+	}
+	return true;
+}

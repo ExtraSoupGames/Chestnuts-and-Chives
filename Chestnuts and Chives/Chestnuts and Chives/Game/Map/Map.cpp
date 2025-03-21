@@ -34,3 +34,15 @@ void Map::UpdateOffset(int dX, int dY) {
 	//clamp offsetY between 0 and the textureHeight minus the display height
 	offsetY = offsetY < 0 ? 0 : offsetY >(mapTextureHeight - height) ? (mapTextureHeight - height) : offsetY;
 }
+
+void Map::HoverStarted()
+{
+}
+
+void Map::HoverEnded()
+{
+}
+
+void Map::Clicked()
+{
+}
