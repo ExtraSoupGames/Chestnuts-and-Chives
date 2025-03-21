@@ -13,7 +13,6 @@ void ServerMessageSender::ConfirmationRecieved(NetworkMessage* message)
 {
 	int messageID = NetworkUtilities::IntFromBinaryString(message->GetExtraData(), 3);
 	messages.erase(remove_if(messages.begin(), messages.end(), [messageID](ImportantMessage* m) {return m->ID == messageID; }), messages.end());
-	cout << "Removing message with ID: " << messageID << endl;
 	auto broadcast = find_if(broadcasts.begin(), broadcasts.end(), [messageID](ImportantBroadcast* b) {return b->ID == messageID; });
 	if (broadcast != broadcasts.end()) {
 		(*broadcast)->ConfirmationReceived(message);

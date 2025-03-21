@@ -108,7 +108,6 @@ string NetworkUtilities::AsBinaryString(int outNibbles, int value)
 		}
 		outString += (newNibble);
 	}
-	cout << "Turned digits: " << digits << " into " << outString << endl;
 	outString = outString.substr(0, outNibbles * 4);
 	return outString;
 }

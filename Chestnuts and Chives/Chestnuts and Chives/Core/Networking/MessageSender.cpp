@@ -1,5 +1,13 @@
 #include "MessageSender.h"
 
+void MessageSender::IncrementNextMessage()
+{
+	nextMessageID++;
+	if (nextMessageID > 999) {
+		nextMessageID = 0;
+	}
+}
+
 MessageSender::MessageSender(SDLNet_DatagramSocket* pSocket)
 {
 	socket = pSocket;
@@ -10,14 +18,14 @@ void MessageSender::SendImportantMessageTo(string message, NetworkMessageTypes t
 {
 	ImportantMessage* msg = new ImportantMessage(message, new ConnectedClient(address, port), nextMessageID, type);
 	messages.push_back(msg);
-	nextMessageID++;
+	IncrementNextMessage();
 }
 
 void MessageSender::SendImportantMessageTo(string message, NetworkMessageTypes type, ConnectedClient* client)
 {
 	ImportantMessage* msg = new ImportantMessage(message, new ConnectedClient(*client), nextMessageID, type);
 	messages.push_back(msg);
-	nextMessageID++;
+	IncrementNextMessage();
 
 }
 

@@ -27,6 +27,7 @@ private:
 protected:
 	SDLNet_DatagramSocket* socket;
 	vector<ImportantMessage*> messages;
+	void IncrementNextMessage();
 	int nextMessageID;
 	MessageSender(SDLNet_DatagramSocket* socket);
 	void SendImportantMessageTo(string message, NetworkMessageTypes type, SDLNet_Address* address, int port);

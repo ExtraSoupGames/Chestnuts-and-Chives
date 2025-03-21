@@ -35,11 +35,9 @@ void Client::ProcessIncoming() {
         }
         if (message->GetMessageType() == Test) {
             sender->SendImportantMessageConfirmation(message);
-            std::cout << "Client has received an important message" << endl;
         }
         if (message->GetMessageType() == ImportantMessageConfirmation) {
             sender->ConfirmationRecieved(message);
-            cout << "Client has received an important message confirmation" << endl;
         }
         delete message;
     }

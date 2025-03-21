@@ -47,11 +47,9 @@ void Server::ProcessIncoming() {
             break;
         case Test:
             sender->SendImportantMessageConfirmation(message);
-            cout << "Server has received an important message" << endl;
             break;
         case ImportantMessageConfirmation:
             sender->ConfirmationRecieved(message);
-            cout << "Server has received a confirmation" << endl;
             break;
         default:
             if (state != nullptr) {
