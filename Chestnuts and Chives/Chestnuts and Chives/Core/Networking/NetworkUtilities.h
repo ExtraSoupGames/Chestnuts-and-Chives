@@ -3,6 +3,7 @@
 #include <SDL3_net/SDL_net.h>
 #include <bitset>
 #include <iostream>
+#include <vector>
 using namespace std;
 enum NetworkMessageTypes {
 	Connect,
@@ -31,7 +32,7 @@ public:
 
 static class NetworkUtilities {
 private:
-	static string PackMessage(string inData);
+	static vector<Uint8>* PackMessage(string inData);
 
 public:
 	/*Gets the next incoming message on the socket...
@@ -45,7 +46,7 @@ while(GetNextIncoming(socket, message){
 
 	static void SendMessageTo(NetworkMessageTypes messageType, string message,SDLNet_DatagramSocket* socket, SDLNet_Address* address, int port);
 	static bool IsBinaryOnly(string message);
-	static string UnpackMessage(char* inData);
+	static string UnpackMessage(Uint8* inData, int messageLength);
 
 	static NetworkMessageTypes UnpackHeader(string message);
 	static string PackHeader(NetworkMessageTypes type);

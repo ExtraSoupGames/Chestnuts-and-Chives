@@ -1,24 +1,24 @@
 #include "NetworkUtilities.h"
 
-string NetworkUtilities::PackMessage(string inData)
+vector<Uint8>* NetworkUtilities::PackMessage(string inData)
 {
 	//ensure message is only 1s and 0s
 	if (!IsBinaryOnly(inData)) {
 		cout << "Error while sending message, message was not exclusively binary characters. problem message: " << inData << endl;
-		return inData;
+		return nullptr;
 	}
 	//pad message to a byte
 	while (inData.size() % 8 != 0) {
 		inData.append("0");
 	}
 	//process message into compressed form
-	string compressedMessage = "";
+	vector<Uint8>* compressedMessage = new vector<Uint8>();
 	//iterates through the message, 1 byte at a time
 	for (int i = 0; i < inData.size() / 8; i++) {
 		//processes the byte into its compressed form
 		char newBits = stoi(inData.substr(i * 8, 8), nullptr, 2);
 		//append the new byte to the compressed message
-		compressedMessage += (newBits);
+		compressedMessage->push_back(newBits);
 	}
 	return compressedMessage;
 }
@@ -41,9 +41,9 @@ void NetworkUtilities::SendMessageTo(NetworkMessageTypes messageType, string mes
 	//the header of the message as 4 bits in a string
 	string messageHeader = AsBinaryString(1, messageType + 1);
 	//compresses string of binary into just a string
-	string compressedMessage = PackMessage(messageHeader + message);
+	vector<Uint8>* compressedMessage = PackMessage(messageHeader + message);
 	//sends the compressed message to the specified port and address
-	SDLNet_SendDatagram(socket, address, port, compressedMessage.c_str(), strlen(compressedMessage.c_str()));
+	SDLNet_SendDatagram(socket, address, port, compressedMessage->data(), compressedMessage->size());
 }
 
 NetworkMessageTypes NetworkUtilities::UnpackHeader(string inData)
@@ -75,15 +75,13 @@ string NetworkUtilities::PackHeader(NetworkMessageTypes type) {
 	}
 }
 
-string NetworkUtilities::UnpackMessage(char* inData)
+string NetworkUtilities::UnpackMessage(Uint8* inData, int messageLength)
 {
 	string unpackedMessage = "";
-	//convert to a string for easier manipulation
-	string inMessage = string(inData);
 	//iterate through the message to unpack each byte
-	for (int i = 0; i < inMessage.size(); i++) {
+	for (int i = 0; i < messageLength;i++) {
 		//convert each char into a bitset of 8 bits
-		bitset<8> newBits = inMessage.at(i);
+		bitset<8> newBits = inData[i];
 		//add the bits to the unpacked message
 		unpackedMessage += newBits.to_string();
 	}
@@ -135,8 +133,9 @@ NetworkMessage::NetworkMessage()
 }
 NetworkMessage::NetworkMessage(SDLNet_Datagram* datagramToProcess)
 {
-	char* buffer = (char*)datagramToProcess->buf;
-	string outData = NetworkUtilities::UnpackMessage(buffer);
+	Uint8* buffer = (Uint8*)datagramToProcess->buf;
+	int bufferLength = datagramToProcess->buflen;
+	string outData = NetworkUtilities::UnpackMessage(buffer, bufferLength);
 	messageType = NetworkUtilities::UnpackHeader(outData);
 	extraData = outData.substr(4);
 	fromAddress = SDLNet_RefAddress(datagramToProcess->addr);
