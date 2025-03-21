@@ -1,5 +1,12 @@
 #include "UIState.h"
 
+UIState::~UIState()
+{
+    for (auto p : elements) {
+        delete p;
+    }
+}
+
 bool UIState::DoElementsOverlap()
 {
     throw new exception("Not implemented");

@@ -1,9 +1,9 @@
 #include "AssetLoadingState.h"
-
+#include "MenuState.h"
 void AssetLoadingState::Exit()
 {
 	gameManager->TexturesLoaded(loader->GetTextures());
-	gameManager->SwitchState(new ExtraSoupState());
+	gameManager->SwitchState(new MenuState());
 }
 
 AssetLoadingState::AssetLoadingState()

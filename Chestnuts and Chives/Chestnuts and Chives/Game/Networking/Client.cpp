@@ -7,6 +7,7 @@ Client::Client(int portToUse, string windowName) {
     renderer = new Renderer(windowName);
     gameManager = new GameManager(renderer);
     gameServer = nullptr;
+    sender = nullptr;
 }
 void Client::ConnectToServer(string serverAddress)
 {
@@ -79,8 +80,5 @@ void Client::ManageInput(SDL_Event* e)
     gameManager->ManageInput(e);
     if (e->type == SDL_EVENT_KEY_UP) {
         sender->SendImportantMessage(Test, "1111");
-    }
-    if (e->type == SDL_EVENT_KEY_DOWN) {
-        gameServer->SendTestMessage();
     }
 }

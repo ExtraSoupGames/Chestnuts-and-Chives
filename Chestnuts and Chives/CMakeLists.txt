@@ -36,6 +36,7 @@ target_include_directories(ChestnutsAndChives PRIVATE
     ${SDL3_NET_INCLUDE_DIR}
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Core/AssetManagement"
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Core/GameStates"
+    "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Core/GameStates/DefaultStates"
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Core/Networking"
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Core/Rendering"
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Core/UI"
@@ -44,6 +45,7 @@ target_include_directories(ChestnutsAndChives PRIVATE
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Game/Networking/ServerStates"
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Game/Cooking"
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Game/Persistence"
+    "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Game/GameStates"
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Assets/Libraries"
 )
 

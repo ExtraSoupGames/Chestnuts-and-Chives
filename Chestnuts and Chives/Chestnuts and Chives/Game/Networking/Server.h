@@ -36,9 +36,5 @@ public:
 	Server(string addressIP);
 	void Update();
 
-	//Just for testing
-	//TODO remove
-	void SendTestMessage() {
-		sender->SendImportantMessage(Test, "1111", connectedClients->at(0));
-	}
+	void SwitchState(ServerState* newState);
 };

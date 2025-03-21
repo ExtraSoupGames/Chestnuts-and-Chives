@@ -104,3 +104,14 @@ void Server::Update() {
         state->Update(this);
     }
 }
+
+void Server::SwitchState(ServerState* newState)
+{
+    if (state != nullptr) {
+        state->Update(this);
+    }
+    state->OnExit();
+    delete state;
+    state = newState;
+    newState->OnEnter();
+}

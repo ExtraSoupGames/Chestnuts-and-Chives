@@ -1,5 +1,4 @@
 #include "GameManager.h"
-
 GameManager::GameManager(Renderer* renderer)
 {
 	this->renderer = renderer;
