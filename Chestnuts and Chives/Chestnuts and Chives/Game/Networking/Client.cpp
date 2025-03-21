@@ -17,9 +17,8 @@ void Client::ConnectToServer(string serverAddress)
 void Client::CreateAndConnectToServer(string serverAddress)
 {
     gameServer = new Server(serverAddress);
-    //testing TODO remove
-    gameServer->SavingTests();
     ConnectToServer(serverAddress);
+    sender = new ClientMessageSender(socket, connectedServer, 66661);
 }
 void Client::ProcessIncoming() {
     NetworkMessage* message = nullptr;
@@ -33,6 +32,14 @@ void Client::ProcessIncoming() {
         if (message->GetMessageType() == GameStateChange){
             int gameState = NetworkUtilities::IntFromBinaryString(message->GetExtraData(), 1);
             //gameManager->SwitchState();
+        }
+        if (message->GetMessageType() == Test) {
+            sender->SendImportantMessageConfirmation(message);
+            std::cout << "Client has received an important message" << endl;
+        }
+        if (message->GetMessageType() == ImportantMessageConfirmation) {
+            sender->ConfirmationRecieved(message);
+            cout << "Client has received an important message confirmation" << endl;
         }
         delete message;
     }
@@ -50,9 +57,10 @@ void Client::Update() {
         NetworkUtilities::SendMessageTo(Connect, "", socket, connectedServer, 66661);
         return;
     }
-    string message = NetworkUtilities::AsBinaryString(1, clientID);
-    NetworkUtilities::SendMessageTo(Heartbeat, message, socket, connectedServer, 66661);
+    //string message = NetworkUtilities::AsBinaryString(1, clientID);
+    //NetworkUtilities::SendMessageTo(Heartbeat, message, socket, connectedServer, 66661);
     gameManager->Update();
+    sender->SendUnsentMessages();
 }
 
 bool Client::IsConnected()
@@ -71,4 +79,10 @@ void Client::Render()
 void Client::ManageInput(SDL_Event* e)
 {
     gameManager->ManageInput(e);
+    if (e->type == SDL_EVENT_KEY_UP) {
+        sender->SendImportantMessage(Test, "1111");
+    }
+    if (e->type == SDL_EVENT_KEY_DOWN) {
+        gameServer->SendTestMessage();
+    }
 }

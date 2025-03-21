@@ -59,6 +59,7 @@ NetworkMessageTypes NetworkUtilities::UnpackHeader(string inData)
 	case 3: return Heartbeat;
 	case 4: return GameStateChange;
 	case 5: return Test;
+	case 6: return ImportantMessageConfirmation;
 	default: return Error;
 	}
 	return Test;
@@ -70,6 +71,7 @@ string NetworkUtilities::PackHeader(NetworkMessageTypes type) {
 	case Heartbeat: return AsBinaryString(1, 3);
 	case GameStateChange: return AsBinaryString(1, 4);
 	case Test: return AsBinaryString(1, 5);
+	case ImportantMessageConfirmation: return AsBinaryString(1, 6);
 	}
 }
 
@@ -95,6 +97,9 @@ string NetworkUtilities::UnpackMessage(char* inData)
 string NetworkUtilities::AsBinaryString(int outNibbles, int value)
 {
 	string digits = to_string(value);
+	while (digits.size() < outNibbles) {
+		digits = "0" + digits;
+	}
 	string outString = "";
 	for (int i = 0; i < digits.size(); i++) {
 		bitset<4> newBits = stoi(digits.substr(i, 1));
@@ -105,6 +110,7 @@ string NetworkUtilities::AsBinaryString(int outNibbles, int value)
 		}
 		outString += (newNibble);
 	}
+	cout << "Turned digits: " << digits << " into " << outString << endl;
 	outString = outString.substr(0, outNibbles * 4);
 	return outString;
 }

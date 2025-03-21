@@ -8,18 +8,17 @@
 #include "GameSave.h"
 #include "ServerState.h"
 #include <fstream>
+#include "ConnectedClient.h"
+#include "ServerMessageSender.h"
 using namespace std;
-struct ConnectedClient {
-	SDLNet_Address* address;
-	int clientPort;
-	ConnectedClient(SDLNet_Address* pAddress, int pClientPort);
-};
+
 class Server
 {
 private:
 	vector<ConnectedClient*>* connectedClients;
 	SDLNet_DatagramSocket* socket;
 	SDLNet_Address* address;
+	ServerMessageSender* sender;
 	int nextClientID;
 	bool connectingAClient;
 	SDLNet_Address* connectingClientsAddress;
@@ -36,4 +35,10 @@ private:
 public:
 	Server(string addressIP);
 	void Update();
+
+	//Just for testing
+	//TODO remove
+	void SendTestMessage() {
+		sender->SendImportantMessage(Test, "1111", connectedClients->at(0));
+	}
 };

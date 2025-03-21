@@ -18,7 +18,7 @@ static Client* playerClient;
 SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
 {
     std::string gameName = "Chestnuts and Chives";
-    std::string versionName = "0.0.2";
+    std::string versionName = "0.0.3";
 
     SDL_SetAppMetadata(gameName.c_str(), versionName.c_str(), "com.extrasoup.games.chestnutsandchives");
 
@@ -40,7 +40,6 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
 /* This function runs when a new event (mouse input, keypresses, etc) occurs. */
 SDL_AppResult SDL_AppEvent(void* appstate, SDL_Event* event)
 {
-    //TODO implement input handling
     if (event->type == SDL_EVENT_QUIT) {
         return SDL_APP_SUCCESS;  /* end the program, reporting success to the OS. */
     }

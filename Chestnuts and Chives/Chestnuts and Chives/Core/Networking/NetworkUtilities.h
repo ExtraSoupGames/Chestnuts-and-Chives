@@ -10,6 +10,7 @@ enum NetworkMessageTypes {
 	Heartbeat,
 	GameStateChange,
 	Test,
+	ImportantMessageConfirmation,
 	Error
 };
 class NetworkMessage {

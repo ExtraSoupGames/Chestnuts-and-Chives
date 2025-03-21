@@ -5,6 +5,7 @@
 #include <SDL3_net/SDL_net.h>
 #include "Server.h"
 #include "ExtraSoupState.h"
+#include "ClientMessageSender.h"
 using namespace std;
 class Client
 {
@@ -18,6 +19,7 @@ private:
 	GameManager* gameManager;
 	Server* gameServer;
 	Renderer* renderer;
+	ClientMessageSender* sender;
 public:
 	Client(int portToUse, string windowName);
 	void ConnectToServer(string serverAddress);

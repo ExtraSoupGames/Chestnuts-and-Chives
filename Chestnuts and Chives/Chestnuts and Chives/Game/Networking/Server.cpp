@@ -15,6 +15,7 @@ Server::Server(string addressIP) {
     connectingClientsAddress = nullptr;
     connectedClients = new vector<ConnectedClient*>();
     connectingClientPort = 0;
+    sender = new ServerMessageSender(socket, *connectedClients);
 
     save = nullptr;
     state = nullptr;
@@ -43,6 +44,14 @@ void Server::ProcessIncoming() {
             break;
         case GameStateChange:
             state->ProcessVoteMessage(message->GetExtraData()[0]);
+            break;
+        case Test:
+            sender->SendImportantMessageConfirmation(message);
+            cout << "Server has received an important message" << endl;
+            break;
+        case ImportantMessageConfirmation:
+            sender->ConfirmationRecieved(message);
+            cout << "Server has received a confirmation" << endl;
             break;
         default:
             if (state != nullptr) {
@@ -92,13 +101,8 @@ void Server::TryConnectClient(string inData, SDLNet_Address* clientAddress, int 
 }
 void Server::Update() {
     ProcessIncoming();
+    sender->SendUnsentMessages();
     if (state != nullptr) {
         state->Update(this);
     }
-}
-
-ConnectedClient::ConnectedClient(SDLNet_Address* pAddress, int pClientPort)
-{
-    address = pAddress;
-    clientPort = pClientPort;
 }

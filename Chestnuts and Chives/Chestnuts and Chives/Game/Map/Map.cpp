@@ -18,7 +18,6 @@ Map::Map(int x, int y, GameManager* gameManager) : UIElement(x, y, 200, 160)
 
 void Map::Render(Renderer* renderer)
 {
-	//TODO fix scaling issues due to map bounds exceeded
 	renderer->DrawTextureClipped(backgroundTexture, topLeftX, topLeftY, width, height, offsetX, offsetY);
 	for (int i = 0; i < locations.size();i++) {
 		locations[i]->Render(renderer, topLeftX, topLeftY, width, height, offsetX, offsetY);
