@@ -1,10 +1,12 @@
 #include "GameManager.h"
-GameManager::GameManager(Renderer* renderer)
+#include "Client.h"
+GameManager::GameManager(Renderer* renderer, Client* owner)
 {
 	this->renderer = renderer;
 	initialized = false;
 	ticks = 0;
 	gameState = nullptr;
+	client = owner;
 }
 
 void GameManager::SwitchState(GameState* state)
@@ -63,4 +65,14 @@ void GameManager::ManageInput(SDL_Event* e)
 void GameManager::TexturesLoaded(AssetDictionary<SDL_Texture*>* textureDict)
 {
 	textures = *textureDict;
+}
+
+void GameManager::ConnectToServer()
+{
+	client->ConnectToServer("127.0.0.1");
+}
+
+void GameManager::CreateAndConnectToServer()
+{
+	client->CreateAndConnectToServer("127.0.0.1");
 }

@@ -4,6 +4,9 @@
 #include "Button.h"
 class MenuState : public UIState {
 private:
+	void CreateAndConnectClicked();
+	void ConnectClicked();
+	GameManager* manager;
 protected:
 public:
 	MenuState();

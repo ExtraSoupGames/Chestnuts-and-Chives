@@ -1,10 +1,17 @@
 #include "MenuState.h"
-bool test() {
-	cout << "Button pressed to" << endl;
-	return false;
+void MenuState::CreateAndConnectClicked()
+{
+	manager->CreateAndConnectToServer();
+	manager->SwitchState(new ExtraSoupState());
+}
+void MenuState::ConnectClicked()
+{
+	manager->ConnectToServer();
+	manager->SwitchState(new ExtraSoupState());
 }
 MenuState::MenuState()
 {
+	manager = nullptr;
 }
 MenuState::~MenuState() {
 	UIState::~UIState();
@@ -22,11 +29,12 @@ void MenuState::Update(int frameTime)
 {
 }
 
-void MenuState::Initialize(GameManager* manager)
+void MenuState::Initialize(GameManager* gameManager)
 {
-	elements.push_back(new Button(10, 10, 48, 16, test, manager));
-	elements.push_back(new Button(10, 40, 64, 16, test, manager));
-	elements.push_back(new Button(10, 80, 128, 16, test, manager));
+	manager = gameManager;
+	elements.push_back(new Button(10, 10, 48, 16, [this]() {CreateAndConnectClicked(); return true; }, manager));
+	elements.push_back(new Button(10, 40, 64, 16, [this]() {CreateAndConnectClicked(); return true; }, manager));
+	elements.push_back(new Button(10, 80, 128, 16, [this]() {ConnectClicked(); return true; }, manager));
 }
 
 void MenuState::ManageInput(SDL_Event* e)

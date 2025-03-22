@@ -5,18 +5,28 @@ Client::Client(int portToUse, string windowName) {
     socket = nullptr;
     connectedServer = nullptr;
     renderer = new Renderer(windowName);
-    gameManager = new GameManager(renderer);
+    gameManager = new GameManager(renderer, this);
+    gameManager->Initialize();
     gameServer = nullptr;
     sender = nullptr;
 }
 void Client::ConnectToServer(string serverAddress)
 {
+    if (connectedServer != nullptr) {
+        cout << "Already connected to as server!" << endl;
+    }
     connectedServer = SDLNet_ResolveHostname(serverAddress.c_str());
     SDLNet_WaitUntilResolved(connectedServer, 1000);
     socket = SDLNet_CreateDatagramSocket(connectedServer, port);
+    cout << "Socket created!" << endl;
+    cout << SDL_GetError() << endl;
 }
 void Client::CreateAndConnectToServer(string serverAddress)
 {
+    if (gameServer != nullptr) {
+        cout << "Already created a server!" << endl;
+        return;
+    }
     gameServer = new Server(serverAddress);
     ConnectToServer(serverAddress);
     sender = new ClientMessageSender(socket, connectedServer, 66661);
@@ -27,8 +37,6 @@ void Client::ProcessIncoming() {
         if (message->GetMessageType() == Connect) {
             clientID = NetworkUtilities::IntFromBinaryString(message->GetExtraData(), 1);
             NetworkUtilities::SendMessageTo(ConnectConfirm, "", socket, connectedServer, 66661);
-
-            gameManager->Initialize();
         }
         if (message->GetMessageType() == GameStateChange){
             int gameState = NetworkUtilities::IntFromBinaryString(message->GetExtraData(), 1);
@@ -44,22 +52,20 @@ void Client::ProcessIncoming() {
     }
 }
 void Client::Update() {
+    gameManager->Update();
     if (gameServer != nullptr) {
         gameServer->Update();
     }
-    if (connectedServer == nullptr) {
-        return;
+    if (IsConnected()) {
+        ProcessIncoming();
+        if (clientID == 0) {
+            //if the client ID is 0 then this client has not yet connected to the server
+            NetworkUtilities::SendMessageTo(Connect, "", socket, connectedServer, 66661);
+        }
     }
-    ProcessIncoming();
-    if (clientID == 0) {
-        //if the client ID is 0 then this client has not yet connected to the server
-        NetworkUtilities::SendMessageTo(Connect, "", socket, connectedServer, 66661);
-        return;
+    if (sender != nullptr) {
+        sender->SendUnsentMessages();
     }
-    //string message = NetworkUtilities::AsBinaryString(1, clientID);
-    //NetworkUtilities::SendMessageTo(Heartbeat, message, socket, connectedServer, 66661);
-    gameManager->Update();
-    sender->SendUnsentMessages();
 }
 
 bool Client::IsConnected()
@@ -69,16 +75,10 @@ bool Client::IsConnected()
 
 void Client::Render()
 {
-    if (!IsConnected()) {
-        return;
-    }
     gameManager->Render();
 }
 
 void Client::ManageInput(SDL_Event* e)
 {
     gameManager->ManageInput(e);
-    if (e->type == SDL_EVENT_KEY_UP) {
-        sender->SendImportantMessage(Test, "1111");
-    }
 }

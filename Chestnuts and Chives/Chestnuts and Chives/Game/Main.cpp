@@ -18,7 +18,7 @@ static Client* playerClient;
 SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
 {
     std::string gameName = "Chestnuts and Chives";
-    std::string versionName = "0.1.2";
+    std::string versionName = "0.1.3";
 
     SDL_SetAppMetadata(gameName.c_str(), versionName.c_str(), "com.extrasoup.games.chestnutsandchives");
 
@@ -32,7 +32,6 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
     std::string windowName = gameName + " " + versionName;
 
     playerClient = new Client(66662, windowName);
-    playerClient->CreateAndConnectToServer("127.0.0.1");
 
     return SDL_APP_CONTINUE;  /* carry on with the program! */
 }

@@ -8,6 +8,7 @@
 #include "AssetDictionary.h"
 #include "AssetLoadingState.h"
 using namespace std;
+class Client;
 class GameManager
 {
 private:
@@ -16,8 +17,9 @@ private:
 	int ticks;
 	bool initialized;
 	AssetDictionary<SDL_Texture*> textures;
+	Client* client;
 public:
-	GameManager(Renderer* renderer);
+	GameManager(Renderer* renderer, Client* client);
 	//Switch to a new state - to use this pass in a newly allocated GameState and it will automatically be deleted when a new state is switched to
 	void SwitchState(GameState* state);
 	SDL_Texture* GetTexture(string textureName);
@@ -29,5 +31,9 @@ public:
 	void ManageInput(SDL_Event* e);
 	//called once game has been loaded to store textures here so all gamestates can access them
 	void TexturesLoaded(AssetDictionary<SDL_Texture*>* textureDict);
+	//used by states to connect the client to a server
+	void ConnectToServer();
+	//used by states to use the client to create a server
+	void CreateAndConnectToServer();
 };
 
