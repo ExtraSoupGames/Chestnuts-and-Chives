@@ -72,7 +72,7 @@ void GameManager::ConnectToServer()
 	client->ConnectToServer("127.0.0.1");
 }
 
-void GameManager::CreateAndConnectToServer()
+void GameManager::CreateServer()
 {
-	client->CreateAndConnectToServer("127.0.0.1");
+	client->CreateServer("127.0.0.1");
 }

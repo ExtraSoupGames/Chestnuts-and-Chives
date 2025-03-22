@@ -1,19 +1,10 @@
 #pragma once
-#include "UIState.h"
+#include "GameState.h"
 #include "ConnectingState.h"
-#include "ServerCreationState.h"
-class MenuState : public UIState {
-private:
-	void CreateAndConnectClicked();
-	void ConnectClicked();
-	GameManager* manager;
-protected:
+class ServerCreationState : public GameState {
 public:
-	MenuState();
-	~MenuState();
 	virtual void Render(Renderer* renderer) override;
 	virtual void Update(int frameTime) override;
 	virtual void Initialize(GameManager* manager) override;
 	virtual void ManageInput(SDL_Event* e) override;
-
 };

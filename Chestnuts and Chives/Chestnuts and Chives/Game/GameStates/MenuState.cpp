@@ -1,13 +1,13 @@
 #include "MenuState.h"
+#include "GameManager.h"
+#include "Button.h"
 void MenuState::CreateAndConnectClicked()
 {
-	manager->CreateAndConnectToServer();
-	manager->SwitchState(new ExtraSoupState());
+	manager->SwitchState(new ServerCreationState());
 }
 void MenuState::ConnectClicked()
 {
-	manager->ConnectToServer();
-	manager->SwitchState(new ExtraSoupState());
+	manager->SwitchState(new ConnectingState());
 }
 MenuState::MenuState()
 {

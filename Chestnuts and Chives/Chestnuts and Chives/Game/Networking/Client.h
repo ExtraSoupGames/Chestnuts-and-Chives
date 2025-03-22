@@ -23,7 +23,7 @@ private:
 public:
 	Client(int portToUse, string windowName);
 	void ConnectToServer(string serverAddress);
-	void CreateAndConnectToServer(string serverAddress);
+	void CreateServer(string serverAddress);
 	void Update();
 	bool IsConnected();
 	void Render();

@@ -18,18 +18,15 @@ void Client::ConnectToServer(string serverAddress)
     connectedServer = SDLNet_ResolveHostname(serverAddress.c_str());
     SDLNet_WaitUntilResolved(connectedServer, 1000);
     socket = SDLNet_CreateDatagramSocket(connectedServer, port);
-    cout << "Socket created!" << endl;
-    cout << SDL_GetError() << endl;
+    sender = new ClientMessageSender(socket, connectedServer, 66661);
 }
-void Client::CreateAndConnectToServer(string serverAddress)
+void Client::CreateServer(string serverAddress)
 {
     if (gameServer != nullptr) {
         cout << "Already created a server!" << endl;
         return;
     }
     gameServer = new Server(serverAddress);
-    ConnectToServer(serverAddress);
-    sender = new ClientMessageSender(socket, connectedServer, 66661);
 }
 void Client::ProcessIncoming() {
     NetworkMessage* message = nullptr;

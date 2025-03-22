@@ -1,5 +1,5 @@
 #include "Button.h"
-
+#include "GameManager.h"
 Button::Button(int x, int y, int width, int height, function<bool()> callOnClick, GameManager* manager)
 	: UIElement(x, y, width, height)
 {

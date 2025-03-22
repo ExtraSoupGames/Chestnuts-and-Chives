@@ -34,6 +34,6 @@ public:
 	//used by states to connect the client to a server
 	void ConnectToServer();
 	//used by states to use the client to create a server
-	void CreateAndConnectToServer();
+	void CreateServer();
 };
 
