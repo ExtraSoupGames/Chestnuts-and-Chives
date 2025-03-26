@@ -18,3 +18,7 @@ void ServerCreationState::Initialize(GameManager* manager)
 void ServerCreationState::ManageInput(SDL_Event* e)
 {
 }
+
+void ServerCreationState::ProcessServerMessage(NetworkMessage* msg)
+{
+}

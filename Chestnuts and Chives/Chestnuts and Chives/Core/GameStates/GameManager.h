@@ -16,7 +16,7 @@ private:
 	Renderer* renderer;
 	int ticks;
 	bool initialized;
-	AssetDictionary<SDL_Texture*> textures;
+	unique_ptr<AssetDictionary<SDL_Texture*>> textures;
 	Client* client;
 public:
 	GameManager(Renderer* renderer, Client* client);
@@ -30,10 +30,14 @@ public:
 	//pass the input down to the current state
 	void ManageInput(SDL_Event* e);
 	//called once game has been loaded to store textures here so all gamestates can access them
-	void TexturesLoaded(AssetDictionary<SDL_Texture*>* textureDict);
+	void TexturesLoaded(unique_ptr < AssetDictionary<SDL_Texture*>> textureDict);
 	//used by states to connect the client to a server
 	void ConnectToServer();
 	//used by states to use the client to create a server
 	void CreateServer();
+	//processes an incoming message from the server
+	void ProcessServerMessage(NetworkMessage* msg);
+	//send a message to the server
+	void SendServerMessage(NetworkMessageTypes type, string msg);
 };
 

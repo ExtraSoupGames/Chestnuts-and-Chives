@@ -9,7 +9,7 @@ enum NetworkMessageTypes {
 	Connect,
 	ConnectConfirm,
 	Heartbeat,
-	GameStateChange,
+	GameStateSync,
 	Test,
 	ImportantMessageConfirmation,
 	Error
@@ -30,7 +30,7 @@ public:
 	int GetPort();
 };
 
-static class NetworkUtilities {
+class NetworkUtilities {
 private:
 	static vector<Uint8>* PackMessage(string inData);
 

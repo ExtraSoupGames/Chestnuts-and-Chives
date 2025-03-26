@@ -1,17 +1,16 @@
 #pragma once
-#include "GameState.h"
+#include "GameplayState.h"
 #include "UIElement.h"
 #include <vector>
 using namespace std;
-class UIState : public GameState
-{
+class UIGameplayState : public GameplayState {
 private:
 protected:
 	int screenScaling;
 	vector<UIElement*> elements;
 	UIElement* GetHoveredElement();
 public:
-	~UIState();
+	~UIGameplayState();
 	bool DoElementsOverlap();
 	bool IsAllSpaceFilled();
 	//when overriden this base method should still be called to render all UI elements

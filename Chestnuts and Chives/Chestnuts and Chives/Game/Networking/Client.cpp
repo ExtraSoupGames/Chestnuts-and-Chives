@@ -35,15 +35,14 @@ void Client::ProcessIncoming() {
             clientID = NetworkUtilities::IntFromBinaryString(message->GetExtraData(), 1);
             NetworkUtilities::SendMessageTo(ConnectConfirm, "", socket, connectedServer, 66661);
         }
-        if (message->GetMessageType() == GameStateChange){
-            int gameState = NetworkUtilities::IntFromBinaryString(message->GetExtraData(), 1);
-            //gameManager->SwitchState();
-        }
         if (message->GetMessageType() == Test) {
             sender->SendImportantMessageConfirmation(message);
         }
         if (message->GetMessageType() == ImportantMessageConfirmation) {
             sender->ConfirmationRecieved(message);
+        }
+        else {
+            gameManager->ProcessServerMessage(message);
         }
         delete message;
     }
@@ -78,4 +77,9 @@ void Client::Render()
 void Client::ManageInput(SDL_Event* e)
 {
     gameManager->ManageInput(e);
+}
+
+void Client::SendServerMessage(NetworkMessageTypes type, string msg)
+{
+    NetworkUtilities::SendMessageTo(type, msg, socket, connectedServer, 66661);
 }

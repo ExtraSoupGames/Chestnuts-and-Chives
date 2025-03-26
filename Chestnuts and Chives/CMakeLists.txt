@@ -46,6 +46,7 @@ target_include_directories(ChestnutsAndChives PRIVATE
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Game/Cooking"
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Game/Persistence"
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Game/GameStates"
+    "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Game/GameStates/GameplayStates"
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Assets/Libraries"
 )
 

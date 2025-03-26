@@ -1,4 +1,5 @@
 #include "Server.h"
+#include "MapServerState.h"
 Server::Server(string addressIP) {
     address = SDLNet_ResolveHostname(addressIP.c_str());
     if (address == nullptr) {
@@ -19,6 +20,8 @@ Server::Server(string addressIP) {
 
     save = nullptr;
     state = nullptr;
+
+    lastTicks = SDL_GetTicks();
 }
 bool Server::IsAlreadyConnected(SDLNet_Address* address, int port) {
     for (int i = 0; i < connectedClients->size(); i++) {
@@ -42,7 +45,7 @@ void Server::ProcessIncoming() {
         case ConnectConfirm:
             ConfirmClientConnection(message->GetAddress());
             break;
-        case GameStateChange:
+        case GameStateSync:
             state->ProcessVoteMessage(message->GetExtraData()[0]);
             break;
         case Test:
@@ -61,9 +64,12 @@ void Server::ProcessIncoming() {
 }
 void Server::Broadcast(string message)
 {
+    cout << "Server is broadcasting" << endl;
     for (int i = 0; i < connectedClients->size(); i++) {
+        cout << "Broadcasting to player..." << endl;
         ConnectedClient* c = connectedClients->at(i);
-        NetworkUtilities::SendMessageTo(GameStateChange, message, socket, c->address, c->clientPort);
+        cout << "Server is broadcasting state change with state code " << message << endl;
+        NetworkUtilities::SendMessageTo(GameStateSync, message, socket, c->address, c->clientPort);
     }
 }
 void Server::ConfirmClientConnection(SDLNet_Address* clientAddress)
@@ -75,6 +81,7 @@ void Server::ConfirmClientConnection(SDLNet_Address* clientAddress)
         connectingAClient = false;
         nextClientID++;
         connectedClients->push_back(new ConnectedClient(connectingClientsAddress, connectingClientPort));
+        sender->NewClientConnected(connectedClients->at(connectedClients->size() - 1));
         connectingClientsAddress = nullptr;
         cout << "Successfully connected client with ID: " << (nextClientID) << endl;
     }
@@ -98,20 +105,25 @@ void Server::TryConnectClient(string inData, SDLNet_Address* clientAddress, int 
     }
 }
 void Server::Update() {
+    int updateTime = SDL_GetTicks() - lastTicks;
+    lastTicks = SDL_GetTicks();
     ProcessIncoming();
     sender->SendUnsentMessages();
     if (state != nullptr) {
-        state->Update(this);
+        state->Update(updateTime);
+    }
+    else {
+        SwitchState(new MapServerState(this, connectedClients->size()));
     }
 }
 
 void Server::SwitchState(ServerState* newState)
 {
     if (state != nullptr) {
-        state->Update(this);
+        state->OnExit();
     }
-    state->OnExit();
     delete state;
     state = newState;
     newState->OnEnter();
+    Broadcast(newState->GetStateCode());
 }

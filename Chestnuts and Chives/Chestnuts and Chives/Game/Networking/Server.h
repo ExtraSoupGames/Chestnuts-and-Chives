@@ -6,12 +6,12 @@
 #include <vector>
 #include "NetworkUtilities.h"
 #include "GameSave.h"
-#include "ServerState.h"
 #include <fstream>
 #include "ConnectedClient.h"
 #include "ServerMessageSender.h"
 using namespace std;
-
+//forward declaration
+class ServerState;
 class Server
 {
 private:
@@ -24,7 +24,8 @@ private:
 	SDLNet_Address* connectingClientsAddress;
 	int connectingClientPort;
 	void ProcessIncoming();
-	void Broadcast(string message);
+
+	int lastTicks;
 
 	GameSave* save;
 	ServerState* state;
@@ -35,6 +36,8 @@ private:
 public:
 	Server(string addressIP);
 	void Update();
+	void Broadcast(string message);
+
 
 	void SwitchState(ServerState* newState);
 };

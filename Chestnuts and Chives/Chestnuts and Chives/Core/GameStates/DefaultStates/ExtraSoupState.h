@@ -1,7 +1,6 @@
 #pragma once
 #include "GameState.h"
 #include <algorithm>
-#include "TestUI.h"
 #include "GameManager.h"
 #include <iostream>
 using namespace std;
@@ -34,10 +33,11 @@ private:
 	GameManager* gameManager;
 public:
 	ExtraSoupState();
-	~ExtraSoupState();
+	virtual ~ExtraSoupState() override;
 
 	virtual void Update(int frameTime) override;
 	virtual void Render(Renderer* renderer) override;
 	virtual void Initialize(GameManager* manager) override;
 	virtual void ManageInput(SDL_Event* e) override;
+	virtual void ProcessServerMessage(NetworkMessage* msg) override;
 };

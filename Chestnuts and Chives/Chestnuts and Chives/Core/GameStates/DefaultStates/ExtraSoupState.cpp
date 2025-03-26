@@ -1,5 +1,5 @@
 #include "ExtraSoupState.h"
-
+#include "ConnectedState.h"
 ExtraSoupState::ExtraSoupState()
 {
 	fadeInTimer = 0;
@@ -26,7 +26,6 @@ ExtraSoupState::ExtraSoupState()
 ExtraSoupState::~ExtraSoupState()
 {
 	delete backgroundColor;
-	delete logoTexture;
 }
 
 void ExtraSoupState::Update(int frameTime)
@@ -53,7 +52,7 @@ void ExtraSoupState::Update(int frameTime)
 	case FinalDelay:
 		finalDelayTimer += frameTime;
 		if (finalDelayTimer > finalDelayDuration) {
-			gameManager->SwitchState(new TestUI());
+			gameManager->SwitchState(new ConnectedState());
 		}
 	}
 }
@@ -96,4 +95,8 @@ void ExtraSoupState::Initialize(GameManager* manager)
 }
 void ExtraSoupState::ManageInput(SDL_Event* e) {
 
+}
+
+void ExtraSoupState::ProcessServerMessage(NetworkMessage* msg)
+{
 }

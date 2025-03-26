@@ -57,7 +57,7 @@ NetworkMessageTypes NetworkUtilities::UnpackHeader(string inData)
 	case 1: return Connect;
 	case 2: return ConnectConfirm;
 	case 3: return Heartbeat;
-	case 4: return GameStateChange;
+	case 4: return GameStateSync;
 	case 5: return Test;
 	case 6: return ImportantMessageConfirmation;
 	default: return Error;
@@ -69,9 +69,10 @@ string NetworkUtilities::PackHeader(NetworkMessageTypes type) {
 	case Connect: return AsBinaryString(1, 1);
 	case ConnectConfirm: return AsBinaryString(1, 2);
 	case Heartbeat: return AsBinaryString(1, 3);
-	case GameStateChange: return AsBinaryString(1, 4);
+	case GameStateSync: return AsBinaryString(1, 4);
 	case Test: return AsBinaryString(1, 5);
 	case ImportantMessageConfirmation: return AsBinaryString(1, 6);
+	default: return "0000";
 	}
 }
 
@@ -102,7 +103,7 @@ string NetworkUtilities::AsBinaryString(int outNibbles, int value)
 	for (int i = 0; i < digits.size(); i++) {
 		bitset<4> newBits = stoi(digits.substr(i, 1));
 		string newNibble = newBits.to_string();
-		if (!IsBinaryOnly(newNibble) || !newNibble.size() == 4) {
+		if (!IsBinaryOnly(newNibble) || newNibble.size() != 4) {
 			cout << "Error processing integer into binary coded decimal. Problem bits: " << newNibble << endl;
 			continue;
 		}
@@ -111,6 +112,7 @@ string NetworkUtilities::AsBinaryString(int outNibbles, int value)
 	outString = outString.substr(0, outNibbles * 4);
 	return outString;
 }
+//digits is the number of nibbles to process
 int NetworkUtilities::IntFromBinaryString(string binaryString, int digits)
 {
 	int out = 0;

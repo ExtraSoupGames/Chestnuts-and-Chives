@@ -1,5 +1,5 @@
 #include "ServerStateVotable.h"
-ServerStateVotable::ServerStateVotable(int playerCount)
+ServerStateVotable::ServerStateVotable(Server* server, int playerCount) : ServerState(server)
 {
 	currentVotes = 0;
 	votesNeeded = playerCount;
@@ -7,8 +7,10 @@ ServerStateVotable::ServerStateVotable(int playerCount)
 
 void ServerStateVotable::ProcessVoteMessage(bool IsPositiveVote)
 {
+	cout << "Vote received" << endl;
 	currentVotes += IsPositiveVote ? 1 : 0;
 	if (currentVotes >= votesNeeded) {
+		cout << "all votes received" << endl;
 		AllPlayersVoted();
 	}
 

@@ -17,3 +17,7 @@ void ConnectingState::Initialize(GameManager* manager)
 void ConnectingState::ManageInput(SDL_Event* e)
 {
 }
+
+void ConnectingState::ProcessServerMessage(NetworkMessage* msg)
+{
+}

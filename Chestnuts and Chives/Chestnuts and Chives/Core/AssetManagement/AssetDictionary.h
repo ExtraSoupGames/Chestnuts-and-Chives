@@ -22,7 +22,6 @@ inline AssetDictionary<T>::AssetDictionary()
 template<typename T>
 AssetDictionary<T>::~AssetDictionary()
 {
-	data.clear();
 }
 
 template<typename T>

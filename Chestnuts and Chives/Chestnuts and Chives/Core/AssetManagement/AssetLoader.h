@@ -22,12 +22,13 @@ class AssetLoader
 		"UI/Middle"
 	};
 	int textureNum;
-	AssetDictionary<SDL_Texture*> textures;
+	unique_ptr<AssetDictionary<SDL_Texture*>> textures;
 	SDL_Texture* LoadTexture(string filePath, Renderer* renderer);
 
 public:
 	AssetLoader();
-	AssetDictionary<SDL_Texture*>* GetTextures();
+	~AssetLoader();
+	unique_ptr<AssetDictionary<SDL_Texture*>> GetTextures();
 	// returns the percent of textures loaded	
 	float LoadNextTexture(Renderer* renderer);
 };

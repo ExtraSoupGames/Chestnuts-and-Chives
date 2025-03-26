@@ -1,10 +1,11 @@
 #pragma once
 #include "ServerStateVotable.h"
-class MapServerState : public ServerStateVotable {
+class TestServerState : public ServerStateVotable {
 private:
+	int frameTimer;
 protected:
 public:
-	MapServerState(Server* server, int players);
+	TestServerState(Server* server, int players);
 	virtual void Update(int frameTime) override;
 	virtual void OnExit() override;
 	virtual void OnEnter() override;

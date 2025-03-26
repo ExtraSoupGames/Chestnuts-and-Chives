@@ -1,5 +1,6 @@
 #include "GameManager.h"
 #include "Client.h"
+#include "ConnectedState.h"
 GameManager::GameManager(Renderer* renderer, Client* owner)
 {
 	this->renderer = renderer;
@@ -7,22 +8,25 @@ GameManager::GameManager(Renderer* renderer, Client* owner)
 	ticks = 0;
 	gameState = nullptr;
 	client = owner;
+	textures = nullptr;
 }
 
 void GameManager::SwitchState(GameState* state)
 {
-	delete gameState;
+	if (gameState != nullptr) {
+		delete gameState;
+	}
 	gameState = state;
 	state->Initialize(this);
 }
 
 SDL_Texture* GameManager::GetTexture(string textureName)
 {
-	SDL_Texture* texture = textures.GetItem(textureName);
+	SDL_Texture* texture = textures->GetItem(textureName);
 	if (texture == nullptr) {
 		cout << "Returned null texture, texture with name: " << textureName << " wasnt loaded correctly" << endl;
 	}
-	return textures.GetItem(textureName);
+	return textures->GetItem(textureName);
 }
 
 void GameManager::Render()
@@ -51,6 +55,7 @@ void GameManager::Initialize()
 	}
 	initialized = true;
 	SwitchState(new AssetLoadingState());
+	cout << "GameManager initialized" << endl;
 	ticks = SDL_GetTicks();
 }
 
@@ -62,9 +67,8 @@ void GameManager::ManageInput(SDL_Event* e)
 	gameState->ManageInput(e);
 }
 
-void GameManager::TexturesLoaded(AssetDictionary<SDL_Texture*>* textureDict)
-{
-	textures = *textureDict;
+void GameManager::TexturesLoaded(std::unique_ptr<AssetDictionary<SDL_Texture*>> textureDict) {
+	textures = std::move(textureDict);  // Transfers ownership
 }
 
 void GameManager::ConnectToServer()
@@ -75,4 +79,19 @@ void GameManager::ConnectToServer()
 void GameManager::CreateServer()
 {
 	client->CreateServer("127.0.0.1");
+}
+
+void GameManager::ProcessServerMessage(NetworkMessage* msg)
+{
+	if (msg->GetMessageType() == GameStateSync) {
+		if (dynamic_cast<ConnectedState*>(gameState) == nullptr) {
+			SwitchState(new ConnectedState());
+		}
+	}
+	gameState->ProcessServerMessage(msg);
+}
+
+void GameManager::SendServerMessage(NetworkMessageTypes type, string msg)
+{
+	client->SendServerMessage(type, msg);
 }

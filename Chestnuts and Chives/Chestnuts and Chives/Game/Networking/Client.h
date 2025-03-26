@@ -28,5 +28,6 @@ public:
 	bool IsConnected();
 	void Render();
 	void ManageInput(SDL_Event* e);
+	void SendServerMessage(NetworkMessageTypes type, string msg);
 };
 

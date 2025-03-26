@@ -41,3 +41,7 @@ void MenuState::ManageInput(SDL_Event* e)
 {
 	UIState::ManageInput(e);
 }
+
+void MenuState::ProcessServerMessage(NetworkMessage* msg)
+{
+}

@@ -39,3 +39,7 @@ void AssetLoadingState::Initialize(GameManager* manager)
 void AssetLoadingState::ManageInput(SDL_Event* e)
 {
 }
+
+void AssetLoadingState::ProcessServerMessage(NetworkMessage* msg)
+{
+}

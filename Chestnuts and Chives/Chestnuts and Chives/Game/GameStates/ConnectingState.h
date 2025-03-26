@@ -7,4 +7,5 @@ public:
 	virtual void Update(int frameTime) override;
 	virtual void Initialize(GameManager* manager) override;
 	virtual void ManageInput(SDL_Event* e) override;
+	virtual void ProcessServerMessage(NetworkMessage* msg) override;
 };

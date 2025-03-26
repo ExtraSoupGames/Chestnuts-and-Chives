@@ -7,18 +7,22 @@ float AssetLoader::LoadNextTexture(Renderer* renderer)
 	}
 	string textureName = textureNames[textureNum];
 	SDL_Texture* newTexture = LoadTexture(textureName, renderer);
-	textures.AddItem(textureName, newTexture);
+	textures->AddItem(textureName, newTexture);
 	textureNum++;
 	return (float)textureNum / (float)textureNames.size();
 }
 
+
 AssetLoader::AssetLoader()
 {
+	textures = make_unique<AssetDictionary<SDL_Texture*>>();
 	textureNum = 0;
 }
-AssetDictionary<SDL_Texture*>* AssetLoader::GetTextures()
+AssetLoader::~AssetLoader() {
+}
+unique_ptr<AssetDictionary<SDL_Texture*>> AssetLoader::GetTextures()
 {
-	return &textures;
+	return move(textures);
 }
 SDL_Texture* AssetLoader::LoadTexture(string filePath, Renderer* renderer)
 {
