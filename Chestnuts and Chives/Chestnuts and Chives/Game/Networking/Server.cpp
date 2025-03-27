@@ -46,7 +46,7 @@ void Server::ProcessIncoming() {
             ConfirmClientConnection(message->GetAddress());
             break;
         case GameStateSync:
-            state->ProcessVoteMessage(message->GetExtraData()[0]);
+            state->ProcessVoteMessage(message);
             break;
         case Test:
             sender->SendImportantMessageConfirmation(message);
@@ -113,8 +113,13 @@ void Server::Update() {
         state->Update(updateTime);
     }
     else {
-        SwitchState(new MapServerState(this, connectedClients->size()));
+        SwitchState(new MapServerState(this));
     }
+}
+
+int Server::GetPlayerCount()
+{
+    return connectedClients->size();
 }
 
 void Server::SwitchState(ServerState* newState)

@@ -4,7 +4,8 @@ class MapServerState : public ServerStateVotable {
 private:
 protected:
 public:
-	MapServerState(Server* server, int players);
+	MapServerState(Server* server);
+	virtual ~MapServerState() override;
 	virtual void Update(int frameTime) override;
 	virtual void OnExit() override;
 	virtual void OnEnter() override;

@@ -18,6 +18,9 @@ void Client::ConnectToServer(string serverAddress)
     connectedServer = SDLNet_ResolveHostname(serverAddress.c_str());
     SDLNet_WaitUntilResolved(connectedServer, 1000);
     socket = SDLNet_CreateDatagramSocket(connectedServer, port);
+    if (!socket) {
+        cout << "Invalid socket" << SDL_GetError() << endl;
+    }
     sender = new ClientMessageSender(socket, connectedServer, 66661);
 }
 void Client::CreateServer(string serverAddress)

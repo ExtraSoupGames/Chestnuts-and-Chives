@@ -1,12 +1,14 @@
 #pragma once
 #include "ServerState.h"
+class ConnectedClient;
 class ServerStateVotable : public ServerState {
 private:
-	int currentVotes;
+	//Clients that have voted to move to next state
+	vector<ConnectedClient*> confirmedClients;
 protected:
-	int votesNeeded;
 public:
-	ServerStateVotable(Server* server, int playerCount);
-	virtual void ProcessVoteMessage(bool IsPositiveVote) override;
+	ServerStateVotable(Server* server);
+	virtual ~ServerStateVotable() override;
+	virtual void ProcessVoteMessage(NetworkMessage* msg) override;
 	virtual void AllPlayersVoted() = 0;
 };

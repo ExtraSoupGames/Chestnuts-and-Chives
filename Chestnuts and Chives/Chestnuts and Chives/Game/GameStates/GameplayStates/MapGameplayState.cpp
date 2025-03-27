@@ -18,7 +18,7 @@ MapGameplayState::~MapGameplayState()
 
 void MapGameplayState::Render(Renderer* renderer)
 {
-	renderer->FillBackground();
+	renderer->FillBackground(playerHasVoted ? new SDL_Color{ 5, 5, 5 } : new SDL_Color{50, 50, 50});
 	UIGameplayState::Render(renderer);
 	renderer->UpdateScreen();
 }

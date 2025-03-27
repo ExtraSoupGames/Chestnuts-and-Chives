@@ -38,6 +38,6 @@ public:
 	void Update();
 	void Broadcast(string message);
 
-
+	int GetPlayerCount();
 	void SwitchState(ServerState* newState);
 };

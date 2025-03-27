@@ -21,6 +21,7 @@ void ServerMessageSender::ConfirmationRecieved(NetworkMessage* message)
 		}
 	}
 	//TODO redo this so that commonalities are reused but the broadcasts are also processed
+	//Is this really necessary if it works and shouldnt need to be edited ever again?
 }
 
 void ServerMessageSender::NewClientConnected(ConnectedClient* client)
@@ -42,7 +43,11 @@ void ServerMessageSender::SendUnsentMessages()
 }
 void ServerMessageSender::SendUnsentBroadcasts()
 {
-	//TODO iterate through broadcasts and send ONLY TO CLIENTS THAT HAVENT RECEIVED YET
+	for (ImportantBroadcast* b : broadcasts) {
+		for (ConnectedClient* c : b->unconfirmedClients) {
+			NetworkUtilities::SendMessageTo(b->type, b->message, socket, c->address, c->clientPort);
+		}
+	}
 }
 
 void ImportantBroadcast::ConfirmationReceived(NetworkMessage* confirmationMessage)

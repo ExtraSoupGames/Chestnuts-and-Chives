@@ -7,7 +7,7 @@ TestGameplayState::TestGameplayState()
 
 void TestGameplayState::Render(Renderer* renderer)
 {
-	renderer->FillBackground(new SDL_Color{5, 5, 5, 5});
+	renderer->FillBackground(playerHasVoted ? new SDL_Color{ 10, 10, 10 } : new SDL_Color{ 100, 100, 100 });
 	renderer->UpdateScreen();
 }
 

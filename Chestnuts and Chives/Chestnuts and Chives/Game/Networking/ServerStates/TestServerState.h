@@ -5,7 +5,8 @@ private:
 	int frameTimer;
 protected:
 public:
-	TestServerState(Server* server, int players);
+	TestServerState(Server* server);
+	virtual ~TestServerState() override;
 	virtual void Update(int frameTime) override;
 	virtual void OnExit() override;
 	virtual void OnEnter() override;

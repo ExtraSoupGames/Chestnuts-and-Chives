@@ -18,7 +18,7 @@ static Client* playerClient;
 SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
 {
     std::string gameName = "Chestnuts and Chives";
-    std::string versionName = "0.2.0";
+    std::string versionName = "0.3.0";
 
     SDL_SetAppMetadata(gameName.c_str(), versionName.c_str(), "com.extrasoup.games.chestnutsandchives");
 
@@ -30,8 +30,14 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
         SDL_Log("Couldn't initialize SDLNet: %s", SDL_GetError());
     }
     std::string windowName = gameName + " " + versionName;
-
-    playerClient = new Client(66662, windowName);
+    int z = 0;
+    for (int i = 0; i < 99999999; i++) {
+        z += i;
+    }
+    cout << "z is " << z << endl;
+    int clientPort = SDL_GetTicks();
+    cout << "Client port: " << clientPort << endl;
+    playerClient = new Client(clientPort, windowName);
 
     return SDL_APP_CONTINUE;  /* carry on with the program! */
 }

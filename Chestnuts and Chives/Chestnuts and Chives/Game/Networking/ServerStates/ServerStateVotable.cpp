@@ -1,17 +1,30 @@
 #include "ServerStateVotable.h"
-ServerStateVotable::ServerStateVotable(Server* server, int playerCount) : ServerState(server)
+#include <algorithm>
+#include "Server.h"
+ServerStateVotable::ServerStateVotable(Server* server) : ServerState(server)
 {
-	currentVotes = 0;
-	votesNeeded = playerCount;
+
 }
 
-void ServerStateVotable::ProcessVoteMessage(bool IsPositiveVote)
+ServerStateVotable::~ServerStateVotable()
 {
-	cout << "Vote received" << endl;
-	currentVotes += IsPositiveVote ? 1 : 0;
-	if (currentVotes >= votesNeeded) {
-		cout << "all votes received" << endl;
+	for (auto c : confirmedClients) {
+		delete c;
+	}
+}
+
+void ServerStateVotable::ProcessVoteMessage(NetworkMessage* msg)
+{
+	//remove any previous votes from this client
+	confirmedClients.erase(remove_if(confirmedClients.begin(), confirmedClients.end(),
+		[msg](ConnectedClient* c)
+		{return SDLNet_GetAddressString(c->address) == SDLNet_GetAddressString(msg->GetAddress()) && c->clientPort == msg->GetPort(); }), confirmedClients.end());
+	//add a vote if they voted positively
+	if (msg->GetExtraData()[0] == '1') {
+		confirmedClients.push_back(new ConnectedClient(msg->GetAddress(), msg->GetPort()));
+	}
+	//check if all players have voted
+	if (confirmedClients.size() == server->GetPlayerCount()) {
 		AllPlayersVoted();
 	}
-
 }
