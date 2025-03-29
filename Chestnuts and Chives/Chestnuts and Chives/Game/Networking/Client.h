@@ -20,6 +20,7 @@ private:
 	Server* gameServer;
 	Renderer* renderer;
 	ClientMessageSender* sender;
+	bool connectAttempted = false;
 public:
 	Client(int portToUse, string windowName);
 	void ConnectToServer(string serverAddress);
@@ -29,5 +30,7 @@ public:
 	void Render();
 	void ManageInput(SDL_Event* e);
 	void SendServerMessage(NetworkMessageTypes type, string msg);
+	void SendImportantServerMessage(NetworkMessageTypes type, string message);
+	bool SendImportantMessageConfirmation(NetworkMessage* msg);
 };
 

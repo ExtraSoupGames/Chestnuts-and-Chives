@@ -15,6 +15,7 @@ private:
 	void SyncGameState(NetworkMessage* msg);
 protected:
 public:
+	ConnectedState();
 	virtual void Render(Renderer* renderer) override;
 	virtual void Update(int frameTime) override;
 	virtual void Initialize(GameManager* manager) override;

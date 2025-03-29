@@ -11,6 +11,7 @@ Server::Server(string addressIP) {
     if (!socket) {
         printf("Failed to create UDP socket: %s\n", SDL_GetError());
     }
+    SDLNet_SimulateDatagramPacketLoss(socket, 99);
     nextClientID = 1;
     connectingAClient = false;
     connectingClientsAddress = nullptr;
@@ -40,16 +41,29 @@ void Server::ProcessIncoming() {
     while(NetworkUtilities::GetNextIncoming(socket, message)){
         switch(message->GetMessageType()){
         case Connect:
+            if (!sender->SendImportantMessageConfirmation(message)) {
+                return;
+            }
             TryConnectClient(message->GetExtraData(), message->GetAddress(), message->GetPort());
             break;
         case ConnectConfirm:
+            if (!sender->SendImportantMessageConfirmation(message)) {
+                return;
+            }
             ConfirmClientConnection(message->GetAddress());
             break;
         case GameStateSync:
-            state->ProcessVoteMessage(message);
+            if (!sender->SendImportantMessageConfirmation(message)) {
+                return;
+            }
+            if (state != nullptr) {
+                state->ProcessVoteMessage(message);
+            }
             break;
         case Test:
-            sender->SendImportantMessageConfirmation(message);
+            if (!sender->SendImportantMessageConfirmation(message)) {
+                return;
+            }
             break;
         case ImportantMessageConfirmation:
             sender->ConfirmationRecieved(message);
@@ -64,13 +78,17 @@ void Server::ProcessIncoming() {
 }
 void Server::Broadcast(string message)
 {
-    cout << "Server is broadcasting" << endl;
     for (int i = 0; i < connectedClients->size(); i++) {
-        cout << "Broadcasting to player..." << endl;
         ConnectedClient* c = connectedClients->at(i);
-        cout << "Server is broadcasting state change with state code " << message << endl;
         NetworkUtilities::SendMessageTo(GameStateSync, message, socket, c->address, c->clientPort);
     }
+}
+void Server::ImportantBroadcast(NetworkMessageTypes type, string message)
+{
+    if (!sender) {
+        cout << "Sender is null" << endl;
+    }
+    sender->BroadcastImportantMessage(type, message);
 }
 void Server::ConfirmClientConnection(SDLNet_Address* clientAddress)
 {
@@ -82,24 +100,28 @@ void Server::ConfirmClientConnection(SDLNet_Address* clientAddress)
         nextClientID++;
         connectedClients->push_back(new ConnectedClient(connectingClientsAddress, connectingClientPort));
         sender->NewClientConnected(connectedClients->at(connectedClients->size() - 1));
+        sender->SendImportantMessage(GameStateSync, state->GetStateCode(), new ConnectedClient(connectingClientsAddress, connectingClientPort));
         connectingClientsAddress = nullptr;
         cout << "Successfully connected client with ID: " << (nextClientID) << endl;
+        cout << "Sending sync message" << endl;
     }
 }
 void Server::TryConnectClient(string inData, SDLNet_Address* clientAddress, int clientPort)
 {
+    inData = inData.substr(12);
+
     if (!IsAlreadyConnected(clientAddress, clientPort)) {
         if (!connectingAClient) {
             connectingAClient = true;
             connectingClientsAddress = clientAddress;
             connectingClientPort = clientPort;
             string message = NetworkUtilities::AsBinaryString(1, nextClientID);
-            NetworkUtilities::SendMessageTo(Connect, message, socket, clientAddress, clientPort);
+            sender->SendImportantMessage(Connect, message, new ConnectedClient(clientAddress, clientPort));
         }
         else if (SDLNet_GetAddressString(clientAddress) == SDLNet_GetAddressString(connectingClientsAddress)) {
             if (clientPort == connectingClientPort) {
                 string message = NetworkUtilities::AsBinaryString(1, nextClientID);
-                NetworkUtilities::SendMessageTo(Connect, message, socket, clientAddress, clientPort);
+                sender->SendImportantMessage(Connect, message, new ConnectedClient(clientAddress, clientPort));
             }
         }
     }
@@ -108,7 +130,7 @@ void Server::Update() {
     int updateTime = SDL_GetTicks() - lastTicks;
     lastTicks = SDL_GetTicks();
     ProcessIncoming();
-    sender->SendUnsentMessages();
+    sender->SendUnsentMessages(false);
     if (state != nullptr) {
         state->Update(updateTime);
     }
@@ -130,5 +152,5 @@ void Server::SwitchState(ServerState* newState)
     delete state;
     state = newState;
     newState->OnEnter();
-    Broadcast(newState->GetStateCode());
+    ImportantBroadcast(GameStateSync, newState->GetStateCode());
 }

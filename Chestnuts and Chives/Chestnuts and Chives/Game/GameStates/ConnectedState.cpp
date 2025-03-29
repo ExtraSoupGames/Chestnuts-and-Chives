@@ -12,10 +12,14 @@ void ConnectedState::ProcessServerMessage(NetworkMessage* msg)
 {
 	switch (msg->GetMessageType()) {
 	case GameStateSync:
+		cout << "connected state is syncing ith " << msg->GetExtraData() << endl;
 		SyncGameState(msg);
 		break;
 	default:
-		currentState->ProcessServerMessage(msg);
+		if (currentState != nullptr) {
+			currentState->ProcessServerMessage(msg);
+
+		}
 		break;
 	}
 
@@ -26,6 +30,12 @@ void ConnectedState::UpdateState(GameplayState* newState)
 	delete currentState;
 	currentState = newState;
 	currentState->Initialize(manager);
+}
+
+ConnectedState::ConnectedState()
+{
+	currentState = nullptr;
+	manager = nullptr;
 }
 
 void ConnectedState::Render(Renderer* renderer)
@@ -51,16 +61,16 @@ void ConnectedState::Initialize(GameManager* gameManager)
 void ConnectedState::SyncGameState(NetworkMessage* msg) {
 	string messageData = msg->GetExtraData();
 	if (currentState != nullptr) {
-		if (messageData.substr(0,4) == currentState->GetStateCode()) {
+		if (messageData.substr(12,4) == currentState->GetStateCode()) {
 			//server's state is the same as this machine's state, no change needed
 			return;
 		}
 
 	}
-	if (messageData.size() != 4) {
+	if (messageData.size() != 20) {
 		cout << "suspicious message data size, data: " << messageData << endl;
 	}
-	int requestedState = NetworkUtilities::IntFromBinaryString(messageData.substr(0, 4), 1);
+	int requestedState = NetworkUtilities::IntFromBinaryString(messageData.substr(12, 4), 1);
 	cout << "Requested state is: " << requestedState << endl;
 	cout << "Requested state was calculated from code " << messageData << endl;
 	//TODO switch to corresponding state

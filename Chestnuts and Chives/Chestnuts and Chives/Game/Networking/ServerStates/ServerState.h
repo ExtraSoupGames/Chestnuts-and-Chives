@@ -10,12 +10,8 @@ enum ServerStates {
 class Server;
 class ServerState {
 private:
-	int syncBroadcastRate;
-	int syncBroadcastTimer;
 protected:
 	Server* server;
-	//call this in each Update override to send sync messages to clients
-	void UpdateSyncBroadcasts(int frameTime);
 public:
 	ServerState(Server* server);
 	virtual ~ServerState() = default;

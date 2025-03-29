@@ -37,6 +37,7 @@ public:
 	Server(string addressIP);
 	void Update();
 	void Broadcast(string message);
+	void ImportantBroadcast(NetworkMessageTypes type, string message);
 
 	int GetPlayerCount();
 	void SwitchState(ServerState* newState);

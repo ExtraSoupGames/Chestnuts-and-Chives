@@ -20,7 +20,7 @@ void ServerStateVotable::ProcessVoteMessage(NetworkMessage* msg)
 		[msg](ConnectedClient* c)
 		{return SDLNet_GetAddressString(c->address) == SDLNet_GetAddressString(msg->GetAddress()) && c->clientPort == msg->GetPort(); }), confirmedClients.end());
 	//add a vote if they voted positively
-	if (msg->GetExtraData()[0] == '1') {
+	if (msg->GetExtraData()[12] == '1') {
 		confirmedClients.push_back(new ConnectedClient(msg->GetAddress(), msg->GetPort()));
 	}
 	//check if all players have voted

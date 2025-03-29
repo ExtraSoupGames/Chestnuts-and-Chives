@@ -39,5 +39,9 @@ public:
 	void ProcessServerMessage(NetworkMessage* msg);
 	//send a message to the server
 	void SendServerMessage(NetworkMessageTypes type, string msg);
+	//send an important message to the server
+	void SendImportantServerMessage(NetworkMessageTypes type, string message);
+	//send confirmation of an important message to the server
+	bool SendImportantMessageConfirmation(NetworkMessage* msg);
 };
 

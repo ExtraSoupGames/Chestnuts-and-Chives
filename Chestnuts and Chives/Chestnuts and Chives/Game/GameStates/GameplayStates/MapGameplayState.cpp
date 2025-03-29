@@ -3,7 +3,7 @@
 void MapGameplayState::VoteButtonClicked()
 {
 	playerHasVoted = !playerHasVoted;
-	gameManager->SendServerMessage(GameStateSync, playerHasVoted == true ? "1" : "0");
+	gameManager->SendImportantServerMessage(GameStateSync, playerHasVoted == true ? "1" : "0");
 }
 
 MapGameplayState::MapGameplayState()

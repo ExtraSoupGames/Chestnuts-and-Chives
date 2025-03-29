@@ -26,7 +26,7 @@ void TestGameplayState::ManageInput(SDL_Event* e)
 	if (e->type == SDL_EVENT_KEY_DOWN) {
 		if (e->key.key == SDLK_A) {
 			playerHasVoted = !playerHasVoted;
-			gameManager->SendServerMessage(GameStateSync, playerHasVoted == true ? "1" : "0");
+			gameManager->SendImportantServerMessage(GameStateSync, playerHasVoted == true ? "1" : "0");
 		}
 	}
 }

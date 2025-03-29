@@ -18,6 +18,8 @@ void Client::ConnectToServer(string serverAddress)
     connectedServer = SDLNet_ResolveHostname(serverAddress.c_str());
     SDLNet_WaitUntilResolved(connectedServer, 1000);
     socket = SDLNet_CreateDatagramSocket(connectedServer, port);
+    SDLNet_SimulateDatagramPacketLoss(socket, 99);
+
     if (!socket) {
         cout << "Invalid socket" << SDL_GetError() << endl;
     }
@@ -35,14 +37,19 @@ void Client::ProcessIncoming() {
     NetworkMessage* message = nullptr;
     while (NetworkUtilities::GetNextIncoming(socket, message)) {
         if (message->GetMessageType() == Connect) {
-            clientID = NetworkUtilities::IntFromBinaryString(message->GetExtraData(), 1);
-            NetworkUtilities::SendMessageTo(ConnectConfirm, "", socket, connectedServer, 66661);
-        }
-        if (message->GetMessageType() == Test) {
-            sender->SendImportantMessageConfirmation(message);
+            if (!sender->SendImportantMessageConfirmation(message)) {
+                return;
+            }
+            clientID = NetworkUtilities::IntFromBinaryString(message->GetExtraData().substr(12), 1);
+            sender->SendImportantMessage(ConnectConfirm, "");
         }
         if (message->GetMessageType() == ImportantMessageConfirmation) {
             sender->ConfirmationRecieved(message);
+        }
+        if (message->GetMessageType() == Test) {
+            if (!sender->SendImportantMessageConfirmation(message)) {
+                return;
+            }
         }
         else {
             gameManager->ProcessServerMessage(message);
@@ -58,12 +65,12 @@ void Client::Update() {
     if (IsConnected()) {
         ProcessIncoming();
         if (clientID == 0) {
-            //if the client ID is 0 then this client has not yet connected to the server
-            NetworkUtilities::SendMessageTo(Connect, "", socket, connectedServer, 66661);
+            sender->SendImportantMessage(Connect, "");
+            connectAttempted = true;
         }
     }
     if (sender != nullptr) {
-        sender->SendUnsentMessages();
+        sender->SendUnsentMessages(false);
     }
 }
 
@@ -85,4 +92,14 @@ void Client::ManageInput(SDL_Event* e)
 void Client::SendServerMessage(NetworkMessageTypes type, string msg)
 {
     NetworkUtilities::SendMessageTo(type, msg, socket, connectedServer, 66661);
+}
+
+void Client::SendImportantServerMessage(NetworkMessageTypes type, string message)
+{
+    sender->SendImportantMessage(type, message);
+}
+
+bool Client::SendImportantMessageConfirmation(NetworkMessage* msg)
+{
+    return sender->SendImportantMessageConfirmation(msg);
 }

@@ -84,6 +84,9 @@ void GameManager::CreateServer()
 void GameManager::ProcessServerMessage(NetworkMessage* msg)
 {
 	if (msg->GetMessageType() == GameStateSync) {
+		if (!client->SendImportantMessageConfirmation(msg)) {
+			return;
+		}
 		if (dynamic_cast<ConnectedState*>(gameState) == nullptr) {
 			SwitchState(new ConnectedState());
 		}
@@ -94,4 +97,14 @@ void GameManager::ProcessServerMessage(NetworkMessage* msg)
 void GameManager::SendServerMessage(NetworkMessageTypes type, string msg)
 {
 	client->SendServerMessage(type, msg);
+}
+
+void GameManager::SendImportantServerMessage(NetworkMessageTypes type, string message)
+{
+	client->SendImportantServerMessage(type, message);
+}
+
+bool GameManager::SendImportantMessageConfirmation(NetworkMessage* msg)
+{
+	return client->SendImportantMessageConfirmation(msg);
 }
