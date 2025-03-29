@@ -102,8 +102,7 @@ void Server::ConfirmClientConnection(SDLNet_Address* clientAddress)
         sender->NewClientConnected(connectedClients->at(connectedClients->size() - 1));
         sender->SendImportantMessage(GameStateSync, state->GetStateCode(), new ConnectedClient(connectingClientsAddress, connectingClientPort));
         connectingClientsAddress = nullptr;
-        cout << "Successfully connected client with ID: " << (nextClientID) << endl;
-        cout << "Sending sync message" << endl;
+        cout << "Successfully connected client with ID: " << (nextClientID - 1) << endl;
     }
 }
 void Server::TryConnectClient(string inData, SDLNet_Address* clientAddress, int clientPort)

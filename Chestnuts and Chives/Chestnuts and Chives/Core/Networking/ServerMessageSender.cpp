@@ -54,18 +54,19 @@ bool ServerMessageSender::SendImportantMessageConfirmation(NetworkMessage* impor
 	int port = importantMessage->GetPort();
 	NetworkUtilities::SendMessageTo(ImportantMessageConfirmation, importantMessage->GetExtraData(), socket, address, port);
 	//find the relevant message checker
+
 	for (ClientMessageChecker* c : messageCheckers) {
 		if (SDLNet_GetAddressString(c->client->address) == SDLNet_GetAddressString(importantMessage->GetAddress()) && c->client->clientPort == importantMessage->GetPort()) {
 			//check if the message checker contains the message and if so return true
 			int messageID = NetworkUtilities::IntFromBinaryString(importantMessage->GetExtraData().substr(0, 12), 3);
-			if (find(receivedMessages.begin(), receivedMessages.end(), messageID) == receivedMessages.end()) {
-				receivedMessages.push_back(messageID);
+			if (find(c->receivedMessages.begin(), c->receivedMessages.end(), messageID) == c->receivedMessages.end()) {
+				c->receivedMessages.push_back(messageID);
 				return true;
 			}
 			return false;
 		}
 	}
-	cout << "adding new message checker and returning true as client must be new" << endl;
+	//new client sender, add new message checker
 	messageCheckers.push_back(new ClientMessageChecker(new ConnectedClient(importantMessage->GetAddress(), importantMessage->GetPort())));
 	return true;
 }
@@ -108,6 +109,5 @@ bool ImportantBroadcast::IsFullyConfirmed()
 ImportantBroadcast::ImportantBroadcast(NetworkMessageTypes type, string message, vector<ConnectedClient*> clients, int ID)
 	: ImportantMessage(message, nullptr, ID, type)
 {
-	cout << "unconfirmed clients size " << clients.size() << endl;
 	unconfirmedClients = clients;
 }

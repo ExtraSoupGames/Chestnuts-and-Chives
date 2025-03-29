@@ -12,7 +12,6 @@ void ConnectedState::ProcessServerMessage(NetworkMessage* msg)
 {
 	switch (msg->GetMessageType()) {
 	case GameStateSync:
-		cout << "connected state is syncing ith " << msg->GetExtraData() << endl;
 		SyncGameState(msg);
 		break;
 	default:
@@ -71,18 +70,14 @@ void ConnectedState::SyncGameState(NetworkMessage* msg) {
 		cout << "suspicious message data size, data: " << messageData << endl;
 	}
 	int requestedState = NetworkUtilities::IntFromBinaryString(messageData.substr(12, 4), 1);
-	cout << "Requested state is: " << requestedState << endl;
-	cout << "Requested state was calculated from code " << messageData << endl;
 	//TODO switch to corresponding state
 	ServerStates newState = (ServerStates)requestedState;
 	switch (requestedState) {
 	case TestState:
 		UpdateState(new TestGameplayState());
-		cout << "Test Gameplay State initialized" << endl;
 		break;
 	case MapState:
 		UpdateState(new MapGameplayState());
-		cout << "Map gameplay state initialized" << endl;
 		break;
 	}
 }
