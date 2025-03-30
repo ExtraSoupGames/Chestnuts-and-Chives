@@ -1,14 +1,18 @@
 #include "Client.h"
+#include "ConnectedState.h"
+#include "AssetLoadingState.h"
 Client::Client(int portToUse, string windowName) {
     clientID = 0;
     port = portToUse;
     socket = nullptr;
     connectedServer = nullptr;
     renderer = new Renderer(windowName);
-    gameManager = new GameManager(renderer, this);
-    gameManager->Initialize();
     gameServer = nullptr;
     sender = nullptr;
+    ticks = SDL_GetTicks();
+    textureDict = nullptr;
+    state = new AssetLoadingState();
+    state->Initialize(this);
 }
 void Client::ConnectToServer(string serverAddress)
 {
@@ -51,14 +55,24 @@ void Client::ProcessIncoming() {
                 return;
             }
         }
-        else {
-            gameManager->ProcessServerMessage(message);
+        if (message->GetMessageType() == GameStateSync) {
+            if (!sender->SendImportantMessageConfirmation(message)) {
+                return;
+            }
+            if (dynamic_cast<ConnectedState*>(state) == nullptr) {
+                SwitchState(new ConnectedState());
+            }
         }
+        state->ProcessServerMessage(message);
         delete message;
     }
 }
 void Client::Update() {
-    gameManager->Update();
+    int deltaTime = SDL_GetTicks() - ticks;
+    ticks = SDL_GetTicks();
+    if (state != nullptr) {
+        state->Update(SDL_GetTicks() - ticks);
+    }
     if (gameServer != nullptr) {
         gameServer->Update();
     }
@@ -81,12 +95,16 @@ bool Client::IsConnected()
 
 void Client::Render()
 {
-    gameManager->Render();
+    if (state != nullptr) {
+        state->Render(renderer);
+    }
 }
 
 void Client::ManageInput(SDL_Event* e)
 {
-    gameManager->ManageInput(e);
+    if (state != nullptr) {
+        state->ManageInput(e);
+    }
 }
 
 void Client::SendServerMessage(NetworkMessageTypes type, string msg)
@@ -102,4 +120,23 @@ void Client::SendImportantServerMessage(NetworkMessageTypes type, string message
 bool Client::SendImportantMessageConfirmation(NetworkMessage* msg)
 {
     return sender->SendImportantMessageConfirmation(msg);
+}
+
+void Client::SwitchState(GameState* newState)
+{
+    if (state != nullptr) {
+        delete state;
+    }
+    state = newState;
+    state->Initialize(this);
+}
+
+void Client::TexturesLoaded(AssetDictionary<SDL_Texture*>* textures)
+{
+    textureDict = textures;
+}
+
+SDL_Texture* Client::GetTexture(string name)
+{
+    return textureDict->GetItem(name);
 }

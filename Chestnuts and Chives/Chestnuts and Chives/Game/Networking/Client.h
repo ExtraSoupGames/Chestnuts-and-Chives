@@ -4,9 +4,11 @@
 #include <SDL3/SDL.h>
 #include <SDL3_net/SDL_net.h>
 #include "Server.h"
-#include "ExtraSoupState.h"
+#include "AssetDictionary.h"
 #include "ClientMessageSender.h"
+#include "Renderer.h"
 using namespace std;
+class GameState;
 class Client
 {
 private:
@@ -16,11 +18,13 @@ private:
 	SDLNet_DatagramSocket* socket;
 	SDLNet_Address* connectedServer;
 	void ProcessIncoming();
-	GameManager* gameManager;
 	Server* gameServer;
 	Renderer* renderer;
 	ClientMessageSender* sender;
 	bool connectAttempted = false;
+	AssetDictionary<SDL_Texture*>* textureDict;
+	GameState* state;
+	int ticks;
 public:
 	Client(int portToUse, string windowName);
 	void ConnectToServer(string serverAddress);
@@ -32,5 +36,8 @@ public:
 	void SendServerMessage(NetworkMessageTypes type, string msg);
 	void SendImportantServerMessage(NetworkMessageTypes type, string message);
 	bool SendImportantMessageConfirmation(NetworkMessage* msg);
+	void SwitchState(GameState* newState);
+	void TexturesLoaded(AssetDictionary<SDL_Texture*>* textures);
+	SDL_Texture* GetTexture(string name);
 };
 

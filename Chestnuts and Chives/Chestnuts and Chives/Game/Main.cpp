@@ -9,7 +9,6 @@
 #include <string>
 #include "Client.h"
 #include "Server.h"
-#include "GameManager.h"
 #include "Renderer.h"
 static SDL_Window* window = NULL;
 static Client* playerClient;

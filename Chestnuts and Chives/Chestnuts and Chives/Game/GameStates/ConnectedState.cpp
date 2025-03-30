@@ -53,7 +53,7 @@ void ConnectedState::Update(int frameTime)
 	currentState->Update(frameTime);
 }
 
-void ConnectedState::Initialize(GameManager* gameManager)
+void ConnectedState::Initialize(Client* gameManager)
 {
 	manager = gameManager;
 }

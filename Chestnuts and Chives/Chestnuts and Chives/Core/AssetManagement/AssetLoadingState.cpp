@@ -2,12 +2,16 @@
 #include "MenuState.h"
 void AssetLoadingState::Exit()
 {
+	if (gameManager == nullptr) {
+		throw new exception("Client is null");
+	}
 	gameManager->TexturesLoaded(loader->GetTextures());
 	gameManager->SwitchState(new MenuState());
 }
 
 AssetLoadingState::AssetLoadingState()
 {
+	cout << "Constructor called" << endl;
 	gameManager = nullptr;
 	loader = new AssetLoader();
 }
@@ -31,8 +35,9 @@ void AssetLoadingState::Render(Renderer* renderer)
 	cout << "Percent of textures loaded: " << percentComplete << "%" << endl;;
 }
 
-void AssetLoadingState::Initialize(GameManager* manager)
+void AssetLoadingState::Initialize(Client* manager)
 {
+	cout << "manager assigned" << endl;
 	gameManager = manager;
 }
 

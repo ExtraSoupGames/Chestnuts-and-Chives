@@ -1,6 +1,6 @@
 #include "Path.h"
 
-Path::Path(GameManager* gameManager)
+Path::Path(Client* gameManager)
 {
 	pathTexture = gameManager->GetTexture("Paths");
 }

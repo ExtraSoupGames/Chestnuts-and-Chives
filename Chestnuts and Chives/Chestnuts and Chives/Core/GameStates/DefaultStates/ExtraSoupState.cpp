@@ -87,7 +87,7 @@ void ExtraSoupState::Render(Renderer* renderer)
 	renderer->UpdateScreen();
 }
 
-void ExtraSoupState::Initialize(GameManager* manager)
+void ExtraSoupState::Initialize(Client* manager)
 {
 	gameManager = manager;
 	logoTexture = manager->GetTexture("Soup");

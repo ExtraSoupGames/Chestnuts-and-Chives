@@ -1,5 +1,5 @@
 #include "ConnectingState.h"
-#include "GameManager.h"
+#include "ExtraSoupState.h"
 void ConnectingState::Render(Renderer* renderer)
 {
 }
@@ -8,9 +8,9 @@ void ConnectingState::Update(int frameTime)
 {
 }
 
-void ConnectingState::Initialize(GameManager* manager)
+void ConnectingState::Initialize(Client* manager)
 {
-	manager->ConnectToServer();
+	manager->ConnectToServer("127.0.0.1");
 	manager->SwitchState(new ExtraSoupState());
 }
 

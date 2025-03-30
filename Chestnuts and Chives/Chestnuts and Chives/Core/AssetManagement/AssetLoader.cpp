@@ -15,14 +15,14 @@ float AssetLoader::LoadNextTexture(Renderer* renderer)
 
 AssetLoader::AssetLoader()
 {
-	textures = make_unique<AssetDictionary<SDL_Texture*>>();
+	textures = new AssetDictionary<SDL_Texture*>();
 	textureNum = 0;
 }
 AssetLoader::~AssetLoader() {
 }
-unique_ptr<AssetDictionary<SDL_Texture*>> AssetLoader::GetTextures()
+AssetDictionary<SDL_Texture*>* AssetLoader::GetTextures()
 {
-	return move(textures);
+	return textures;
 }
 SDL_Texture* AssetLoader::LoadTexture(string filePath, Renderer* renderer)
 {

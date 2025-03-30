@@ -1,8 +1,7 @@
 #include "Map.h"
-#include "GameManager.h"
 #include "Path.h"
 
-Map::Map(int x, int y, GameManager* gameManager) : UIElement(x, y, 200, 160)
+Map::Map(int x, int y, Client* gameManager) : UIElement(x, y, 200, 160)
 {
 	backgroundTexture = gameManager->GetTexture("Map");
 	offsetX = 0;

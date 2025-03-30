@@ -1,6 +1,5 @@
 #include "Location.h"
-#include "GameManager.h"
-Location::Location(GameManager* gameManager)
+Location::Location(Client* gameManager)
 {
 	locationTexture = gameManager->GetTexture("Location");
 }

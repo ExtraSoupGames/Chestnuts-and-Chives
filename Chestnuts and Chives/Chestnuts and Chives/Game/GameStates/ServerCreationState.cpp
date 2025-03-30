@@ -1,6 +1,5 @@
 #include "ServerCreationState.h"
 
-#include "GameManager.h"
 void ServerCreationState::Render(Renderer* renderer)
 {
 }
@@ -9,9 +8,9 @@ void ServerCreationState::Update(int frameTime)
 {
 }
 
-void ServerCreationState::Initialize(GameManager* manager)
+void ServerCreationState::Initialize(Client* manager)
 {
-	manager->CreateServer();
+	manager->CreateServer("127.0.0.1");
 	manager->SwitchState(new ConnectingState());
 }
 

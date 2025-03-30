@@ -1,8 +1,8 @@
 #pragma once
 #include "GameState.h"
 #include <algorithm>
-#include "GameManager.h"
 #include <iostream>
+#include "Client.h"
 using namespace std;
 class ExtraSoupState : public GameState
 {
@@ -30,14 +30,14 @@ private:
 	FadingState fadingState;
 	SDL_Texture* logoTexture;
 	SDL_Color* backgroundColor;
-	GameManager* gameManager;
+	Client* gameManager;
 public:
 	ExtraSoupState();
 	virtual ~ExtraSoupState() override;
 
 	virtual void Update(int frameTime) override;
 	virtual void Render(Renderer* renderer) override;
-	virtual void Initialize(GameManager* manager) override;
+	virtual void Initialize(Client* manager) override;
 	virtual void ManageInput(SDL_Event* e) override;
 	virtual void ProcessServerMessage(NetworkMessage* msg) override;
 };

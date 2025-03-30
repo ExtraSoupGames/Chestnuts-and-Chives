@@ -3,6 +3,7 @@
 #include <vector>
 #include "Location.h"
 #include "UIElement.h"
+#include "Client.h"
 using namespace std;
 class GameManager;
 class Path;
@@ -16,7 +17,7 @@ class Map : public UIElement
 	int mapTextureWidth;
 	int mapTextureHeight;
 public:
-	Map(int x , int y, GameManager* gameManager);
+	Map(int x , int y, Client* gameManager);
 	virtual void Render(Renderer* renderer) override;
 	//used for testing to move the map around
 	void UpdateOffset(int dX, int dY);

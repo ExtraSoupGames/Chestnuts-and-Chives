@@ -1,5 +1,4 @@
 #include "MenuState.h"
-#include "GameManager.h"
 #include "Button.h"
 void MenuState::CreateAndConnectClicked()
 {
@@ -29,7 +28,7 @@ void MenuState::Update(int frameTime)
 {
 }
 
-void MenuState::Initialize(GameManager* gameManager)
+void MenuState::Initialize(Client* gameManager)
 {
 	manager = gameManager;
 	elements.push_back(new Button(10, 10, 48, 16, [this]() {CreateAndConnectClicked(); return true; }, manager));

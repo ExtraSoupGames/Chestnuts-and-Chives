@@ -15,7 +15,7 @@ void TestGameplayState::Update(int frameTime)
 {
 }
 
-void TestGameplayState::Initialize(GameManager* manager)
+void TestGameplayState::Initialize(Client* manager)
 {
 	GameplayState::Initialize(manager);
 }
