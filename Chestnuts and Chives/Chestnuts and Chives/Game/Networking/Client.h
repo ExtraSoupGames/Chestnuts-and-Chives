@@ -3,6 +3,7 @@
 #include <string>
 #include <SDL3/SDL.h>
 #include <SDL3_net/SDL_net.h>
+#include "SDL3_ttf/SDL_ttf.h"
 #include "Server.h"
 #include "AssetDictionary.h"
 #include "ClientMessageSender.h"
@@ -25,6 +26,7 @@ private:
 	AssetDictionary<SDL_Texture*>* textureDict;
 	GameState* state;
 	int ticks;
+	TTF_Font* font;
 public:
 	Client(int portToUse, string windowName);
 	void ConnectToServer(string serverAddress);
@@ -39,5 +41,7 @@ public:
 	void SwitchState(GameState* newState);
 	void TexturesLoaded(AssetDictionary<SDL_Texture*>* textures);
 	SDL_Texture* GetTexture(string name);
+	void FontLoaded(TTF_Font* font);
+	TTF_Font* GetFont();
 };
 

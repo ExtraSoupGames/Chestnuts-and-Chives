@@ -3,11 +3,13 @@
 TestGameplayState::TestGameplayState()
 {
 	playerHasVoted = false;
+	testText = nullptr;
 }
 
 void TestGameplayState::Render(Renderer* renderer)
 {
 	renderer->FillBackground(playerHasVoted ? new SDL_Color{ 10, 10, 10 } : new SDL_Color{ 100, 100, 100 });
+	testText->Render(renderer);
 	renderer->UpdateScreen();
 }
 
@@ -18,6 +20,7 @@ void TestGameplayState::Update(int frameTime)
 void TestGameplayState::Initialize(Client* manager)
 {
 	GameplayState::Initialize(manager);
+	testText = new Text(100, 100, "HELLO", gameManager);
 }
 
 void TestGameplayState::ManageInput(SDL_Event* e)

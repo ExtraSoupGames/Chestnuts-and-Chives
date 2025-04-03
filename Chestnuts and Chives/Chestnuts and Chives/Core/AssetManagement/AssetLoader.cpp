@@ -17,6 +17,7 @@ AssetLoader::AssetLoader()
 {
 	textures = new AssetDictionary<SDL_Texture*>();
 	textureNum = 0;
+	
 }
 AssetLoader::~AssetLoader() {
 }

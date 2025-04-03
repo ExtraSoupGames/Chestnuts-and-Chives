@@ -17,11 +17,15 @@ if(WIN32)
     set(SDL3_NET_INCLUDE_DIR "C:/Libraries/SDL3_net/include")
     set(SDL3_NET_LIBRARY "C:/Libraries/SDL3_net/lib/x64/SDL3_net.lib")
 
+    set(SDL3_TTF_INCLUDE_DIR "C:/Libraries/SDL3_ttf/include")
+    set(SDL3_TTF_LIBRARY "C:/Libraries/SDL3_ttf/lib/x64/SDL3_ttf.lib")
+
 elseif(APPLE OR UNIX)
     # Automatically find SDL3, SDL3_image, and SDL3_net on Linux/macOS
     find_package(SDL3 REQUIRED)
     find_package(SDL3_image REQUIRED)
     find_package(SDL3_net REQUIRED)
+    find_package(SDL3_ttf REQUIRED)
 endif()
 
 # Add source files
@@ -34,6 +38,7 @@ target_include_directories(ChestnutsAndChives PRIVATE
     ${SDL3_INCLUDE_DIR} 
     ${SDL3_IMAGE_INCLUDE_DIR}
     ${SDL3_NET_INCLUDE_DIR}
+    ${SDL3_TTF_INCLUDE_DIR}
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Core/AssetManagement"
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Core/GameStates"
     "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Core/GameStates/DefaultStates"
@@ -55,6 +60,7 @@ target_link_libraries(ChestnutsAndChives PRIVATE
     ${SDL3_LIBRARY} 
     ${SDL3_IMAGE_LIBRARY}
     ${SDL3_NET_LIBRARY}
+    ${SDL3_TTF_LIBRARY}
 )
 
 # Define your libraries and assets paths
@@ -62,7 +68,7 @@ set(OUTPUT_DIR "${CMAKE_BINARY_DIR}")
 set(ASSETS_DIR "${CMAKE_SOURCE_DIR}/Chestnuts and Chives/Assets")
 set(LIBS_DIR "${ASSETS_DIR}/Libraries")
 
-# Copy SDL3.dll, SDL3_image and SDL3_net.dll to the output folder
+# Copy SDL3.dll, SDL3_image and SDL3_net.dll and SDL3_ttf to the output folder
 add_custom_command(TARGET ChestnutsAndChives POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     ${LIBS_DIR}/SDL3.dll
@@ -76,6 +82,11 @@ add_custom_command(TARGET ChestnutsAndChives POST_BUILD
 add_custom_command(TARGET ChestnutsAndChives POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
     ${LIBS_DIR}/SDL3_net.dll
+    $<TARGET_FILE_DIR:ChestnutsAndChives>)
+
+    add_custom_command(TARGET ChestnutsAndChives POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    ${LIBS_DIR}/SDL3_ttf.dll
     $<TARGET_FILE_DIR:ChestnutsAndChives>)
 
 # Recursively copy Assets folder (including textures, sounds, etc.)

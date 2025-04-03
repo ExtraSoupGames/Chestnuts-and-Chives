@@ -31,5 +31,6 @@ public:
 	//draws a texture at a specific offset within a specifed draw area (used for example to draw the map within the map area at an offset without going out of the map ui area
 	void DrawTextureClipped(SDL_Texture* texture, int drawAreaX, int drawAreaY, int drawAreaWidth, int drawAreaHeight, int textureOffsetX, int textureOffsetY, float opacity = 1);
 	int GetScreenScalingFactor();
+	SDL_Renderer* GetRenderer();
 };
 

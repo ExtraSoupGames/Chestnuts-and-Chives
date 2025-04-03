@@ -11,7 +11,6 @@ void AssetLoadingState::Exit()
 
 AssetLoadingState::AssetLoadingState()
 {
-	cout << "Constructor called" << endl;
 	gameManager = nullptr;
 	loader = new AssetLoader();
 }
@@ -37,8 +36,12 @@ void AssetLoadingState::Render(Renderer* renderer)
 
 void AssetLoadingState::Initialize(Client* manager)
 {
-	cout << "manager assigned" << endl;
 	gameManager = manager;
+	TTF_Font* font = TTF_OpenFont("Assets/Fonts/ChestnutsAndChives.ttf", 15);
+	if (!font) {
+		cout << "Font not loaded properly" << SDL_GetError() <<endl;
+	}
+	gameManager->FontLoaded(font);
 }
 
 void AssetLoadingState::ManageInput(SDL_Event* e)

@@ -44,6 +44,11 @@ int Renderer::GetScreenScalingFactor()
     return (int)resolution;
 }
 
+SDL_Renderer* Renderer::GetRenderer()
+{
+    return renderer;
+}
+
 SDL_Texture* Renderer::LoadTextureFromSurface(SDL_Surface* surface)
 {
     return SDL_CreateTextureFromSurface(renderer, surface);

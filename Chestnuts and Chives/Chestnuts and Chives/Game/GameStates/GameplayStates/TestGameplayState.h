@@ -2,9 +2,11 @@
 #include "UIGameplayState.h"
 #include "NetworkUtilities.h"
 #include "SDL3/SDL.h"
+#include "Text.h"
 class TestGameplayState : public UIGameplayState {
 private:
 	bool playerHasVoted;
+	Text* testText;
 protected:
 public:
 	TestGameplayState();

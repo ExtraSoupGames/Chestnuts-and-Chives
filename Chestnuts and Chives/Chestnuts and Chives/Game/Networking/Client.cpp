@@ -140,3 +140,14 @@ SDL_Texture* Client::GetTexture(string name)
 {
     return textureDict->GetItem(name);
 }
+
+void Client::FontLoaded(TTF_Font* gameFont)
+{
+    font = gameFont;
+    cout << "Font loaded" << endl;
+}
+
+TTF_Font* Client::GetFont()
+{
+    return font;
+}

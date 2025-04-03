@@ -6,6 +6,7 @@
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
 #include <SDL3_net/SDL_net.h>
+#include <SDL3_ttf/SDL_ttf.h>
 #include <string>
 #include "Client.h"
 #include "Server.h"
@@ -27,6 +28,9 @@ SDL_AppResult SDL_AppInit(void** appstate, int argc, char* argv[])
     }
     if (!SDLNet_Init()) {
         SDL_Log("Couldn't initialize SDLNet: %s", SDL_GetError());
+    }
+    if (!TTF_Init()) {
+        SDL_Log("Couldn't initialize SDLTtf: %s", SDL_GetError());
     }
     std::string windowName = gameName + " " + versionName;
     int z = 0;
