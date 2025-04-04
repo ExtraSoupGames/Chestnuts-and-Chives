@@ -143,11 +143,11 @@ SDL_Texture* Client::GetTexture(string name)
 
 void Client::FontLoaded(TTF_Font* gameFont)
 {
-    font = gameFont;
-    cout << "Font loaded" << endl;
+    renderer->SetFont(gameFont);
 }
 
-TTF_Font* Client::GetFont()
+
+Renderer* Client::GetRenderer()
 {
-    return font;
+    return renderer;
 }

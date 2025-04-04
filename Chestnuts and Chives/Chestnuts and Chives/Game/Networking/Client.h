@@ -26,7 +26,6 @@ private:
 	AssetDictionary<SDL_Texture*>* textureDict;
 	GameState* state;
 	int ticks;
-	TTF_Font* font;
 public:
 	Client(int portToUse, string windowName);
 	void ConnectToServer(string serverAddress);
@@ -42,6 +41,7 @@ public:
 	void TexturesLoaded(AssetDictionary<SDL_Texture*>* textures);
 	SDL_Texture* GetTexture(string name);
 	void FontLoaded(TTF_Font* font);
-	TTF_Font* GetFont();
+
+	Renderer* GetRenderer();
 };
 

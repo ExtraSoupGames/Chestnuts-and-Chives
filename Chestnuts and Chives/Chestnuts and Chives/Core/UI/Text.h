@@ -8,8 +8,7 @@ class GameManager;
 using namespace std;
 class Text : public UIElement {
 private:
-	TTF_Font* font;
-	string displayText;
+	TTF_Text* displayText;
 protected:
 public:
 	Text(int x, int y, string text, Client* manager);

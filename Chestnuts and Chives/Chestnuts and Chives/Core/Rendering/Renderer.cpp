@@ -12,6 +12,11 @@ Renderer::Renderer(string windowName)
         return;
     }
     SDL_SetRenderScale(renderer, (int)resolution, (int)resolution);
+    textEngine = TTF_CreateRendererTextEngine(renderer);
+    if (!textEngine) {
+        SDL_Log("Couldn't create text engine: %s", SDL_GetError());
+    }
+    font = nullptr;
 }
 
 void Renderer::UpdateScreen()
@@ -47,6 +52,23 @@ int Renderer::GetScreenScalingFactor()
 SDL_Renderer* Renderer::GetRenderer()
 {
     return renderer;
+}
+
+void Renderer::SetFont(TTF_Font* fontToUse)
+{
+    font = fontToUse;
+}
+
+TTF_Text* Renderer::CreateText(string text, SDL_Color* color)
+{    
+    TTF_Text* createdText = TTF_CreateText(textEngine, font, text.c_str(), text.size());
+    TTF_SetTextColor(createdText, color->r, color->g, color->b, color->a);
+    return createdText;
+}
+
+void Renderer::DrawText(TTF_Text* text, int x, int y)
+{
+    TTF_DrawRendererText(text, x, y);
 }
 
 SDL_Texture* Renderer::LoadTextureFromSurface(SDL_Surface* surface)

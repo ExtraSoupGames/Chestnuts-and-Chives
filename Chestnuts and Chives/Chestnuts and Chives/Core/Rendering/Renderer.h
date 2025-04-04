@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include <SDL3/SDL_render.h>
+#include <SDL3_ttf/SDL_ttf.h>
 using namespace std;
 enum ScreenResolutions {
 	RES_None,
@@ -22,6 +23,8 @@ private:
 	ScreenResolutions resolution;
 	SDL_Renderer* renderer;
 	SDL_Window* window;
+	TTF_TextEngine* textEngine;
+	TTF_Font* font;
 public:
 	Renderer(string windowName);
 	SDL_Texture* LoadTextureFromSurface(SDL_Surface* surface);
@@ -32,5 +35,8 @@ public:
 	void DrawTextureClipped(SDL_Texture* texture, int drawAreaX, int drawAreaY, int drawAreaWidth, int drawAreaHeight, int textureOffsetX, int textureOffsetY, float opacity = 1);
 	int GetScreenScalingFactor();
 	SDL_Renderer* GetRenderer();
+	void SetFont(TTF_Font* fontToUse);
+	TTF_Text* CreateText(string text, SDL_Color* color = new SDL_Color{255, 255, 255, 255});
+	void DrawText(TTF_Text* text, int x, int y);
 };
 
