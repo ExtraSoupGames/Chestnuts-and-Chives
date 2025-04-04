@@ -1,11 +1,11 @@
 #include "Text.h"
 
-Text::Text(int x, int y, string text, Client* manager, int maxWidth = 150, int maxHeight = 50) : UIElement(x, y, maxWidth, maxHeight)
+Text::Text(int x, int y, string text, Client* manager, int maxWidth, int maxHeight) : UIElement(x, y, maxWidth, maxHeight)
 {
 	for (auto& x : text) {
 		x = (char)toupper(x);
 	}
-	displayText = manager->GetRenderer()->CreateText(text);
+	displayText = manager->GetRenderer()->CreateText(text, maxWidth);
 }
 
 void Text::Render(Renderer* renderer)

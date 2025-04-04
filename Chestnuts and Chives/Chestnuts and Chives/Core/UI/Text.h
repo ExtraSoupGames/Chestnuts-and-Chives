@@ -12,7 +12,7 @@ private:
 	TTF_Text* displayText;
 protected:
 public:
-	Text(int x, int y, string text, Client* manager, int maxWidth, int maxHeight);
+	Text(int x, int y, string text, Client* manager, int maxWidth = 150, int maxHeight = 50);
 	virtual void Render(Renderer* renderer) override;
 	virtual void HoverStarted() override;
 	virtual void HoverEnded() override;

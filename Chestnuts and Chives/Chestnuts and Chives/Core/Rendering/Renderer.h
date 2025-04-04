@@ -25,6 +25,7 @@ private:
 	SDL_Window* window;
 	TTF_TextEngine* textEngine;
 	TTF_Font* font;
+	int StringPixelLength(string text);
 public:
 	Renderer(string windowName);
 	SDL_Texture* LoadTextureFromSurface(SDL_Surface* surface);
@@ -36,7 +37,7 @@ public:
 	int GetScreenScalingFactor();
 	SDL_Renderer* GetRenderer();
 	void SetFont(TTF_Font* fontToUse);
-	TTF_Text* CreateText(string text, SDL_Color* color = new SDL_Color{255, 255, 255, 255});
+	TTF_Text* CreateText(string text, int maxWidth = 0, SDL_Color* color = new SDL_Color{ 255, 255, 255, 255 });
 	void DrawText(TTF_Text* text, int x, int y);
 };
 

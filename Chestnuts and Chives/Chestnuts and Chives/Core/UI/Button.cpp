@@ -1,6 +1,6 @@
 #include "Button.h"
 Button::Button(string text, int x, int y, int width, int height, function<bool()> callOnClick, Client* manager)
-	: Text(x, y, text, manager, width, height)
+	: UIElement(x, y, width, height)
 {
 	isBlocking = false;
 	isClickable = true;
@@ -8,6 +8,12 @@ Button::Button(string text, int x, int y, int width, int height, function<bool()
 	left = manager->GetTexture("UI/Left");
 	right = manager->GetTexture("UI/Right");
 	middle = manager->GetTexture("UI/Middle");
+	buttonText = new Text(x + 3, y + 3, text, manager, width - 6, height - 6);
+}
+
+Button::~Button()
+{
+	delete buttonText;
 }
 
 void Button::Render(Renderer* renderer)
@@ -24,7 +30,7 @@ void Button::Render(Renderer* renderer)
 		renderer->DrawTexture(middle, topLeftX + 16, topLeftY, width - 32, 16, 1);
 		renderer->DrawTexture(left, topLeftX + width - 16, topLeftY, 16, 16, 1);
 	}
-	Text::Render(renderer);
+	buttonText->Render(renderer);
 
 
 }

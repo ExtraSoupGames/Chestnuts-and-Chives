@@ -1,5 +1,12 @@
 #include "Renderer.h"
 
+int Renderer::StringPixelLength(string text)
+{
+    int length;
+    TTF_MeasureString(font, text.c_str(), 0, 0, &length, nullptr);
+    return length;
+}
+
 Renderer::Renderer(string windowName)
 {
     renderer = NULL;
@@ -59,8 +66,11 @@ void Renderer::SetFont(TTF_Font* fontToUse)
     font = fontToUse;
 }
 
-TTF_Text* Renderer::CreateText(string text, SDL_Color* color)
+TTF_Text* Renderer::CreateText(string text, int maxPixelWidth, SDL_Color* color)
 {    
+    while (StringPixelLength(text) > maxPixelWidth) {
+        text = text.substr(0, text.size() - 1);
+    }
     TTF_Text* createdText = TTF_CreateText(textEngine, font, text.c_str(), text.size());
     TTF_SetTextColor(createdText, color->r, color->g, color->b, color->a);
     return createdText;
