@@ -30,7 +30,7 @@ void MapGameplayState::Update(int frameTime)
 void MapGameplayState::Initialize(Client* manager)
 {
 	GameplayState::Initialize(manager);
-	elements.push_back(new Button(10, 10, 48, 16, [this]() {VoteButtonClicked(); return true; }, gameManager));
+	elements.push_back(new Button("Vote to move on", 10, 10, 48, 16, [this]() {VoteButtonClicked(); return true; }, gameManager));
 }
 
 void MapGameplayState::ManageInput(SDL_Event* e)

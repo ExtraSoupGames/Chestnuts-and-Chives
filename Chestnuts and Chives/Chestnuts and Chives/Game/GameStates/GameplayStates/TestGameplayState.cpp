@@ -20,7 +20,8 @@ void TestGameplayState::Update(int frameTime)
 void TestGameplayState::Initialize(Client* manager)
 {
 	GameplayState::Initialize(manager);
-	testText = new Text(100, 100, "HELLO", gameManager);
+	string text = "HELLO";
+	testText = new Text(100, 100, text, gameManager, 100, 100);
 }
 
 void TestGameplayState::ManageInput(SDL_Event* e)

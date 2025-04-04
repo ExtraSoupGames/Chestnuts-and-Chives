@@ -31,9 +31,11 @@ void MenuState::Update(int frameTime)
 void MenuState::Initialize(Client* gameManager)
 {
 	manager = gameManager;
-	elements.push_back(new Button(10, 10, 48, 16, [this]() {CreateAndConnectClicked(); return true; }, manager));
-	elements.push_back(new Button(10, 40, 64, 16, [this]() {CreateAndConnectClicked(); return true; }, manager));
-	elements.push_back(new Button(10, 80, 128, 16, [this]() {ConnectClicked(); return true; }, manager));
+	string createServerText = "Create a server";
+	string connectServerText = "Connect to server";
+	elements.push_back(new Button(createServerText, 10, 10, 48, 16, [this]() {CreateAndConnectClicked(); return true; }, manager));
+	elements.push_back(new Button(createServerText, 10, 40, 64, 16, [this]() {CreateAndConnectClicked(); return true; }, manager));
+	elements.push_back(new Button(connectServerText, 10, 80, 128, 16, [this]() {ConnectClicked(); return true; }, manager));
 }
 
 void MenuState::ManageInput(SDL_Event* e)

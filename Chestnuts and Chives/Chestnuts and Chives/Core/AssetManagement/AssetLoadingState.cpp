@@ -37,7 +37,7 @@ void AssetLoadingState::Render(Renderer* renderer)
 void AssetLoadingState::Initialize(Client* manager)
 {
 	gameManager = manager;
-	TTF_Font* font = TTF_OpenFont("Assets/Fonts/ChestnutsAndChives.ttf", 15);
+	TTF_Font* font = TTF_OpenFont("Assets/Fonts/ChestnutsAndChives.ttf", 8);
 	if (!font) {
 		cout << "Font not loaded properly" << SDL_GetError() <<endl;
 	}

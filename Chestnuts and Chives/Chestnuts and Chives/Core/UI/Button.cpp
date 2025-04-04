@@ -1,6 +1,6 @@
 #include "Button.h"
-Button::Button(int x, int y, int width, int height, function<bool()> callOnClick, Client* manager)
-	: UIElement(x, y, width, height)
+Button::Button(string text, int x, int y, int width, int height, function<bool()> callOnClick, Client* manager)
+	: Text(x, y, text, manager, width, height)
 {
 	isBlocking = false;
 	isClickable = true;
@@ -12,6 +12,7 @@ Button::Button(int x, int y, int width, int height, function<bool()> callOnClick
 
 void Button::Render(Renderer* renderer)
 {
+
 	//TODO button hover animations
 	if (hovered) {
 		renderer->DrawTexture(left, topLeftX, topLeftY, 16, 16, 1);
@@ -23,6 +24,8 @@ void Button::Render(Renderer* renderer)
 		renderer->DrawTexture(middle, topLeftX + 16, topLeftY, width - 32, 16, 1);
 		renderer->DrawTexture(left, topLeftX + width - 16, topLeftY, 16, 16, 1);
 	}
+	Text::Render(renderer);
+
 
 }
 void Button::HoverStarted()

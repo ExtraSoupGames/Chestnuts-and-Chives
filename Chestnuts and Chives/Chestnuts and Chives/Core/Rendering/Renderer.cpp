@@ -68,7 +68,9 @@ TTF_Text* Renderer::CreateText(string text, SDL_Color* color)
 
 void Renderer::DrawText(TTF_Text* text, int x, int y)
 {
-    TTF_DrawRendererText(text, x, y);
+    if (!TTF_DrawRendererText(text, x, y)) {
+        SDL_Log("Error rendering text: %s", SDL_GetError());
+    }
 }
 
 SDL_Texture* Renderer::LoadTextureFromSurface(SDL_Surface* surface)
